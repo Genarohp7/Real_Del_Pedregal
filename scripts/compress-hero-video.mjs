@@ -5,6 +5,8 @@ const args = [
   '-y',
   '-i',
   'public/assets/video/lienzo-charro-source.mp4',
+  '-ss',
+  '24',
   '-an',
   '-vf',
   'scale=1280:-2,fps=24',

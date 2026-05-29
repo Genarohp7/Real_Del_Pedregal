@@ -5,9 +5,6 @@ import './styles/app.css';
 
 const FACEBOOK_URL = 'https://www.facebook.com/EventosCharrosdelPedregal?locale=es_LA';
 const INSTAGRAM_URL = 'https://www.instagram.com/realdelpedregalcdmx/';
-const PHONE_URL = 'tel:+525546037246';
-const WHATSAPP_URL = 'https://wa.me/525546037246';
-
 const navItems = [
   { label: 'Nosotros', href: '/nosotros' },
   { label: 'Creaciones', href: '/creaciones' },
@@ -17,6 +14,7 @@ const navItems = [
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [heroEnded, setHeroEnded] = useState(false);
 
   return (
     <div className="site-shell">
@@ -81,36 +79,27 @@ function App() {
       </header>
 
       <main>
-        <section className="hero-film" aria-labelledby="hero-title">
+        <section className={`hero-film ${heroEnded ? 'has-ended' : ''}`} aria-label="Video de Real del Pedregal">
           <video
             className="hero-video"
             poster="/assets/optimized/hero-poster-real-del-pedregal.webp"
             autoPlay
             muted
-            loop
             playsInline
-            preload="metadata"
+            preload="auto"
             aria-label="Recorrido visual por Real del Pedregal"
+            onPlay={() => setHeroEnded(false)}
+            onEnded={() => setHeroEnded(true)}
           >
-            <source src="/assets/video/lienzo-charro-hero.mp4" type="video/mp4" />
+            <source src="/assets/video/lienzo-charro-hero.mp4?v=20260528-architectural" type="video/mp4" />
           </video>
-          <div className="hero-shade" aria-hidden="true" />
-          <div className="hero-content">
-            <p className="hero-kicker">Lienzo Charro del Pedregal</p>
-            <h1 id="hero-title">Arquitectura, jardin y celebracion para eventos memorables en CDMX.</h1>
-            <div className="hero-actions">
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
-                Solicitar disponibilidad
-              </a>
-              <a href={PHONE_URL}>55 4603 7246</a>
-            </div>
-          </div>
+          <div className="hero-end-frame" aria-hidden="true" />
         </section>
 
         <section className="institutional-section" aria-labelledby="institutional-title">
           <div className="section-heading">
             <p>Real del Pedregal</p>
-            <h2 id="institutional-title">El espacio donde la celebracion toma escala.</h2>
+            <h1 id="institutional-title">El espacio donde la celebracion toma escala.</h1>
           </div>
 
           <div className="experience-gate" aria-label="Tipos de evento">
