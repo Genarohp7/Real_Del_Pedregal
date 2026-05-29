@@ -128,8 +128,11 @@ function App() {
 
         <section className="institutional-section" aria-labelledby="institutional-title">
           <div className="section-heading">
-            <p>Real del Pedregal</p>
-            <h1 id="institutional-title">El espacio donde la celebracion toma escala.</h1>
+            <h1 id="institutional-title">
+              El espacio donde la celebracion
+              <br />
+              toma escala.
+            </h1>
           </div>
 
           <div className="experience-gate" aria-label="Tipos de evento">
