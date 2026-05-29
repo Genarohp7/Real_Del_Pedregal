@@ -1,5 +1,8 @@
 node_modules/
 dist/
+public/assets/originals/
+public/assets/video/*source*
+public/assets/video/*.mp4
 .env
 .env.*
 .DS_Store
