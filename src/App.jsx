@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import LogoMark from './components/LogoMark.jsx';
 import SocialIcon from './components/SocialIcon.jsx';
 import './styles/app.css';
@@ -14,22 +14,55 @@ const navItems = [
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const idleTimerRef = useRef(null);
+
+  useEffect(() => {
+    const supportsPointerReveal = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+    if (!supportsPointerReveal.matches) {
+      return undefined;
+    }
+
+    const revealHeader = () => {
+      setHeaderVisible(true);
+      window.clearTimeout(idleTimerRef.current);
+      idleTimerRef.current = window.setTimeout(() => {
+        setHeaderVisible(false);
+      }, 1500);
+    };
+
+    window.addEventListener('pointermove', revealHeader, { passive: true });
+    window.addEventListener('keydown', revealHeader);
+
+    return () => {
+      window.removeEventListener('pointermove', revealHeader);
+      window.removeEventListener('keydown', revealHeader);
+      window.clearTimeout(idleTimerRef.current);
+    };
+  }, []);
 
   return (
     <div className="site-shell">
-      <header className="site-header" aria-label="Navegacion principal">
-        <button className="header-trigger" type="button" aria-label="Mostrar navegacion">
-          <span aria-hidden="true" />
-        </button>
-
-        <div className="nav-curtain">
-          <a className="nav-logo" href="/" aria-label="Real del Pedregal, inicio">
+      <header
+        className={`site-header ${headerVisible ? 'is-visible' : ''}`}
+        aria-label="Navegacion principal"
+        onFocus={() => setHeaderVisible(true)}
+        onBlur={(event) => {
+          if (!event.currentTarget.contains(event.relatedTarget)) {
+            setHeaderVisible(false);
+          }
+        }}
+      >
+        <div className="perimeter-nav">
+          <a className="nav-logo perimeter-logo" href="/" aria-label="Real del Pedregal, inicio">
             <LogoMark alt="Real del Pedregal Eventos Sociales" />
           </a>
 
           <nav className="desktop-nav" aria-label="Paginas principales">
-            {navItems.map((item) => (
+            {navItems.map((item, index) => (
               <a key={item.href} href={item.href}>
+                <span>{String(index + 1).padStart(2, '0')}</span>
                 {item.label}
               </a>
             ))}
