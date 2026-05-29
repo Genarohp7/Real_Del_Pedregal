@@ -11,17 +11,41 @@
   pointer-events: none;
 }
 
+.site-header::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, color-mix(in oklch, var(--paper) 78%, transparent) 0%, color-mix(in oklch, var(--paper) 34%, transparent) 10%, transparent 21%),
+    linear-gradient(270deg, color-mix(in oklch, var(--paper) 66%, transparent) 0%, color-mix(in oklch, var(--paper) 26%, transparent) 8%, transparent 17%),
+    linear-gradient(180deg, color-mix(in oklch, var(--paper) 30%, transparent) 0%, transparent 12%);
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 820ms var(--ease-out);
+}
+
+.site-header.is-visible::before,
+.site-header:focus-within::before {
+  opacity: 0.55;
+}
+
 .perimeter-nav {
   position: absolute;
   inset: 0;
 }
 
-.nav-logo img,
+.nav-logo img {
+  width: 150px;
+  height: auto;
+  filter: none;
+  mix-blend-mode: normal;
+}
+
 .mobile-logo img {
   width: 150px;
   height: auto;
-  mix-blend-mode: screen;
   filter: invert(1);
+  mix-blend-mode: screen;
 }
 
 .perimeter-logo {
@@ -45,7 +69,7 @@
   top: 50%;
   left: clamp(22px, 4vw, 64px);
   display: grid;
-  gap: 13px;
+  gap: 31px;
   transform: translateY(-50%);
 }
 
@@ -58,12 +82,14 @@
 }
 
 .desktop-nav a {
+  position: relative;
   display: block;
   width: fit-content;
-  color: color-mix(in oklch, var(--paper) 88%, transparent);
+  padding-bottom: 6px;
+  color: color-mix(in oklch, var(--ink) 92%, transparent);
   font-family: var(--display-font);
-  font-size: clamp(1.28rem, 2.1vw, 2.35rem);
-  letter-spacing: -0.025em;
+  font-size: clamp(0.9rem, 1.08vw, 1.28rem);
+  letter-spacing: -0.01em;
   line-height: 1;
   pointer-events: auto;
   opacity: 0;
@@ -72,6 +98,22 @@
     color 520ms var(--ease-out),
     opacity 760ms var(--ease-out),
     transform 920ms var(--ease-out);
+}
+
+.desktop-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background: currentColor;
+  content: "";
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition:
+    opacity 420ms var(--ease-out),
+    transform 620ms var(--ease-out);
 }
 
 .desktop-nav a:nth-child(1) {
@@ -92,7 +134,13 @@
 
 .desktop-nav a:hover,
 .desktop-nav a:focus-visible {
-  color: var(--paper);
+  color: var(--ink);
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a:focus-visible::after {
+  opacity: 0.96;
+  transform: scaleX(1);
 }
 
 .site-header.is-visible .desktop-nav a,
@@ -112,9 +160,10 @@
 
 .nav-social a {
   display: grid;
-  width: 42px;
-  height: 42px;
-  border: 1px solid color-mix(in oklch, var(--paper) 18%, transparent);
+  width: 55px;
+  height: 55px;
+  border: 1px solid color-mix(in oklch, var(--ink) 22%, transparent);
+  color: var(--ink);
   place-items: center;
   pointer-events: auto;
   opacity: 0;
@@ -129,8 +178,8 @@
 
 .nav-social a:hover,
 .nav-social a:focus-visible {
-  border-color: color-mix(in oklch, var(--paper) 58%, transparent);
-  background: color-mix(in oklch, var(--paper) 8%, transparent);
+  border-color: color-mix(in oklch, var(--ink) 58%, transparent);
+  background: color-mix(in oklch, var(--paper) 48%, transparent);
 }
 
 .nav-social a:nth-child(2) {
@@ -144,8 +193,8 @@
 }
 
 .social-icon {
-  width: 18px;
-  height: 18px;
+  width: 23px;
+  height: 23px;
   fill: currentColor;
 }
 
