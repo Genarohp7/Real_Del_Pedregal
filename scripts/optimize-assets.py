@@ -8,8 +8,25 @@ ORIGINALS = ROOT / "originals"
 OPTIMIZED = ROOT / "optimized"
 
 
+def prepare_logo(source: str) -> Image.Image:
+    image = Image.open(ORIGINALS / source).convert("RGBA")
+    pixels = image.load()
+
+    for y in range(image.height):
+        for x in range(image.width):
+            r, g, b, a = pixels[x, y]
+            if r > 244 and g > 244 and b > 244:
+                pixels[x, y] = (255, 255, 255, 0)
+            elif a:
+                pixels[x, y] = (r, g, b, 255)
+
+    alpha = image.getchannel("A")
+    bbox = alpha.getbbox()
+    return image.crop(bbox) if bbox else image
+
+
 def save_png(source: str, target: str, max_size: int) -> None:
-    image = Image.open(ORIGINALS / source)
+    image = prepare_logo(source)
     image.thumbnail((max_size, max_size), Image.Resampling.LANCZOS)
     image.save(OPTIMIZED / target, optimize=True)
 

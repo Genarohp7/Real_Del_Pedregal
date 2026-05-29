@@ -1,6 +1,11 @@
 import { useState } from 'react';
 
-function LogoMark({ className = '', fallbackClassName = '', alt = 'Real del Pedregal' }) {
+function LogoMark({
+  className = '',
+  fallbackClassName = '',
+  alt = 'Real del Pedregal',
+  src = '/assets/optimized/logo-real-del-pedregal-completo.png',
+}) {
   const [hasLogoError, setHasLogoError] = useState(false);
 
   if (hasLogoError) {
@@ -14,7 +19,7 @@ function LogoMark({ className = '', fallbackClassName = '', alt = 'Real del Pedr
   return (
     <img
       className={className}
-      src="/brand/logo-real-del-pedregal.png"
+      src={src}
       alt={alt}
       onError={() => setHasLogoError(true)}
     />

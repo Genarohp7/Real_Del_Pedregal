@@ -1,76 +1,150 @@
-import { useEffect, useState } from 'react';
-import IntroScreen from './components/IntroScreen.jsx';
+import { useState } from 'react';
 import LogoMark from './components/LogoMark.jsx';
 import SocialIcon from './components/SocialIcon.jsx';
 import './styles/app.css';
 
-const WHATSAPP_URL = 'https://wa.me/525546037246';
 const FACEBOOK_URL = 'https://www.facebook.com/EventosCharrosdelPedregal?locale=es_LA';
 const INSTAGRAM_URL = 'https://www.instagram.com/realdelpedregalcdmx/';
+const PHONE_URL = 'tel:+525546037246';
+const WHATSAPP_URL = 'https://wa.me/525546037246';
+
+const navItems = [
+  { label: 'Nosotros', href: '/nosotros' },
+  { label: 'Creaciones', href: '/creaciones' },
+  { label: 'Expertos', href: '/expertos' },
+  { label: 'Contacto', href: '/contacto' },
+];
 
 function App() {
-  const [introVisible, setIntroVisible] = useState(true);
-  const [introPhase, setIntroPhase] = useState('hold');
-  const [pageReady, setPageReady] = useState(false);
-
-  useEffect(() => {
-    const logoOutTimer = window.setTimeout(() => setIntroPhase('logo-out'), 3000);
-    const revealTimer = window.setTimeout(() => {
-      setIntroPhase('reveal');
-      setPageReady(true);
-    }, 4300);
-    const removeIntroTimer = window.setTimeout(() => setIntroVisible(false), 7900);
-
-    return () => {
-      window.clearTimeout(logoOutTimer);
-      window.clearTimeout(revealTimer);
-      window.clearTimeout(removeIntroTimer);
-    };
-  }, []);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <>
-      {introVisible && <IntroScreen phase={introPhase} />}
-      <main className={`landing-shell ${pageReady ? 'is-visible' : ''}`}>
-        <div className="ambient ambient-one" aria-hidden="true" />
-        <div className="ambient ambient-two" aria-hidden="true" />
-        <section className="hero" aria-labelledby="hero-title">
-          <div className="brand-mark" aria-label="Real del Pedregal Eventos Sociales">
-            <span className="logo-aura" aria-hidden="true" />
-            <LogoMark
-              className="brand-logo"
-              fallbackClassName="brand-logo-fallback"
-              alt="Real del Pedregal Eventos Sociales"
-            />
+    <div className="site-shell">
+      <header className="site-header" aria-label="Navegacion principal">
+        <button className="header-trigger" type="button" aria-label="Mostrar navegacion">
+          <span aria-hidden="true" />
+        </button>
+
+        <div className="nav-curtain">
+          <a className="nav-logo" href="/" aria-label="Real del Pedregal, inicio">
+            <LogoMark alt="Real del Pedregal Eventos Sociales" />
+          </a>
+
+          <nav className="desktop-nav" aria-label="Paginas principales">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href}>
+                {item.label}
+              </a>
+            ))}
+          </nav>
+
+          <div className="nav-social" aria-label="Redes sociales">
+            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook de Real del Pedregal">
+              <SocialIcon name="facebook" />
+            </a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram de Real del Pedregal">
+              <SocialIcon name="instagram" />
+            </a>
           </div>
+        </div>
 
-          <div className="gold-rule" aria-hidden="true" />
+        <div className="mobile-bar">
+          <a className="mobile-logo" href="/" aria-label="Real del Pedregal, inicio">
+            <LogoMark alt="Real del Pedregal Eventos Sociales" />
+          </a>
+          <button
+            className="mobile-menu-button"
+            type="button"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
+          >
+            Menu
+          </button>
+        </div>
 
-          <h1 id="hero-title">Estamos trabajando en una nueva experiencia</h1>
-          <p className="hero-copy">
-            Muy pronto podr&aacute;s conocer m&aacute;s sobre Real del Pedregal, un espacio para eventos sociales creado para momentos memorables.
-          </p>
+        <nav id="mobile-menu" className={`mobile-panel ${mobileMenuOpen ? 'is-open' : ''}`} aria-label="Menu movil">
+          {navItems.map((item) => (
+            <a key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)}>
+              {item.label}
+            </a>
+          ))}
+          <div className="mobile-social">
+            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">
+              Facebook
+            </a>
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
+              Instagram
+            </a>
+          </div>
+        </nav>
+      </header>
 
-          <div className="actions" aria-label="Canales de contacto">
-            <div className="social-links">
-              <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook de Real del Pedregal">
-                <SocialIcon name="facebook" />
+      <main>
+        <section className="hero-film" aria-labelledby="hero-title">
+          <video
+            className="hero-video"
+            poster="/assets/optimized/hero-poster-real-del-pedregal.webp"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-label="Recorrido visual por Real del Pedregal"
+          >
+            <source src="/assets/video/lienzo-charro-hero.mp4" type="video/mp4" />
+          </video>
+          <div className="hero-shade" aria-hidden="true" />
+          <div className="hero-content">
+            <p className="hero-kicker">Lienzo Charro del Pedregal</p>
+            <h1 id="hero-title">Arquitectura, jardin y celebracion para eventos memorables en CDMX.</h1>
+            <div className="hero-actions">
+              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+                Solicitar disponibilidad
               </a>
-              <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram de Real del Pedregal">
-                <SocialIcon name="instagram" />
-              </a>
-              <a href={WHATSAPP_URL} target="_blank" rel="noreferrer" aria-label="WhatsApp de Real del Pedregal">
-                <SocialIcon name="whatsapp" />
-              </a>
+              <a href={PHONE_URL}>55 4603 7246</a>
             </div>
           </div>
         </section>
 
-        <footer className="site-footer">
-          <span>realdelpedregal.com.mx</span>
-        </footer>
+        <section className="institutional-section" aria-labelledby="institutional-title">
+          <div className="section-heading">
+            <p>Real del Pedregal</p>
+            <h2 id="institutional-title">El espacio donde la celebracion toma escala.</h2>
+          </div>
+
+          <div className="experience-gate" aria-label="Tipos de evento">
+            <a className="experience-link social-experience" href="/eventos-sociales">
+              <span>Eventos Sociales</span>
+              <img
+                src="/assets/optimized/eventos-sociales-real-del-pedregal.webp"
+                alt="Montaje de evento social en Real del Pedregal"
+                title="Eventos sociales en Real del Pedregal"
+                loading="lazy"
+              />
+            </a>
+
+            <div className="center-mark" aria-hidden="true">
+              <LogoMark
+                src="/assets/optimized/logo-real-del-pedregal-monograma.png"
+                alt=""
+                className="center-logo"
+              />
+            </div>
+
+            <a className="experience-link corporate-experience" href="/corporativos">
+              <span>Corporativos</span>
+              <img
+                src="/assets/optimized/eventos-corporativos-real-del-pedregal.webp"
+                alt="Salon con arcos y montaje para evento corporativo en Real del Pedregal"
+                title="Eventos corporativos en Real del Pedregal"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        </section>
       </main>
-    </>
+    </div>
   );
 }
 
