@@ -60,9 +60,8 @@ function App() {
           </a>
 
           <nav className="desktop-nav" aria-label="Paginas principales">
-            {navItems.map((item, index) => (
+            {navItems.map((item) => (
               <a key={item.href} href={item.href}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
                 {item.label}
               </a>
             ))}

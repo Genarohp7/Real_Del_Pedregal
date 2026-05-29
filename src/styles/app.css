@@ -45,7 +45,7 @@
   top: 50%;
   left: clamp(22px, 4vw, 64px);
   display: grid;
-  gap: 18px;
+  gap: 13px;
   transform: translateY(-50%);
 }
 
@@ -58,18 +58,16 @@
 }
 
 .desktop-nav a {
-  display: flex;
+  display: block;
   width: fit-content;
-  align-items: baseline;
-  gap: 14px;
   color: color-mix(in oklch, var(--paper) 88%, transparent);
   font-family: var(--display-font);
-  font-size: clamp(2rem, 4vw, 4.2rem);
-  letter-spacing: -0.035em;
-  line-height: 0.92;
+  font-size: clamp(1.28rem, 2.1vw, 2.35rem);
+  letter-spacing: -0.025em;
+  line-height: 1;
   pointer-events: auto;
   opacity: 0;
-  transform: translate(-28px, 22px);
+  transform: translateX(-26px);
   transition:
     color 520ms var(--ease-out),
     opacity 760ms var(--ease-out),
@@ -81,25 +79,15 @@
 }
 
 .desktop-nav a:nth-child(2) {
-  margin-left: clamp(14px, 3vw, 44px);
   transition-delay: 80ms;
 }
 
 .desktop-nav a:nth-child(3) {
-  margin-left: clamp(28px, 5vw, 88px);
   transition-delay: 160ms;
 }
 
 .desktop-nav a:nth-child(4) {
-  margin-left: clamp(42px, 7vw, 132px);
   transition-delay: 240ms;
-}
-
-.desktop-nav a span {
-  color: color-mix(in oklch, var(--paper) 54%, transparent);
-  font-family: var(--body-font);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
 }
 
 .desktop-nav a:hover,
