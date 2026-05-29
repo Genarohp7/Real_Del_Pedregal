@@ -14,7 +14,6 @@ const navItems = [
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [heroEnded, setHeroEnded] = useState(false);
 
   return (
     <div className="site-shell">
@@ -79,7 +78,7 @@ function App() {
       </header>
 
       <main>
-        <section className={`hero-film ${heroEnded ? 'has-ended' : ''}`} aria-label="Video de Real del Pedregal">
+        <section className="hero-film" aria-label="Video de Real del Pedregal">
           <video
             className="hero-video"
             poster="/assets/optimized/hero-poster-real-del-pedregal.webp"
@@ -88,12 +87,9 @@ function App() {
             playsInline
             preload="auto"
             aria-label="Recorrido visual por Real del Pedregal"
-            onPlay={() => setHeroEnded(false)}
-            onEnded={() => setHeroEnded(true)}
           >
             <source src="/assets/video/lienzo-charro-hero.mp4?v=20260528-architectural" type="video/mp4" />
           </video>
-          <div className="hero-end-frame" aria-hidden="true" />
         </section>
 
         <section className="institutional-section" aria-labelledby="institutional-title">
