@@ -1,10 +1,12 @@
 import { useState } from 'react';
 
+const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
+
 function LogoMark({
   className = '',
   fallbackClassName = '',
   alt = 'Real del Pedregal',
-  src = '/assets/optimized/logo-real-del-pedregal-completo.png',
+  src = assetUrl('assets/optimized/logo-real-del-pedregal-completo.png'),
 }) {
   const [hasLogoError, setHasLogoError] = useState(false);
 

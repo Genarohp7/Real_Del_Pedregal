@@ -5,6 +5,8 @@ import './styles/app.css';
 
 const FACEBOOK_URL = 'https://www.facebook.com/EventosCharrosdelPedregal?locale=es_LA';
 const INSTAGRAM_URL = 'https://www.instagram.com/realdelpedregalcdmx/';
+const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
+const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 const navItems = [
   { label: 'Nosotros', href: '/nosotros' },
   { label: 'Creaciones', href: '/creaciones' },
@@ -55,13 +57,13 @@ function App() {
         }}
       >
         <div className="perimeter-nav">
-          <a className="nav-logo perimeter-logo" href="/" aria-label="Real del Pedregal, inicio">
+          <a className="nav-logo perimeter-logo" href={pageUrl('/')} aria-label="Real del Pedregal, inicio">
             <LogoMark alt="Real del Pedregal Eventos Sociales" />
           </a>
 
           <nav className="desktop-nav" aria-label="Paginas principales">
             {navItems.map((item) => (
-              <a key={item.href} href={item.href}>
+              <a key={item.href} href={pageUrl(item.href)}>
                 {item.label}
               </a>
             ))}
@@ -78,7 +80,7 @@ function App() {
         </div>
 
         <div className="mobile-bar">
-          <a className="mobile-logo" href="/" aria-label="Real del Pedregal, inicio">
+          <a className="mobile-logo" href={pageUrl('/')} aria-label="Real del Pedregal, inicio">
             <LogoMark alt="Real del Pedregal Eventos Sociales" />
           </a>
           <button
@@ -94,7 +96,7 @@ function App() {
 
         <nav id="mobile-menu" className={`mobile-panel ${mobileMenuOpen ? 'is-open' : ''}`} aria-label="Menu movil">
           {navItems.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)}>
+            <a key={item.href} href={pageUrl(item.href)} onClick={() => setMobileMenuOpen(false)}>
               {item.label}
             </a>
           ))}
@@ -113,14 +115,14 @@ function App() {
         <section className="hero-film" aria-label="Video de Real del Pedregal">
           <video
             className="hero-video"
-            poster="/assets/optimized/hero-poster-real-del-pedregal.webp"
+            poster={assetUrl('assets/optimized/hero-poster-real-del-pedregal.webp')}
             autoPlay
             muted
             playsInline
             preload="auto"
             aria-label="Recorrido visual por Real del Pedregal"
           >
-            <source src="/assets/video/lienzo-charro-hero.mp4?v=20260528-architectural" type="video/mp4" />
+            <source src={`${assetUrl('assets/video/lienzo-charro-hero.mp4')}?v=20260528-architectural`} type="video/mp4" />
           </video>
         </section>
 
@@ -131,10 +133,10 @@ function App() {
           </div>
 
           <div className="experience-gate" aria-label="Tipos de evento">
-            <a className="experience-link social-experience" href="/eventos-sociales">
+            <a className="experience-link social-experience" href={pageUrl('/eventos-sociales')}>
               <span>Eventos Sociales</span>
               <img
-                src="/assets/optimized/eventos-sociales-real-del-pedregal.webp"
+                src={assetUrl('assets/optimized/eventos-sociales-real-del-pedregal.webp')}
                 alt="Montaje de evento social en Real del Pedregal"
                 title="Eventos sociales en Real del Pedregal"
                 loading="lazy"
@@ -143,16 +145,16 @@ function App() {
 
             <div className="center-mark" aria-hidden="true">
               <LogoMark
-                src="/assets/optimized/logo-real-del-pedregal-monograma.png"
+                src={assetUrl('assets/optimized/logo-real-del-pedregal-monograma.png')}
                 alt=""
                 className="center-logo"
               />
             </div>
 
-            <a className="experience-link corporate-experience" href="/corporativos">
+            <a className="experience-link corporate-experience" href={pageUrl('/corporativos')}>
               <span>Corporativos</span>
               <img
-                src="/assets/optimized/eventos-corporativos-real-del-pedregal.webp"
+                src={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
                 alt="Salon con arcos y montaje para evento corporativo en Real del Pedregal"
                 title="Eventos corporativos en Real del Pedregal"
                 loading="lazy"
