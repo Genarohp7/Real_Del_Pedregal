@@ -3,6 +3,7 @@ dist/
 public/assets/originals/
 public/assets/video/*source*
 public/assets/video/*.mp4
+!public/assets/video/lienzo-charro-hero.mp4
 .env
 .env.*
 .DS_Store
