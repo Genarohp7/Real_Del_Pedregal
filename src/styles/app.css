@@ -515,8 +515,8 @@
 
   .institutional-section {
     min-height: auto;
-    padding: clamp(54px, 12vw, 82px) 20px clamp(48px, 12vw, 78px);
-    gap: 34px;
+    padding: clamp(126px, 32vw, 156px) 18px clamp(48px, 12vw, 78px);
+    gap: clamp(26px, 8vw, 40px);
   }
 
   .section-heading {
@@ -524,42 +524,66 @@
   }
 
   .section-heading h1 {
-    max-width: 10ch;
-    font-size: clamp(2.1rem, 12vw, 4.1rem);
+    max-width: 12ch;
+    font-size: clamp(2rem, 10.5vw, 3.55rem);
+    line-height: 0.98;
   }
 
   .experience-gate {
     height: auto;
     min-height: auto;
     grid-template-columns: 1fr;
-    gap: 26px;
+    gap: clamp(22px, 7vw, 34px);
     transform: none;
   }
 
   .center-mark {
     order: -1;
-    width: min(74vw, 320px);
+    width: min(58vw, 230px);
     margin: 0 auto;
   }
 
   .experience-link,
   .corporate-experience {
     width: 100%;
-    min-height: 230px;
+    max-width: 520px;
+    min-height: auto;
+    margin: 0 auto;
     justify-items: start;
     text-align: left;
     --card-copy-shift: 0;
     --card-hover-shift: 0;
+    --card-title-rest-shift: 0;
   }
 
   .experience-title {
-    max-width: 10ch;
-    font-size: clamp(2rem, 12vw, 3.25rem);
+    max-width: 11ch;
+    font-size: clamp(2rem, 10.5vw, 3rem);
+    line-height: 0.92;
   }
 
   .experience-preview {
     width: 100%;
+    aspect-ratio: 1.18;
+    border-color: color-mix(in oklch, var(--ink) 18%, transparent);
+    border-radius: 4px;
     clip-path: inset(0 0 0 0);
+    transform: none;
+  }
+
+  .experience-preview::before {
+    background:
+      linear-gradient(180deg, transparent 22%, color-mix(in oklch, var(--ink) 74%, transparent)),
+      color-mix(in oklch, var(--accent-clay) 16%, transparent);
+    opacity: 0.56;
+  }
+
+  .experience-copy,
+  .corporate-experience .experience-copy {
+    align-content: end;
+    justify-items: start;
+    padding: 22px;
+    text-align: left;
   }
 
   .experience-link:hover .experience-preview,
@@ -573,6 +597,30 @@
   .experience-link:focus-visible .experience-title,
   .experience-link:active .experience-title {
     transform: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .institutional-section {
+    padding-right: 14px;
+    padding-left: 14px;
+  }
+
+  .section-heading h1 {
+    max-width: 11ch;
+  }
+
+  .center-mark {
+    width: min(54vw, 210px);
+  }
+
+  .experience-preview {
+    aspect-ratio: 1.08;
+  }
+
+  .experience-copy,
+  .corporate-experience .experience-copy {
+    padding: 18px;
   }
 }
 

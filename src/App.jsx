@@ -137,7 +137,7 @@ function App() {
 
           <div className="experience-gate" aria-label="Tipos de evento">
             <a className="experience-link social-experience" href={pageUrl('/eventos-sociales')}>
-              <span className="experience-preview" aria-hidden="true">
+              <span className="experience-preview">
                 <img
                   src={assetUrl('assets/optimized/eventos-sociales-real-del-pedregal.webp')}
                   alt="Montaje de evento social en Real del Pedregal"
@@ -159,7 +159,7 @@ function App() {
             </div>
 
             <a className="experience-link corporate-experience" href={pageUrl('/corporativos')}>
-              <span className="experience-preview" aria-hidden="true">
+              <span className="experience-preview">
                 <img
                   src={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
                   alt="Salon con arcos y montaje para evento corporativo en Real del Pedregal"
