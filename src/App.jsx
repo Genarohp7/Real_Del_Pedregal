@@ -14,10 +14,258 @@ const navItems = [
   { label: 'Contacto', href: '/contacto' },
 ];
 
+const normalizePath = () => {
+  const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
+
+  if (pathname.endsWith('/nosotros')) {
+    return '/nosotros';
+  }
+
+  return '/';
+};
+
+const aboutImages = [
+  {
+    src: 'assets/optimized/nosotros-real-del-pedregal-jardin.webp',
+    alt: 'Jardin y arqueria de Real del Pedregal en Tlalpan',
+    className: 'about-fold-image about-fold-image-large',
+  },
+  {
+    src: 'assets/optimized/nosotros-real-del-pedregal-arquitectura.webp',
+    alt: 'Arquitectura y vegetacion de Real del Pedregal',
+    className: 'about-fold-image about-fold-image-tall',
+  },
+  {
+    src: 'assets/optimized/nosotros-real-del-pedregal-terraza.webp',
+    alt: 'Terraza, jardines y detalles de piedra en Real del Pedregal',
+    className: 'about-fold-image about-fold-image-wide',
+  },
+  {
+    src: 'assets/optimized/nosotros-real-del-pedregal-recorrido.webp',
+    alt: 'Recorrido exterior con jardines y terrazas en Real del Pedregal',
+    className: 'about-fold-image about-fold-image-offset',
+  },
+  {
+    src: 'assets/optimized/nosotros-real-del-pedregal-patio.webp',
+    alt: 'Patio historico con jardines y arcos en Real del Pedregal',
+    className: 'about-fold-image about-fold-image-small',
+  },
+];
+
+const foldPanels = [
+  { className: 'panel-top-left', position: '0% 0%' },
+  { className: 'panel-top', position: '50% 0%' },
+  { className: 'panel-top-right', position: '100% 0%' },
+  { className: 'panel-left', position: '0% 50%' },
+  { className: 'panel-center', position: '50% 50%' },
+  { className: 'panel-right', position: '100% 50%' },
+  { className: 'panel-bottom-left', position: '0% 100%' },
+  { className: 'panel-bottom', position: '50% 100%' },
+  { className: 'panel-bottom-right', position: '100% 100%' },
+];
+
+function FoldImage({ src, alt, className }) {
+  const image = assetUrl(src);
+
+  return (
+    <figure className={className} role="img" aria-label={alt} style={{ '--fold-image': `url("${image}")` }}>
+      <span className="fold-image-fallback" aria-hidden="true" />
+      <span className="fold-panel-grid" aria-hidden="true">
+        {foldPanels.map((panel) => (
+          <span
+            key={panel.className}
+            className={`fold-panel ${panel.className}`}
+            style={{ backgroundPosition: panel.position }}
+          />
+        ))}
+      </span>
+    </figure>
+  );
+}
+
+function AboutPage() {
+  const videoRef = useRef(null);
+  const isVisibleRef = useRef(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return undefined;
+    }
+
+    const playVideo = () => {
+      video.play().catch(() => undefined);
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        isVisibleRef.current = entry.isIntersecting;
+
+        if (entry.isIntersecting) {
+          setShouldLoadVideo(true);
+          playVideo();
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: '260px 0px', threshold: 0.32 },
+    );
+
+    observer.observe(video);
+
+    return () => {
+      observer.disconnect();
+      video.pause();
+    };
+  }, []);
+
+  useEffect(() => {
+    if (shouldLoadVideo && isVisibleRef.current && videoRef.current) {
+      videoRef.current.load();
+      videoRef.current.play().catch(() => undefined);
+    }
+  }, [shouldLoadVideo]);
+
+  return (
+    <section className="about-section about-page" aria-labelledby="about-title">
+      <div className="about-inner">
+        <div className="about-copy">
+          <h1 id="about-title">Nosotros</h1>
+          <p>
+            En Real del Pedregal, la naturaleza, la tradicion y la elegancia conviven en un mismo lugar
+            para dar vida a experiencias memorables. El recinto reune jardines, terrazas, patios y espacios
+            llenos de historia, pensados para adaptarse a distintos tipos de eventos y celebraciones.
+          </p>
+          <p>
+            Cada rincon tiene una personalidad propia: ambientes al aire libre rodeados de vegetacion,
+            arquitectura con caracter cultural y recorridos que acompanan la creacion de momentos unicos.
+          </p>
+        </div>
+
+        <div className="about-video-frame" aria-hidden="true">
+          <video
+            ref={videoRef}
+            className="about-video"
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster={assetUrl('assets/optimized/nosotros-video-poster-real-del-pedregal.webp')}
+          >
+            <source src={assetUrl('assets/video/nosotros-real-del-pedregal.mp4')} type="video/mp4" />
+          </video>
+        </div>
+
+        <div className="about-gallery" aria-label="Espacios de Real del Pedregal">
+          {aboutImages.map((image) => (
+            <FoldImage key={image.src} {...image} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomePage() {
+  return (
+    <>
+      <section className="hero-film" aria-label="Video de Real del Pedregal">
+        <video
+          className="hero-video"
+          poster={assetUrl('assets/optimized/hero-poster-real-del-pedregal.webp')}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          aria-label="Recorrido visual por Real del Pedregal"
+        >
+          <source src={`${assetUrl('assets/video/lienzo-charro-hero.mp4')}?v=20260528-architectural`} type="video/mp4" />
+        </video>
+      </section>
+
+      <section className="institutional-section" aria-labelledby="institutional-title">
+        <div className="section-heading">
+          <h1 id="institutional-title">
+            El espacio donde la celebracion
+            <br />
+            toma escala.
+          </h1>
+        </div>
+
+        <div className="experience-gate" aria-label="Tipos de evento">
+          <a className="experience-link social-experience" href={pageUrl('/eventos-sociales')}>
+            <span className="experience-preview">
+              <img
+                src={assetUrl('assets/optimized/eventos-sociales-real-del-pedregal.webp')}
+                alt="Montaje de evento social en Real del Pedregal"
+                title="Eventos sociales en Real del Pedregal"
+                loading="lazy"
+              />
+              <span className="experience-copy">
+                <span className="experience-title">Eventos Sociales</span>
+              </span>
+            </span>
+          </a>
+
+          <div className="center-mark" aria-hidden="true">
+            <LogoMark
+              src={assetUrl('assets/optimized/logo-real-del-pedregal-monograma.png')}
+              alt=""
+              className="center-logo"
+            />
+          </div>
+
+          <a className="experience-link corporate-experience" href={pageUrl('/corporativos')}>
+            <span className="experience-preview">
+              <img
+                src={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
+                alt="Salon con arcos y montaje para evento corporativo en Real del Pedregal"
+                title="Eventos corporativos en Real del Pedregal"
+                loading="lazy"
+              />
+              <span className="experience-copy">
+                <span className="experience-title">Corporativos</span>
+              </span>
+            </span>
+          </a>
+        </div>
+      </section>
+    </>
+  );
+}
+
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [headerVisible, setHeaderVisible] = useState(false);
+  const [currentPath, setCurrentPath] = useState(normalizePath);
   const idleTimerRef = useRef(null);
+
+  const navigateTo = (event, path) => {
+    if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
+      return;
+    }
+
+    event.preventDefault();
+    window.history.pushState({}, '', pageUrl(path));
+    setCurrentPath(path);
+    setMobileMenuOpen(false);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  };
+
+  useEffect(() => {
+    const handlePopState = () => {
+      setCurrentPath(normalizePath());
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, []);
 
   useEffect(() => {
     const supportsPointerReveal = window.matchMedia('(hover: hover) and (pointer: fine)');
@@ -57,13 +305,22 @@ function App() {
         }}
       >
         <div className="perimeter-nav">
-          <a className="nav-logo perimeter-logo" href={pageUrl('/')} aria-label="Real del Pedregal, inicio">
+          <a
+            className="nav-logo perimeter-logo"
+            href={pageUrl('/')}
+            aria-label="Real del Pedregal, inicio"
+            onClick={(event) => navigateTo(event, '/')}
+          >
             <LogoMark alt="Real del Pedregal Eventos Sociales" />
           </a>
 
           <nav className="desktop-nav" aria-label="Paginas principales">
             {navItems.map((item) => (
-              <a key={item.href} href={pageUrl(item.href)}>
+              <a
+                key={item.href}
+                href={pageUrl(item.href)}
+                onClick={item.href === '/nosotros' ? (event) => navigateTo(event, item.href) : undefined}
+              >
                 {item.label}
               </a>
             ))}
@@ -80,7 +337,12 @@ function App() {
         </div>
 
         <div className="mobile-bar">
-          <a className="mobile-logo" href={pageUrl('/')} aria-label="Real del Pedregal, inicio">
+          <a
+            className="mobile-logo"
+            href={pageUrl('/')}
+            aria-label="Real del Pedregal, inicio"
+            onClick={(event) => navigateTo(event, '/')}
+          >
             <LogoMark alt="Real del Pedregal Eventos Sociales" />
           </a>
           <button
@@ -96,7 +358,11 @@ function App() {
 
         <nav id="mobile-menu" className={`mobile-panel ${mobileMenuOpen ? 'is-open' : ''}`} aria-label="Menu movil">
           {navItems.map((item) => (
-            <a key={item.href} href={pageUrl(item.href)} onClick={() => setMobileMenuOpen(false)}>
+            <a
+              key={item.href}
+              href={pageUrl(item.href)}
+              onClick={item.href === '/nosotros' ? (event) => navigateTo(event, item.href) : () => setMobileMenuOpen(false)}
+            >
               {item.label}
             </a>
           ))}
@@ -111,69 +377,7 @@ function App() {
         </nav>
       </header>
 
-      <main>
-        <section className="hero-film" aria-label="Video de Real del Pedregal">
-          <video
-            className="hero-video"
-            poster={assetUrl('assets/optimized/hero-poster-real-del-pedregal.webp')}
-            autoPlay
-            muted
-            playsInline
-            preload="auto"
-            aria-label="Recorrido visual por Real del Pedregal"
-          >
-            <source src={`${assetUrl('assets/video/lienzo-charro-hero.mp4')}?v=20260528-architectural`} type="video/mp4" />
-          </video>
-        </section>
-
-        <section className="institutional-section" aria-labelledby="institutional-title">
-          <div className="section-heading">
-            <h1 id="institutional-title">
-              El espacio donde la celebracion
-              <br />
-              toma escala.
-            </h1>
-          </div>
-
-          <div className="experience-gate" aria-label="Tipos de evento">
-            <a className="experience-link social-experience" href={pageUrl('/eventos-sociales')}>
-              <span className="experience-preview">
-                <img
-                  src={assetUrl('assets/optimized/eventos-sociales-real-del-pedregal.webp')}
-                  alt="Montaje de evento social en Real del Pedregal"
-                  title="Eventos sociales en Real del Pedregal"
-                  loading="lazy"
-                />
-                <span className="experience-copy">
-                  <span className="experience-title">Eventos Sociales</span>
-                </span>
-              </span>
-            </a>
-
-            <div className="center-mark" aria-hidden="true">
-              <LogoMark
-                src={assetUrl('assets/optimized/logo-real-del-pedregal-monograma.png')}
-                alt=""
-                className="center-logo"
-              />
-            </div>
-
-            <a className="experience-link corporate-experience" href={pageUrl('/corporativos')}>
-              <span className="experience-preview">
-                <img
-                  src={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
-                  alt="Salon con arcos y montaje para evento corporativo en Real del Pedregal"
-                  title="Eventos corporativos en Real del Pedregal"
-                  loading="lazy"
-                />
-                <span className="experience-copy">
-                  <span className="experience-title">Corporativos</span>
-                </span>
-              </span>
-            </a>
-          </div>
-        </section>
-      </main>
+      <main>{currentPath === '/nosotros' ? <AboutPage /> : <HomePage />}</main>
     </div>
   );
 }
