@@ -55,6 +55,7 @@ function AboutPhotoShowcase() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [previousIndex, setPreviousIndex] = useState(null);
   const [revealRadius, setRevealRadius] = useState(64);
+  const hasStartedRef = useRef(false);
 
   useEffect(() => {
     const rotation = window.setInterval(() => {
@@ -69,6 +70,13 @@ function AboutPhotoShowcase() {
 
   useEffect(() => {
     let frameId;
+
+    if (!hasStartedRef.current) {
+      hasStartedRef.current = true;
+      setRevealRadius(64);
+      return undefined;
+    }
+
     const startTime = window.performance.now();
     const duration = ABOUT_SHOWCASE_REVEAL_DURATION;
 
@@ -100,6 +108,7 @@ function AboutPhotoShowcase() {
           key={image.src}
           className={[
             index === activeIndex ? 'is-active' : '',
+            index === activeIndex && previousIndex === null ? 'is-initial' : '',
             index === previousIndex ? 'is-previous' : '',
           ].filter(Boolean).join(' ')}
           src={assetUrl(image.src)}
