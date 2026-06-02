@@ -28,57 +28,87 @@ const aboutImages = [
   {
     src: 'assets/optimized/nosotros-real-del-pedregal-jardin.webp',
     alt: 'Jardin y arqueria de Real del Pedregal en Tlalpan',
-    className: 'about-fold-image about-fold-image-large',
   },
   {
     src: 'assets/optimized/nosotros-real-del-pedregal-arquitectura.webp',
     alt: 'Arquitectura y vegetacion de Real del Pedregal',
-    className: 'about-fold-image about-fold-image-tall',
   },
   {
     src: 'assets/optimized/nosotros-real-del-pedregal-terraza.webp',
     alt: 'Terraza, jardines y detalles de piedra en Real del Pedregal',
-    className: 'about-fold-image about-fold-image-wide',
   },
   {
     src: 'assets/optimized/nosotros-real-del-pedregal-recorrido.webp',
     alt: 'Recorrido exterior con jardines y terrazas en Real del Pedregal',
-    className: 'about-fold-image about-fold-image-offset',
   },
   {
     src: 'assets/optimized/nosotros-real-del-pedregal-patio.webp',
     alt: 'Patio historico con jardines y arcos en Real del Pedregal',
-    className: 'about-fold-image about-fold-image-small',
   },
 ];
 
-const foldPanels = [
-  { className: 'panel-top-left', position: '0% 0%' },
-  { className: 'panel-top', position: '50% 0%' },
-  { className: 'panel-top-right', position: '100% 0%' },
-  { className: 'panel-left', position: '0% 50%' },
-  { className: 'panel-center', position: '50% 50%' },
-  { className: 'panel-right', position: '100% 50%' },
-  { className: 'panel-bottom-left', position: '0% 100%' },
-  { className: 'panel-bottom', position: '50% 100%' },
-  { className: 'panel-bottom-right', position: '100% 100%' },
-];
+const ABOUT_SHOWCASE_REVEAL_DURATION = 4500;
+const ABOUT_SHOWCASE_HOLD_DURATION = 6000;
+const ABOUT_SHOWCASE_ROTATION_DURATION = ABOUT_SHOWCASE_REVEAL_DURATION + ABOUT_SHOWCASE_HOLD_DURATION;
 
-function FoldImage({ src, alt, className }) {
-  const image = assetUrl(src);
+function AboutPhotoShowcase() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [previousIndex, setPreviousIndex] = useState(null);
+  const [revealRadius, setRevealRadius] = useState(64);
+
+  useEffect(() => {
+    const rotation = window.setInterval(() => {
+      setActiveIndex((currentIndex) => {
+        setPreviousIndex(currentIndex);
+        return (currentIndex + 1) % aboutImages.length;
+      });
+    }, ABOUT_SHOWCASE_ROTATION_DURATION);
+
+    return () => window.clearInterval(rotation);
+  }, []);
+
+  useEffect(() => {
+    let frameId;
+    const startTime = window.performance.now();
+    const duration = ABOUT_SHOWCASE_REVEAL_DURATION;
+
+    setRevealRadius(0);
+
+    const growMask = (currentTime) => {
+      const progress = Math.min((currentTime - startTime) / duration, 1);
+      const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+      setRevealRadius(Math.round(easedProgress * 64));
+
+      if (progress < 1) {
+        frameId = window.requestAnimationFrame(growMask);
+      }
+    };
+
+    frameId = window.requestAnimationFrame(growMask);
+
+    return () => window.cancelAnimationFrame(frameId);
+  }, [activeIndex]);
 
   return (
-    <figure className={className} role="img" aria-label={alt} style={{ '--fold-image': `url("${image}")` }}>
-      <span className="fold-image-fallback" aria-hidden="true" />
-      <span className="fold-panel-grid" aria-hidden="true">
-        {foldPanels.map((panel) => (
-          <span
-            key={panel.className}
-            className={`fold-panel ${panel.className}`}
-            style={{ backgroundPosition: panel.position }}
-          />
-        ))}
-      </span>
+    <figure
+      className="about-photo-showcase"
+      aria-label="Recorrido visual por los jardines, patios y arquitectura de Real del Pedregal"
+    >
+      {aboutImages.map((image, index) => (
+        <img
+          key={image.src}
+          className={[
+            index === activeIndex ? 'is-active' : '',
+            index === previousIndex ? 'is-previous' : '',
+          ].filter(Boolean).join(' ')}
+          src={assetUrl(image.src)}
+          alt={image.alt}
+          loading="lazy"
+          decoding="async"
+          style={{ '--showcase-radius': index === activeIndex ? `${revealRadius}px` : '0px' }}
+        />
+      ))}
     </figure>
   );
 }
@@ -159,9 +189,7 @@ function AboutPage() {
         </div>
 
         <div className="about-gallery" aria-label="Espacios de Real del Pedregal">
-          {aboutImages.map((image) => (
-            <FoldImage key={image.src} {...image} />
-          ))}
+          <AboutPhotoShowcase />
         </div>
       </div>
     </section>
