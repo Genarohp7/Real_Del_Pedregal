@@ -17,8 +17,6 @@ const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}
 const internalPagePaths = ['/nosotros', '/contacto'];
 const navItems = [
   { label: 'Nosotros', href: '/nosotros' },
-  { label: 'Creaciones', href: '/creaciones' },
-  { label: 'Expertos', href: '/expertos' },
   { label: 'Contacto', href: '/contacto' },
 ];
 
