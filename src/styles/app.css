@@ -841,6 +841,7 @@
   display: grid;
   grid-template-columns: minmax(225px, 0.72fr) minmax(260px, 1fr);
   height: clamp(286px, 39svh, 310px);
+  min-width: 0;
   gap: 0;
   border: 1px solid color-mix(in oklch, var(--ink) 10%, transparent);
   border-radius: 8px;
@@ -918,285 +919,24 @@
 
 .contact-map {
   position: relative;
+  width: 100%;
+  min-width: 0;
   min-height: 100%;
   border: 0;
   border-radius: 0;
-  background:
-    linear-gradient(116deg, transparent 0 43%, color-mix(in oklch, var(--ink) 4%, transparent) 43% 44%, transparent 44%),
-    linear-gradient(22deg, transparent 0 34%, color-mix(in oklch, var(--ink) 4%, transparent) 34% 35%, transparent 35%),
-    linear-gradient(90deg, color-mix(in oklch, var(--ink) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(180deg, color-mix(in oklch, var(--ink) 4%, transparent) 1px, transparent 1px),
-    linear-gradient(135deg, color-mix(in oklch, var(--paper) 92%, white), color-mix(in oklch, var(--paper) 78%, #f4eee3));
-  background-size: 100% 100%, 100% 100%, 52px 52px, 52px 52px, 100% 100%;
+  margin: 0;
+  background: color-mix(in oklch, var(--paper) 92%, white);
   overflow: hidden;
   box-shadow: inset 0 1px 0 color-mix(in oklch, white 76%, transparent);
 }
 
-.map-area,
-.map-road,
-.map-interchange,
-.map-place,
-.map-road-label {
-  position: absolute;
+.contact-map img {
   display: block;
-}
-
-.map-area {
-  pointer-events: none;
-}
-
-.map-area-park {
-  inset: 54% 51% -18% -11%;
-  border-radius: 0 80% 0 0;
-  background:
-    radial-gradient(circle at 16% 22%, color-mix(in oklch, #aabf88 38%, transparent) 0 22%, transparent 23%),
-    linear-gradient(135deg, color-mix(in oklch, #aabf88 34%, var(--paper)), color-mix(in oklch, #d7dfbf 44%, transparent));
-}
-
-.map-area-soft {
-  top: 34%;
-  right: 7%;
-  width: 27%;
-  height: 29%;
-  border-radius: 55% 45% 58% 42%;
-  background: color-mix(in oklch, #d8dccb 30%, transparent);
-  transform: rotate(-12deg);
-}
-
-.map-road {
-  border-radius: 999px;
-  background:
-    linear-gradient(180deg, color-mix(in oklch, white 82%, transparent), transparent 46% 54%, color-mix(in oklch, var(--ink) 10%, transparent)),
-    color-mix(in oklch, var(--paper) 50%, #d8c7af);
-  box-shadow:
-    0 0 0 1px color-mix(in oklch, var(--ink) 8%, transparent),
-    0 8px 18px color-mix(in oklch, var(--ink) 6%, transparent);
-  transform-origin: left center;
-}
-
-.map-road-periferico {
-  top: 18%;
-  left: -8%;
-  width: 116%;
-  height: 17px;
-  transform: rotate(5deg);
-}
-
-.map-road-periferico::before,
-.map-road-periferico::after {
-  content: "";
-  position: absolute;
-  top: -26px;
-  width: 42px;
-  height: 62px;
-  border: 8px solid color-mix(in oklch, var(--paper) 44%, #d8c7af);
-  border-right-color: transparent;
-  border-radius: 50%;
-  opacity: 0.76;
-}
-
-.map-road-periferico::before {
-  left: 62%;
-  transform: rotate(-18deg);
-}
-
-.map-road-periferico::after {
-  left: 72%;
-  transform: rotate(170deg);
-}
-
-.map-road-santa-teresa {
-  top: 66%;
-  left: 36%;
-  width: 54%;
-  height: 11px;
-  background:
-    linear-gradient(180deg, color-mix(in oklch, white 72%, transparent), transparent 45% 55%, color-mix(in oklch, var(--ink) 9%, transparent)),
-    color-mix(in oklch, var(--paper) 36%, #cdb798);
-  transform: rotate(18deg);
-}
-
-.map-road-secondary {
-  height: 5px;
-  background: color-mix(in oklch, white 54%, #ddcdb7);
-  box-shadow: 0 0 0 1px color-mix(in oklch, var(--ink) 5%, transparent);
-  opacity: 0.7;
-}
-
-.map-road-secondary-one {
-  top: 8%;
-  left: 5%;
-  width: 76%;
-  transform: rotate(-16deg);
-}
-
-.map-road-secondary-two {
-  top: 42%;
-  left: -2%;
-  width: 54%;
-  transform: rotate(32deg);
-}
-
-.map-road-secondary-three {
-  top: 72%;
-  left: 8%;
-  width: 38%;
-  transform: rotate(-12deg);
-}
-
-.map-interchange {
-  border: 7px solid color-mix(in oklch, var(--paper) 44%, #d8c7af);
-  border-radius: 50%;
-  opacity: 0.72;
-  box-shadow: 0 0 0 1px color-mix(in oklch, var(--ink) 5%, transparent);
-}
-
-.map-interchange-large {
-  top: 4%;
-  right: 18%;
-  width: 96px;
-  height: 96px;
-}
-
-.map-interchange-small {
-  top: 9%;
-  right: 28%;
-  width: 54px;
-  height: 54px;
-  border-width: 6px;
-}
-
-.map-road-label {
-  z-index: 3;
-  color: color-mix(in oklch, var(--ink) 72%, var(--stone));
-  font-size: clamp(0.64rem, 0.9vw, 0.76rem);
-  font-weight: 600;
-  line-height: 1.1;
-  letter-spacing: 0.01em;
-  white-space: nowrap;
-}
-
-.map-road-label-periferico-left {
-  top: 17%;
-  left: 9%;
-  transform: rotate(5deg);
-}
-
-.map-road-label-periferico-right {
-  top: 25%;
-  right: 9%;
-  transform: rotate(5deg);
-}
-
-.map-road-label-santa-teresa {
-  top: 69%;
-  left: 42%;
-  transform: rotate(18deg);
-}
-
-.map-place {
-  z-index: 5;
-  display: inline-grid;
-  grid-template-columns: auto 1fr;
-  gap: 7px;
-  align-items: center;
-  color: color-mix(in oklch, var(--ink) 68%, var(--stone));
-  font-size: clamp(0.7rem, 1vw, 0.84rem);
-  line-height: 1.12;
-  white-space: nowrap;
-}
-
-.map-place-icon,
-.map-pin {
-  position: relative;
-  display: inline-block;
-  flex: 0 0 auto;
-}
-
-.map-place-icon {
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
-  background: color-mix(in oklch, var(--stone) 28%, white);
-  box-shadow: 0 0 0 5px color-mix(in oklch, white 36%, transparent);
-}
-
-.map-place-icon::before {
-  content: "";
-  position: absolute;
-  inset: 6px 7px 7px;
-  border-radius: 2px 2px 1px 1px;
-  background: color-mix(in oklch, var(--ink) 34%, white);
-}
-
-.map-place-icon::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 5px;
-  width: 11px;
-  height: 8px;
-  border-radius: 1px;
-  background: color-mix(in oklch, var(--paper) 74%, white);
-  transform: rotate(45deg);
-}
-
-.map-pin {
-  width: 21px;
-  height: 21px;
-  border-radius: 50% 50% 50% 0;
-  transform: rotate(-45deg);
-}
-
-.map-pin::after {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  border-radius: 50%;
-  background: color-mix(in oklch, white 82%, transparent);
-}
-
-.map-pin-soft {
-  background: color-mix(in oklch, #8ea982 84%, var(--ink));
-  box-shadow: 0 0 0 6px color-mix(in oklch, #8ea982 20%, transparent);
-}
-
-.map-pin-main {
-  width: 33px;
-  height: 33px;
-  background: color-mix(in oklch, var(--accent-clay) 72%, #c79547);
-  box-shadow: 0 0 0 8px color-mix(in oklch, var(--accent-clay) 18%, transparent);
-}
-
-.map-pin-main::after {
-  inset: 11px;
-}
-
-.map-place-perisur {
-  top: 6%;
-  left: 45%;
-}
-
-.map-place-villa {
-  top: 37%;
-  left: 35%;
-}
-
-.map-place-cuicuilco {
-  top: 43%;
-  right: 10%;
-}
-
-.map-place-venue {
-  left: 12%;
-  bottom: 13%;
-  align-items: end;
-  color: var(--ink);
-  font-family: var(--display-font);
-  font-size: clamp(1rem, 1.55vw, 1.38rem);
-  line-height: 0.96;
-  letter-spacing: 0;
-  white-space: normal;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  min-width: 0;
+  object-fit: fill;
 }
 
 .contact-map-link {
@@ -1495,15 +1235,12 @@
   }
 
   .contact-map {
-    min-height: 232px;
+    min-height: auto;
+    aspect-ratio: 465 / 335;
   }
 
-  .map-place-venue {
-    left: 9%;
-  }
-
-  .map-place-cuicuilco {
-    right: 7%;
+  .contact-map img {
+    object-fit: contain;
   }
 
   .about-gallery {
@@ -1592,55 +1329,7 @@
   }
 
   .contact-map {
-    min-height: 252px;
-  }
-
-  .map-road-label-periferico-left {
-    left: 6%;
-    font-size: 0.58rem;
-  }
-
-  .map-road-label-periferico-right {
-    display: none;
-  }
-
-  .map-road-label-santa-teresa {
-    left: 38%;
-    font-size: 0.58rem;
-  }
-
-  .map-place {
-    font-size: 0.62rem;
-  }
-
-  .map-place-perisur {
-    left: 44%;
-  }
-
-  .map-place-villa {
-    left: 31%;
-  }
-
-  .map-place-cuicuilco {
-    top: 43%;
-    right: 11%;
-    max-width: 68px;
-    font-size: 0.56rem;
-    white-space: normal;
-  }
-
-  .map-place-venue {
-    left: 8%;
-    bottom: 12%;
-    font-size: 0.95rem;
-  }
-
-  .map-interchange-large {
-    right: 13%;
-  }
-
-  .map-interchange-small {
-    right: 25%;
+    min-height: auto;
   }
 }
 

@@ -302,37 +302,14 @@ function ContactIcon({ name }) {
 
 function ContactMapGraphic() {
   return (
-    <div className="contact-map" role="img" aria-label="Mapa visual de referencia hacia Lienzo Charro del Pedregal en Camino Santa Teresa, Tlalpan">
-      <span className="map-area map-area-park" aria-hidden="true" />
-      <span className="map-area map-area-soft" aria-hidden="true" />
-      <span className="map-road map-road-periferico" aria-hidden="true" />
-      <span className="map-road map-road-santa-teresa" aria-hidden="true" />
-      <span className="map-road map-road-secondary map-road-secondary-one" aria-hidden="true" />
-      <span className="map-road map-road-secondary map-road-secondary-two" aria-hidden="true" />
-      <span className="map-road map-road-secondary map-road-secondary-three" aria-hidden="true" />
-      <span className="map-interchange map-interchange-large" aria-hidden="true" />
-      <span className="map-interchange map-interchange-small" aria-hidden="true" />
-      <span className="map-road-label map-road-label-periferico-left">Anillo Perif.</span>
-      <span className="map-road-label map-road-label-periferico-right">Anillo Perif.</span>
-      <span className="map-road-label map-road-label-santa-teresa">Camino Sta. Teresa</span>
-
-      <span className="map-place map-place-perisur">
-        <span className="map-place-icon map-place-icon-neutral" aria-hidden="true" />
-        <span>Perisur</span>
-      </span>
-      <span className="map-place map-place-villa">
-        <span className="map-pin map-pin-soft" aria-hidden="true" />
-        <span>Villa Olímpica</span>
-      </span>
-      <span className="map-place map-place-cuicuilco">
-        <span className="map-place-icon map-place-icon-neutral" aria-hidden="true" />
-        <span>Zona Arqueológica<br />Cuicuilco</span>
-      </span>
-      <span className="map-place map-place-venue">
-        <span className="map-pin map-pin-main" aria-hidden="true" />
-        <span>Lienzo Charro<br />del Pedregal</span>
-      </span>
-    </div>
+    <figure className="contact-map">
+      <img
+        src={assetUrl('assets/optimized/mapa-contacto-lienzo-charro.png')}
+        alt="Mapa de referencia hacia Lienzo Charro del Pedregal, cerca de Perisur, Villa Olímpica y Camino Santa Teresa"
+        loading="lazy"
+        decoding="async"
+      />
+    </figure>
   );
 }
 
