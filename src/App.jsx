@@ -14,7 +14,7 @@ const WHATSAPP_VISIT_URL =
   'https://wa.me/525546037246?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20para%20conocer%20Lienzo%20Charro%20del%20Pedregal.%20%C2%BFQu%C3%A9%20horarios%20tienen%20disponibles%3F';
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
-const internalPagePaths = ['/nosotros', '/contacto', '/eventos-sociales'];
+const internalPagePaths = ['/nosotros', '/contacto', '/eventos-sociales', '/corporativos'];
 const navItems = [
   { label: 'Nosotros', href: '/nosotros' },
   { label: 'Contacto', href: '/contacto' },
@@ -287,6 +287,44 @@ const socialEventSpaces = [
         alt: 'Mesa elegante en Hacienda con cristalería, sillas doradas y arreglo de pampas',
       },
     ],
+  },
+];
+
+const corporateVideos = [
+  {
+    src: 'assets/video/corporativos-biulu.mov',
+    kicker: 'Corporativo',
+    title: 'LOREM',
+    description:
+      'Un montaje corporativo de ambiente nocturno, diseñado con iluminación escénica, detalles de barra y elementos visuales que transformaron el espacio en una experiencia sofisticada para convivencia, networking y activación de marca.',
+  },
+  {
+    src: 'assets/video/corporativos-exterior.mov',
+    kicker: 'Montaje',
+    title: 'LOREM',
+    description:
+      'Un montaje corporativo en exterior, diseñado para integrar exhibición de producto, señalética y dinámicas de interacción dentro de un ambiente abierto, verde y funcional para recibir a los asistentes con fluidez.',
+  },
+  {
+    src: 'assets/video/corporativos-september.mov',
+    kicker: 'Experiencia',
+    title: 'LOREM',
+    description:
+      'Un montaje corporativo formal con recepción, señalética, mesas vestidas e iluminación escénica, pensado para crear una experiencia elegante desde el primer contacto hasta el momento principal del evento.',
+  },
+  {
+    src: 'assets/video/corporativos-tematico.mov',
+    kicker: 'Producción',
+    title: 'LOREM',
+    description:
+      'Un montaje temático nocturno con iluminación dramática, acceso escénico, pantalla LED y áreas lounge, pensado para transformar el venue en una experiencia envolvente y personalizada.',
+  },
+  {
+    src: 'assets/video/corporativos-gran-formato.mov',
+    kicker: 'Real del Pedregal',
+    title: 'LOREM',
+    description:
+      'Un montaje corporativo de gran formato con acceso organizado, escenario, mesas para convivencia y detalles personalizados, pensado para ofrecer una experiencia elegante y visualmente sólida de principio a fin.',
   },
 ];
 
@@ -765,6 +803,62 @@ function SocialEventsPage() {
   );
 }
 
+function CorporateEventsPage() {
+  return (
+    <section className="corporate-events-section" aria-labelledby="corporate-events-title">
+      <div className="corporate-events-inner">
+        <header className="corporate-events-header">
+          <p>Eventos corporativos</p>
+          <h1 id="corporate-events-title">Espacios que se transforman para cada experiencia</h1>
+          <span>
+            Cada evento encuentra una forma distinta de habitar Real del Pedregal. Desde activaciones al aire libre
+            hasta cenas corporativas, lanzamientos y celebraciones de gran formato, nuestros espacios se adaptan para
+            crear experiencias memorables.
+          </span>
+        </header>
+
+        <div className="corporate-video-list" aria-label="Galería de videos corporativos">
+          {corporateVideos.map((video, index) => {
+            const itemNumber = String(index + 1).padStart(2, '0');
+            const isReverse = index % 2 === 1;
+
+            return (
+              <article
+                className={`corporate-video-item ${isReverse ? 'is-reverse' : ''}`}
+                key={video.src}
+                aria-labelledby={`corporate-video-title-${itemNumber}`}
+              >
+                <div className="corporate-video-copy">
+                  <span className="corporate-video-number">
+                    {itemNumber} / {String(corporateVideos.length).padStart(2, '0')}
+                  </span>
+                  <span className="corporate-video-kicker">{video.kicker}</span>
+                  <h2 id={`corporate-video-title-${itemNumber}`}>{video.title}</h2>
+                  <p>{video.description}</p>
+                </div>
+
+                <div className="corporate-video-frame">
+                  <video
+                    controls
+                    muted
+                    playsInline
+                    preload="metadata"
+                    poster={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
+                    aria-label={`Video ${itemNumber} de eventos corporativos en Real del Pedregal`}
+                  >
+                    <source src={assetUrl(video.src)} />
+                    Tu navegador no puede reproducir este video.
+                  </video>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function HomePage({ onNavigate }) {
   return (
     <>
@@ -818,7 +912,11 @@ function HomePage({ onNavigate }) {
             />
           </div>
 
-          <a className="experience-link corporate-experience" href={pageUrl('/corporativos')}>
+          <a
+            className="experience-link corporate-experience"
+            href={pageUrl('/corporativos')}
+            onClick={(event) => onNavigate(event, '/corporativos')}
+          >
             <span className="experience-preview">
               <img
                 src={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
@@ -982,6 +1080,7 @@ function App() {
         {currentPath === '/nosotros' && <AboutPage />}
         {currentPath === '/contacto' && <ContactPage />}
         {currentPath === '/eventos-sociales' && <SocialEventsPage />}
+        {currentPath === '/corporativos' && <CorporateEventsPage />}
         {currentPath === '/' && <HomePage onNavigate={navigateTo} />}
       </main>
     </div>

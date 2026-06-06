@@ -36,7 +36,9 @@ body {
 }
 
 html:has(.social-events-section),
-body:has(.social-events-section) {
+body:has(.social-events-section),
+html:has(.corporate-events-section),
+body:has(.corporate-events-section) {
   background: var(--paper);
 }
 
