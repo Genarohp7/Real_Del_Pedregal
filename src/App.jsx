@@ -803,6 +803,81 @@ function SocialEventsPage() {
   );
 }
 
+function CorporateVideo({ src, label }) {
+  const videoRef = useRef(null);
+  const startOffset = 1.5;
+
+  useEffect(() => {
+    const video = videoRef.current;
+
+    if (!video) {
+      return undefined;
+    }
+
+    const playVideo = () => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.playsInline = true;
+
+      if (video.readyState > 0 && video.currentTime < 0.2) {
+        video.currentTime = Math.min(startOffset, video.duration || startOffset);
+      }
+
+      video.play().catch(() => undefined);
+    };
+
+    const skipIntroFrame = () => {
+      if (video.currentTime < 0.2) {
+        video.currentTime = Math.min(startOffset, video.duration || startOffset);
+      }
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          playVideo();
+        } else {
+          video.pause();
+        }
+      },
+      { rootMargin: '180px 0px', threshold: 0.18 },
+    );
+
+    observer.observe(video);
+    video.addEventListener('loadedmetadata', skipIntroFrame);
+    video.addEventListener('loadeddata', playVideo);
+    video.addEventListener('canplay', playVideo);
+    video.addEventListener('timeupdate', skipIntroFrame);
+    document.addEventListener('visibilitychange', playVideo);
+    playVideo();
+
+    return () => {
+      observer.disconnect();
+      video.removeEventListener('loadedmetadata', skipIntroFrame);
+      video.removeEventListener('loadeddata', playVideo);
+      video.removeEventListener('canplay', playVideo);
+      video.removeEventListener('timeupdate', skipIntroFrame);
+      document.removeEventListener('visibilitychange', playVideo);
+      video.pause();
+    };
+  }, []);
+
+  return (
+    <video
+      ref={videoRef}
+      autoPlay
+      loop
+      muted
+      playsInline
+      preload="auto"
+      aria-label={label}
+    >
+      <source src={assetUrl(src)} />
+      Tu navegador no puede reproducir este video.
+    </video>
+  );
+}
+
 function CorporateEventsPage() {
   return (
     <section className="corporate-events-section" aria-labelledby="corporate-events-title">
@@ -829,26 +904,16 @@ function CorporateEventsPage() {
                 aria-labelledby={`corporate-video-title-${itemNumber}`}
               >
                 <div className="corporate-video-copy">
-                  <span className="corporate-video-number">
-                    {itemNumber} / {String(corporateVideos.length).padStart(2, '0')}
-                  </span>
                   <span className="corporate-video-kicker">{video.kicker}</span>
                   <h2 id={`corporate-video-title-${itemNumber}`}>{video.title}</h2>
                   <p>{video.description}</p>
                 </div>
 
                 <div className="corporate-video-frame">
-                  <video
-                    controls
-                    muted
-                    playsInline
-                    preload="metadata"
-                    poster={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
-                    aria-label={`Video ${itemNumber} de eventos corporativos en Real del Pedregal`}
-                  >
-                    <source src={assetUrl(video.src)} />
-                    Tu navegador no puede reproducir este video.
-                  </video>
+                  <CorporateVideo
+                    src={video.src}
+                    label={`Video ${itemNumber} de eventos corporativos en Real del Pedregal`}
+                  />
                 </div>
               </article>
             );
