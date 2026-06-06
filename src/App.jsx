@@ -14,7 +14,7 @@ const WHATSAPP_VISIT_URL =
   'https://wa.me/525546037246?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20para%20conocer%20Lienzo%20Charro%20del%20Pedregal.%20%C2%BFQu%C3%A9%20horarios%20tienen%20disponibles%3F';
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
-const internalPagePaths = ['/nosotros', '/contacto'];
+const internalPagePaths = ['/nosotros', '/contacto', '/eventos-sociales'];
 const navItems = [
   { label: 'Nosotros', href: '/nosotros' },
   { label: 'Contacto', href: '/contacto' },
@@ -76,6 +76,33 @@ const aboutImages = [
   {
     src: 'assets/optimized/nosotros-real-del-pedregal-patio.webp',
     alt: 'Patio historico con jardines y arcos en Real del Pedregal',
+  },
+];
+
+const socialEventSpaces = [
+  {
+    name: 'Terraza Alzán',
+    src: 'assets/optimized/eventos-sociales-terraza-alzan.jpg',
+  },
+  {
+    name: 'Jardín Parián',
+    src: 'assets/optimized/eventos-sociales-jardin-parian.jpg',
+  },
+  {
+    name: 'Bosque',
+    src: 'assets/optimized/eventos-sociales-bosque.jpg',
+  },
+  {
+    name: 'Pirul',
+    src: 'assets/optimized/eventos-sociales-pirul.jpg',
+  },
+  {
+    name: 'Capilla',
+    src: 'assets/optimized/eventos-sociales-capilla.jpg',
+  },
+  {
+    name: 'Hacienda',
+    src: 'assets/optimized/eventos-sociales-hacienda.jpg',
   },
 ];
 
@@ -385,7 +412,49 @@ function ContactPage() {
   );
 }
 
-function HomePage() {
+function SocialEventsPage() {
+  return (
+    <section className="social-events-section" aria-label="Galeria de eventos sociales">
+      <div className="social-events-inner">
+        <div className="social-events-frame">
+          <div className="social-events-frame-copy">
+            <span className="social-events-eyebrow">Eventos Sociales</span>
+            <h1>Montajes con presencia</h1>
+            <p>
+              Una selección de eventos reales realizados en distintos spots del venue. Mesas,
+              decoración, iluminación y ambiente muestran cómo cada espacio cobra vida para una
+              celebración.
+            </p>
+          </div>
+
+          <div className="social-events-frame-media">
+            <div className="social-events-accordion" aria-label="Espacios para eventos sociales">
+              {socialEventSpaces.map((space) => (
+                <figure
+                  className="social-events-panel"
+                  key={space.name}
+                  tabIndex={0}
+                  aria-label={space.name}
+                >
+                  <img
+                    src={assetUrl(space.src)}
+                    alt={`${space.name} en Real del Pedregal`}
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority="high"
+                  />
+                  <figcaption>{space.name}</figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function HomePage({ onNavigate }) {
   return (
     <>
       <section className="hero-film" aria-label="Video de Real del Pedregal">
@@ -412,7 +481,11 @@ function HomePage() {
         </div>
 
         <div className="experience-gate" aria-label="Tipos de evento">
-          <a className="experience-link social-experience" href={pageUrl('/eventos-sociales')}>
+          <a
+            className="experience-link social-experience"
+            href={pageUrl('/eventos-sociales')}
+            onClick={(event) => onNavigate(event, '/eventos-sociales')}
+          >
             <span className="experience-preview">
               <img
                 src={assetUrl('assets/optimized/eventos-sociales-real-del-pedregal.webp')}
@@ -597,7 +670,8 @@ function App() {
       <main>
         {currentPath === '/nosotros' && <AboutPage />}
         {currentPath === '/contacto' && <ContactPage />}
-        {currentPath === '/' && <HomePage />}
+        {currentPath === '/eventos-sociales' && <SocialEventsPage />}
+        {currentPath === '/' && <HomePage onNavigate={navigateTo} />}
       </main>
     </div>
   );

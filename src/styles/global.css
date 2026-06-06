@@ -35,6 +35,11 @@ body {
   background: var(--ink);
 }
 
+html:has(.social-events-section),
+body:has(.social-events-section) {
+  background: var(--paper);
+}
+
 button,
 a {
   font: inherit;
