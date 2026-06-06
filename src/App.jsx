@@ -413,6 +413,62 @@ function ContactPage() {
 }
 
 function SocialEventsPage() {
+  const [activeGalleryName, setActiveGalleryName] = useState(null);
+  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
+  const activeGallery = socialEventSpaces.find((space) => space.name === activeGalleryName);
+  const activeGalleryImages = activeGallery
+    ? activeGallery.gallery?.length
+      ? activeGallery.gallery
+      : [{ src: activeGallery.src, alt: `${activeGallery.name} en Real del Pedregal` }]
+    : [];
+  const activeGalleryImage = activeGalleryImages[activeGalleryIndex] ?? activeGalleryImages[0];
+  const hasMultipleGalleryImages = activeGalleryImages.length > 1;
+
+  useEffect(() => {
+    if (!activeGallery) {
+      return undefined;
+    }
+
+    const handleGalleryKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        setActiveGalleryName(null);
+      }
+
+      if (event.key === 'ArrowRight' && hasMultipleGalleryImages) {
+        setActiveGalleryIndex((currentIndex) => (currentIndex + 1) % activeGalleryImages.length);
+      }
+
+      if (event.key === 'ArrowLeft' && hasMultipleGalleryImages) {
+        setActiveGalleryIndex((currentIndex) =>
+          currentIndex === 0 ? activeGalleryImages.length - 1 : currentIndex - 1,
+        );
+      }
+    };
+
+    window.addEventListener('keydown', handleGalleryKeyDown);
+
+    return () => window.removeEventListener('keydown', handleGalleryKeyDown);
+  }, [activeGallery, activeGalleryImages.length, hasMultipleGalleryImages]);
+
+  const openSocialGallery = (spaceName) => {
+    setActiveGalleryName(spaceName);
+    setActiveGalleryIndex(0);
+  };
+
+  const closeSocialGallery = () => {
+    setActiveGalleryName(null);
+  };
+
+  const showPreviousGalleryImage = () => {
+    setActiveGalleryIndex((currentIndex) =>
+      currentIndex === 0 ? activeGalleryImages.length - 1 : currentIndex - 1,
+    );
+  };
+
+  const showNextGalleryImage = () => {
+    setActiveGalleryIndex((currentIndex) => (currentIndex + 1) % activeGalleryImages.length);
+  };
+
   return (
     <section className="social-events-section" aria-label="Galeria de eventos sociales">
       <div className="social-events-inner">
@@ -430,11 +486,13 @@ function SocialEventsPage() {
           <div className="social-events-frame-media">
             <div className="social-events-accordion" aria-label="Espacios para eventos sociales">
               {socialEventSpaces.map((space) => (
-                <figure
+                <button
                   className="social-events-panel"
                   key={space.name}
-                  tabIndex={0}
+                  type="button"
+                  onClick={() => openSocialGallery(space.name)}
                   aria-label={space.name}
+                  aria-haspopup="dialog"
                 >
                   <img
                     src={assetUrl(space.src)}
@@ -443,13 +501,82 @@ function SocialEventsPage() {
                     decoding="sync"
                     fetchPriority="high"
                   />
-                  <figcaption>{space.name}</figcaption>
-                </figure>
+                  <span className="social-events-panel-title">{space.name}</span>
+                </button>
               ))}
             </div>
           </div>
         </div>
       </div>
+
+      {activeGallery && (
+        <div
+          className="social-gallery-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="social-gallery-title"
+          onMouseDown={(event) => {
+            if (event.target === event.currentTarget) {
+              closeSocialGallery();
+            }
+          }}
+        >
+          <div className="social-gallery-modal-panel">
+            <div className="social-gallery-modal-header">
+              <div>
+                <span>Galería</span>
+                <h2 id="social-gallery-title">{activeGallery.name}</h2>
+              </div>
+              <button
+                className="social-gallery-close"
+                type="button"
+                onClick={closeSocialGallery}
+                aria-label="Cerrar galería"
+              >
+                Cerrar
+              </button>
+            </div>
+
+            <figure className="social-gallery-stage">
+              {activeGalleryImage && (
+                <img
+                  src={assetUrl(activeGalleryImage.src)}
+                  alt={activeGalleryImage.alt}
+                  loading="eager"
+                  decoding="sync"
+                />
+              )}
+              {!activeGallery.gallery?.length && (
+                <figcaption>
+                  Esta galería está lista para recibir las fotografías de {activeGallery.name}.
+                </figcaption>
+              )}
+            </figure>
+
+            <div className="social-gallery-controls">
+              <button
+                type="button"
+                onClick={showPreviousGalleryImage}
+                disabled={!hasMultipleGalleryImages}
+                aria-label="Foto anterior"
+              >
+                Anterior
+              </button>
+              <span>
+                {activeGalleryIndex + 1} / {activeGalleryImages.length}
+              </span>
+              <button
+                type="button"
+                onClick={showNextGalleryImage}
+                disabled={!hasMultipleGalleryImages}
+                aria-label="Foto siguiente"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
