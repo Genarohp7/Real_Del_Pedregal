@@ -83,26 +83,210 @@ const socialEventSpaces = [
   {
     name: 'Terraza Alzán',
     src: 'assets/optimized/eventos-sociales-terraza-alzan.jpg',
+    gallery: [
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan.jpg',
+        alt: 'Montaje de Terraza Alzán con mesas altas y vegetación en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-1.jpg',
+        alt: 'Vista amplia de Terraza Alzán con sombrillas, salas lounge y mesas para evento',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-2.jpg',
+        alt: 'Mesa montada en Terraza Alzán con flores, cristalería y vajilla',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-3.jpg',
+        alt: 'Detalle de lugar de mesa con vajilla y cristalería en Terraza Alzán',
+      },
+    ],
   },
   {
     name: 'Jardín Parián',
     src: 'assets/optimized/eventos-sociales-jardin-parian.jpg',
+    gallery: [
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian.jpg',
+        alt: 'Montaje de Jardín Parián con mesas bajo cubierta transparente en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-1.jpg',
+        alt: 'Vista de Jardín Parián con montaje social bajo estructura transparente',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-2.jpg',
+        alt: 'Mesa montada en Jardín Parián con centro floral y vajilla para evento',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-3.jpg',
+        alt: 'Vista panorámica de Jardín Parián con mesas y pista bajo cubierta',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-4.jpg',
+        alt: 'Instalación floral suspendida en Jardín Parián durante montaje social',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-5.jpg',
+        alt: 'Arreglo floral suspendido y mesas preparadas en Jardín Parián',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-6.jpg',
+        alt: 'Detalle de mesa y arreglo floral en Jardín Parián durante celebración',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-7.jpg',
+        alt: 'Montaje amplio de Jardín Parián con cubierta, mesas y decoración floral',
+      },
+    ],
   },
   {
     name: 'Bosque',
     src: 'assets/optimized/eventos-sociales-bosque.jpg',
+    gallery: [
+      {
+        src: 'assets/optimized/eventos-sociales-bosque.jpg',
+        alt: 'Montaje de Bosque con mesas y ambientación para evento social en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-1.jpg',
+        alt: 'Montaje nocturno de Bosque con iluminación de colores, mesa espejo y sillas doradas',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-2.jpg',
+        alt: 'Recepción nocturna en Bosque con velas, papel picado y mesas iluminadas',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-3.jpg',
+        alt: 'Mesa larga montada en Bosque con letras iluminadas al fondo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-4.jpg',
+        alt: 'Montaje de Bosque con plafón textil, mesas redondas y sillas doradas',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-5.jpg',
+        alt: 'Mesa de Bosque con centro floral y ambiente cálido de noche',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-6.jpg',
+        alt: 'Montaje de Bosque con mesa dorada, pista iluminada y bolas espejo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-7.jpg',
+        alt: 'Vista amplia de Bosque con mesas redondas, plafón textil y pista central',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-8.jpg',
+        alt: 'Mesa de dulces iluminada con flores y cortinas brillantes en Bosque',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-9.jpg',
+        alt: 'Montaje amplio de Bosque con iluminación morada y arreglos florales altos',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-10.jpg',
+        alt: 'Pista iluminada y arreglo floral suspendido en Bosque',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-11.jpg',
+        alt: 'Recepción colorida en Bosque con mesas largas, velas y decoración colgante',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-12.jpg',
+        alt: 'Montaje nocturno de Bosque con mesas, sillas doradas y ambientación azul',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-13.jpg',
+        alt: 'Vista general de Bosque con mesas preparadas y muros verdes iluminados',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-14.jpg',
+        alt: 'Montaje panorámico de Bosque con flores abundantes y mesas para celebración',
+      },
+    ],
   },
   {
     name: 'Pirul',
     src: 'assets/optimized/eventos-sociales-pirul.jpg',
+    gallery: [
+      {
+        src: 'assets/optimized/eventos-sociales-pirul.jpg',
+        alt: 'Montaje de Pirul con mesas bajo estructura transparente y vegetación en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-pirul-galeria-1.jpg',
+        alt: 'Vista de Pirul con mesa principal, pista y montaje social al aire libre',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-pirul-galeria-2.jpg',
+        alt: 'Mesa larga montada bajo el árbol de Pirul con vajilla ámbar y flores',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-pirul-galeria-3.jpg',
+        alt: 'Montaje de mesas en Pirul con cubierta transparente, sillas doradas y pista central',
+      },
+    ],
   },
   {
     name: 'Capilla',
     src: 'assets/optimized/eventos-sociales-capilla.jpg',
+    gallery: [
+      {
+        src: 'assets/optimized/eventos-sociales-capilla.jpg',
+        alt: 'Capilla de Real del Pedregal con bancas de madera y bóveda de ladrillo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-1.jpg',
+        alt: 'Interior de la Capilla con bancas de madera, bóveda de ladrillo y vista al jardín',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-2.jpg',
+        alt: 'Vista lateral de la Capilla con bancas de madera y muros abiertos al jardín',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-3.jpg',
+        alt: 'Pasillo central de la Capilla con altar, bancas y techo abovedado de ladrillo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-4.jpg',
+        alt: 'Altar de la Capilla con crucifijo, mesa de piedra y luz natural',
+      },
+    ],
   },
   {
     name: 'Hacienda',
     src: 'assets/optimized/eventos-sociales-hacienda.jpg',
+    gallery: [
+      {
+        src: 'assets/optimized/eventos-sociales-hacienda.jpg',
+        alt: 'Salón Hacienda con mesas montadas, columnas y candiles en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-hacienda-galeria-1.jpg',
+        alt: 'Vista panorámica del Salón Hacienda con mesas montadas, columnas y candiles',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-hacienda-galeria-2.jpg',
+        alt: 'Montaje en Hacienda con mesas doradas, arreglos de pampas y columnas interiores',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-hacienda-galeria-3.jpg',
+        alt: 'Mesa montada en Hacienda con sillas doradas y centro de mesa alto',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-hacienda-galeria-4.jpg',
+        alt: 'Vista interior de Hacienda con pista central, candil y arreglos secos',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-hacienda-galeria-5.jpg',
+        alt: 'Montaje amplio de Hacienda con mesas, arcos interiores y luz cálida',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-hacienda-galeria-6.jpg',
+        alt: 'Mesa elegante en Hacienda con cristalería, sillas doradas y arreglo de pampas',
+      },
+    ],
   },
 ];
 
