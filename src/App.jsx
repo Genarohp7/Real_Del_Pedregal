@@ -1034,23 +1034,26 @@ function App() {
   useEffect(() => {
     const supportsPointerReveal = window.matchMedia('(hover: hover) and (pointer: fine)');
 
-    if (!supportsPointerReveal.matches) {
-      return undefined;
-    }
-
     const revealHeader = () => {
       setHeaderVisible(true);
       window.clearTimeout(idleTimerRef.current);
       idleTimerRef.current = window.setTimeout(() => {
         setHeaderVisible(false);
-      }, 1500);
+      }, 2200);
     };
 
-    window.addEventListener('pointermove', revealHeader, { passive: true });
+    if (supportsPointerReveal.matches) {
+      window.addEventListener('pointermove', revealHeader, { passive: true });
+    }
+
+    window.addEventListener('scroll', revealHeader, { passive: true });
+    window.addEventListener('touchstart', revealHeader, { passive: true });
     window.addEventListener('keydown', revealHeader);
 
     return () => {
       window.removeEventListener('pointermove', revealHeader);
+      window.removeEventListener('scroll', revealHeader);
+      window.removeEventListener('touchstart', revealHeader);
       window.removeEventListener('keydown', revealHeader);
       window.clearTimeout(idleTimerRef.current);
     };
