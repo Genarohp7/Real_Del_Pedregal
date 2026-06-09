@@ -1299,18 +1299,22 @@
 
 .social-gallery-stage {
   position: relative;
-  min-height: 0;
+  display: grid;
+  min-height: min(58vh, 520px);
   margin: 0;
   border: 1px solid color-mix(in oklch, var(--paper) 12%, transparent);
-  background: var(--charcoal);
+  background:
+    radial-gradient(circle at center, color-mix(in oklch, var(--paper) 4%, transparent), transparent 58%),
+    color-mix(in oklch, black 76%, var(--charcoal));
   overflow: hidden;
+  place-items: center;
 }
 
 .social-gallery-stage img {
   display: block;
   width: 100%;
   height: min(58vh, 520px);
-  object-fit: cover;
+  object-fit: contain;
   filter: saturate(0.95) contrast(1.04) brightness(0.96);
 }
 
@@ -1943,6 +1947,10 @@
   .social-gallery-close {
     min-height: 38px;
     padding: 0 12px;
+  }
+
+  .social-gallery-stage {
+    min-height: min(54vh, 460px);
   }
 
   .social-gallery-stage img {
