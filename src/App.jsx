@@ -116,39 +116,39 @@ const socialEventSpaces = [
   },
   {
     name: 'Bautizo',
-    src: 'assets/optimized/eventos-sociales-jardin-parian.jpg',
+    src: 'assets/optimized/eventos-sociales-bautizo.jpg',
     gallery: [
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian.jpg',
-        alt: 'Montaje de Jardín Parián con mesas bajo cubierta transparente en Real del Pedregal',
+        src: 'assets/optimized/eventos-sociales-bautizo.jpg',
+        alt: 'Montaje amplio de bautizo con globos de colores, mesas florales y pista central',
       },
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-1.jpg',
-        alt: 'Vista de Jardín Parián con montaje social bajo estructura transparente',
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-1.jpg',
+        alt: 'Montaje de bautizo con mesas blancas, flores y detalles en azul',
       },
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-2.jpg',
-        alt: 'Mesa montada en Jardín Parián con centro floral y vajilla para evento',
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-3.jpg',
+        alt: 'Mesa larga de bautizo con arreglos florales en tonos pastel',
       },
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-3.jpg',
-        alt: 'Vista panorámica de Jardín Parián con mesas y pista bajo cubierta',
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-4.jpg',
+        alt: 'Montaje de bautizo con mesas blancas, centro floral alto y arco de globos',
       },
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-4.jpg',
-        alt: 'Instalación floral suspendida en Jardín Parián durante montaje social',
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-5.jpg',
+        alt: 'Mesa de bautizo con globos pastel y arreglos florales suspendidos',
       },
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-5.jpg',
-        alt: 'Arreglo floral suspendido y mesas preparadas en Jardín Parián',
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-7.jpg',
+        alt: 'Mesa de dulces temática para bautizo con decoración infantil de colores',
       },
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-6.jpg',
-        alt: 'Detalle de mesa y arreglo floral en Jardín Parián durante celebración',
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-8.jpg',
+        alt: 'Detalle vertical de mesa de bautizo con sillas blancas, flores y acentos azules',
       },
       {
-        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-7.jpg',
-        alt: 'Montaje amplio de Jardín Parián con cubierta, mesas y decoración floral',
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-9.jpg',
+        alt: 'Mesa de dulces de bautizo con decoración temática y personajes infantiles',
       },
     ],
   },
@@ -307,6 +307,38 @@ const socialEventSpaces = [
       {
         src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-3.jpg',
         alt: 'Detalle de lugar de mesa con vajilla y cristalería en Terraza Alzán',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian.jpg',
+        alt: 'Montaje de Jardín Parián con mesas bajo cubierta transparente en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-1.jpg',
+        alt: 'Vista de Jardín Parián con montaje social bajo estructura transparente',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-2.jpg',
+        alt: 'Mesa montada en Jardín Parián con centro floral y vajilla para evento',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-3.jpg',
+        alt: 'Vista panorámica de Jardín Parián con mesas y pista bajo cubierta',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-4.jpg',
+        alt: 'Instalación floral suspendida en Jardín Parián durante montaje social',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-5.jpg',
+        alt: 'Arreglo floral suspendido y mesas preparadas en Jardín Parián',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-6.jpg',
+        alt: 'Detalle de mesa y arreglo floral en Jardín Parián durante celebración',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-7.jpg',
+        alt: 'Montaje amplio de Jardín Parián con cubierta, mesas y decoración floral',
       },
     ],
   },
