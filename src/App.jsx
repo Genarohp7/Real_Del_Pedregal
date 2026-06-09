@@ -81,7 +81,7 @@ const aboutImages = [
 
 const socialEventSpaces = [
   {
-    name: 'Terraza Alzán',
+    name: 'XV años',
     src: 'assets/optimized/eventos-sociales-terraza-alzan.jpg',
     gallery: [
       {
@@ -103,7 +103,7 @@ const socialEventSpaces = [
     ],
   },
   {
-    name: 'Jardín Parián',
+    name: 'Bautizo',
     src: 'assets/optimized/eventos-sociales-jardin-parian.jpg',
     gallery: [
       {
@@ -141,7 +141,7 @@ const socialEventSpaces = [
     ],
   },
   {
-    name: 'Bosque',
+    name: 'Graduaciones',
     src: 'assets/optimized/eventos-sociales-bosque.jpg',
     gallery: [
       {
@@ -207,7 +207,7 @@ const socialEventSpaces = [
     ],
   },
   {
-    name: 'Pirul',
+    name: 'Bodas',
     src: 'assets/optimized/eventos-sociales-pirul.jpg',
     gallery: [
       {
@@ -229,33 +229,7 @@ const socialEventSpaces = [
     ],
   },
   {
-    name: 'Capilla',
-    src: 'assets/optimized/eventos-sociales-capilla.jpg',
-    gallery: [
-      {
-        src: 'assets/optimized/eventos-sociales-capilla.jpg',
-        alt: 'Capilla de Real del Pedregal con bancas de madera y bóveda de ladrillo',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-capilla-galeria-1.jpg',
-        alt: 'Interior de la Capilla con bancas de madera, bóveda de ladrillo y vista al jardín',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-capilla-galeria-2.jpg',
-        alt: 'Vista lateral de la Capilla con bancas de madera y muros abiertos al jardín',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-capilla-galeria-3.jpg',
-        alt: 'Pasillo central de la Capilla con altar, bancas y techo abovedado de ladrillo',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-capilla-galeria-4.jpg',
-        alt: 'Altar de la Capilla con crucifijo, mesa de piedra y luz natural',
-      },
-    ],
-  },
-  {
-    name: 'Hacienda',
+    name: 'Eventos',
     src: 'assets/optimized/eventos-sociales-hacienda.jpg',
     gallery: [
       {
@@ -285,6 +259,26 @@ const socialEventSpaces = [
       {
         src: 'assets/optimized/eventos-sociales-hacienda-galeria-6.jpg',
         alt: 'Mesa elegante en Hacienda con cristalería, sillas doradas y arreglo de pampas',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla.jpg',
+        alt: 'Capilla de Real del Pedregal con bancas de madera y bóveda de ladrillo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-1.jpg',
+        alt: 'Interior de la Capilla con bancas de madera, bóveda de ladrillo y vista al jardín',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-2.jpg',
+        alt: 'Vista lateral de la Capilla con bancas de madera y muros abiertos al jardín',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-3.jpg',
+        alt: 'Pasillo central de la Capilla con altar, bancas y techo abovedado de ladrillo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-capilla-galeria-4.jpg',
+        alt: 'Altar de la Capilla con crucifijo, mesa de piedra y luz natural',
       },
     ],
   },
