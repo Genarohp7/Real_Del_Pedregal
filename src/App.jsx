@@ -154,67 +154,31 @@ const socialEventSpaces = [
   },
   {
     name: 'Graduaciones',
-    src: 'assets/optimized/eventos-sociales-bosque.jpg',
+    src: 'assets/optimized/eventos-sociales-graduaciones.jpg',
     gallery: [
       {
-        src: 'assets/optimized/eventos-sociales-bosque.jpg',
-        alt: 'Montaje de Bosque con mesas y ambientación para evento social en Real del Pedregal',
+        src: 'assets/optimized/eventos-sociales-graduaciones.jpg',
+        alt: 'Montaje amplio de graduación con mesas, pista central e iluminación escénica',
       },
       {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-1.jpg',
-        alt: 'Montaje nocturno de Bosque con iluminación de colores, mesa espejo y sillas doradas',
+        src: 'assets/optimized/eventos-sociales-graduaciones-galeria-1.jpg',
+        alt: 'Mesa redonda de graduación con mantel azul, sillas de madera y pista al fondo',
       },
       {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-2.jpg',
-        alt: 'Recepción nocturna en Bosque con velas, papel picado y mesas iluminadas',
+        src: 'assets/optimized/eventos-sociales-graduaciones-galeria-2.jpg',
+        alt: 'Mesa larga de graduación con mantel azul, vajilla blanca y centros verdes',
       },
       {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-3.jpg',
-        alt: 'Mesa larga montada en Bosque con letras iluminadas al fondo',
+        src: 'assets/optimized/eventos-sociales-graduaciones-galeria-3.jpg',
+        alt: 'Graduación con pista central, mesas largas y luces de colores bajo cubierta',
       },
       {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-4.jpg',
-        alt: 'Montaje de Bosque con plafón textil, mesas redondas y sillas doradas',
+        src: 'assets/optimized/eventos-sociales-graduaciones-galeria-5.jpg',
+        alt: 'Montaje de graduación en jardín con mesas largas y banderines decorativos',
       },
       {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-5.jpg',
-        alt: 'Mesa de Bosque con centro floral y ambiente cálido de noche',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-6.jpg',
-        alt: 'Montaje de Bosque con mesa dorada, pista iluminada y bolas espejo',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-7.jpg',
-        alt: 'Vista amplia de Bosque con mesas redondas, plafón textil y pista central',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-8.jpg',
-        alt: 'Mesa de dulces iluminada con flores y cortinas brillantes en Bosque',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-9.jpg',
-        alt: 'Montaje amplio de Bosque con iluminación morada y arreglos florales altos',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-10.jpg',
-        alt: 'Pista iluminada y arreglo floral suspendido en Bosque',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-11.jpg',
-        alt: 'Recepción colorida en Bosque con mesas largas, velas y decoración colgante',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-12.jpg',
-        alt: 'Montaje nocturno de Bosque con mesas, sillas doradas y ambientación azul',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-13.jpg',
-        alt: 'Vista general de Bosque con mesas preparadas y muros verdes iluminados',
-      },
-      {
-        src: 'assets/optimized/eventos-sociales-bosque-galeria-14.jpg',
-        alt: 'Montaje panorámico de Bosque con flores abundantes y mesas para celebración',
+        src: 'assets/optimized/eventos-sociales-graduaciones-galeria-6.jpg',
+        alt: 'Vista aérea de graduación con dinámicas al aire libre y carpas rojas',
       },
     ],
   },
@@ -339,6 +303,66 @@ const socialEventSpaces = [
       {
         src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-7.jpg',
         alt: 'Montaje amplio de Jardín Parián con cubierta, mesas y decoración floral',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque.jpg',
+        alt: 'Montaje de Bosque con mesas y ambientación para evento social en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-1.jpg',
+        alt: 'Montaje nocturno de Bosque con iluminación de colores, mesa espejo y sillas doradas',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-2.jpg',
+        alt: 'Recepción nocturna en Bosque con velas, papel picado y mesas iluminadas',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-3.jpg',
+        alt: 'Mesa larga montada en Bosque con letras iluminadas al fondo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-4.jpg',
+        alt: 'Montaje de Bosque con plafón textil, mesas redondas y sillas doradas',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-5.jpg',
+        alt: 'Mesa de Bosque con centro floral y ambiente cálido de noche',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-6.jpg',
+        alt: 'Montaje de Bosque con mesa dorada, pista iluminada y bolas espejo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-7.jpg',
+        alt: 'Vista amplia de Bosque con mesas redondas, plafón textil y pista central',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-8.jpg',
+        alt: 'Mesa de dulces iluminada con flores y cortinas brillantes en Bosque',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-9.jpg',
+        alt: 'Montaje amplio de Bosque con iluminación morada y arreglos florales altos',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-10.jpg',
+        alt: 'Pista iluminada y arreglo floral suspendido en Bosque',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-11.jpg',
+        alt: 'Recepción colorida en Bosque con mesas largas, velas y decoración colgante',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-12.jpg',
+        alt: 'Montaje nocturno de Bosque con mesas, sillas doradas y ambientación azul',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-13.jpg',
+        alt: 'Vista general de Bosque con mesas preparadas y muros verdes iluminados',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bosque-galeria-14.jpg',
+        alt: 'Montaje panorámico de Bosque con flores abundantes y mesas para celebración',
       },
     ],
   },
