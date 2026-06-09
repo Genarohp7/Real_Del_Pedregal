@@ -184,23 +184,67 @@ const socialEventSpaces = [
   },
   {
     name: 'Bodas',
-    src: 'assets/optimized/eventos-sociales-pirul.jpg',
+    src: 'assets/optimized/eventos-sociales-bodas.jpg',
     gallery: [
       {
-        src: 'assets/optimized/eventos-sociales-pirul.jpg',
-        alt: 'Montaje de Pirul con mesas bajo estructura transparente y vegetación en Real del Pedregal',
+        src: 'assets/optimized/eventos-sociales-bodas.jpg',
+        alt: 'Montaje de boda con mesas elegantes, arreglos florales y plafon textil en Real del Pedregal',
       },
       {
-        src: 'assets/optimized/eventos-sociales-pirul-galeria-1.jpg',
-        alt: 'Vista de Pirul con mesa principal, pista y montaje social al aire libre',
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-1.jpg',
+        alt: 'Detalle de mesa de boda con cristaleria verde, vajilla blanca y menu personalizado',
       },
       {
-        src: 'assets/optimized/eventos-sociales-pirul-galeria-2.jpg',
-        alt: 'Mesa larga montada bajo el árbol de Pirul con vajilla ámbar y flores',
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-2.jpg',
+        alt: 'Mesa redonda de boda con centro floral alto y montaje en tonos neutros',
       },
       {
-        src: 'assets/optimized/eventos-sociales-pirul-galeria-3.jpg',
-        alt: 'Montaje de mesas en Pirul con cubierta transparente, sillas doradas y pista central',
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-3.jpg',
+        alt: 'Vista amplia de boda con arreglos florales altos, mesas montadas y cubierta textil',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-4.jpg',
+        alt: 'Mesa larga de boda con cristaleria verde, bajoplatos de madera y guirnalda floral',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-5.jpg',
+        alt: 'Montaje nocturno de boda con mesas de madera, arreglos de nube y escenario iluminado',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-6.jpg',
+        alt: 'Mesa redonda de boda con centro floral, cristaleria y sillas de madera',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-7.jpg',
+        alt: 'Mesa larga de boda con copas verdes, vajilla blanca y arreglo floral continuo',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-8.jpg',
+        alt: 'Boda con mesas de madera, arreglos florales altos y ambientacion calida',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-10.jpg',
+        alt: 'Mesa larga de boda con sillas tapizadas, cristaleria verde y flores en tonos naturales',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-11.jpg',
+        alt: 'Montaje nocturno de boda con arbol de nube, pista y plafon ondulado',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-12.jpg',
+        alt: 'Mesa principal de boda con arbol de nube, sillas de madera y techo textil',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-13.jpg',
+        alt: 'Coctel al aire libre con sombrillas, salas altas y jardines en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-15.jpg',
+        alt: 'Montaje amplio de boda con mesas de madera, arreglos florales y luz natural',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bodas-galeria-16.jpg',
+        alt: 'Mesa de boda con muro floral, lamparas colgantes y montaje en tonos neutros',
       },
     ],
   },
@@ -363,6 +407,22 @@ const socialEventSpaces = [
       {
         src: 'assets/optimized/eventos-sociales-bosque-galeria-14.jpg',
         alt: 'Montaje panorámico de Bosque con flores abundantes y mesas para celebración',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-pirul.jpg',
+        alt: 'Montaje de Pirul con mesas bajo estructura transparente y vegetacion en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-pirul-galeria-1.jpg',
+        alt: 'Vista de Pirul con mesa principal, pista y montaje social al aire libre',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-pirul-galeria-2.jpg',
+        alt: 'Mesa larga montada bajo el arbol de Pirul con vajilla ambar y flores',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-pirul-galeria-3.jpg',
+        alt: 'Montaje de mesas en Pirul con cubierta transparente, sillas doradas y pista central',
       },
     ],
   },
