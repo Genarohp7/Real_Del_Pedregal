@@ -82,23 +82,35 @@ const aboutImages = [
 const socialEventSpaces = [
   {
     name: 'XV años',
-    src: 'assets/optimized/eventos-sociales-terraza-alzan.jpg',
+    src: 'assets/optimized/eventos-sociales-xv-anos.jpg',
     gallery: [
       {
-        src: 'assets/optimized/eventos-sociales-terraza-alzan.jpg',
-        alt: 'Montaje de Terraza Alzán con mesas altas y vegetación en Real del Pedregal',
+        src: 'assets/optimized/eventos-sociales-xv-anos.jpg',
+        alt: 'Montaje amplio de XV años con pista central y luces suspendidas en Real del Pedregal',
       },
       {
-        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-1.jpg',
-        alt: 'Vista amplia de Terraza Alzán con sombrillas, salas lounge y mesas para evento',
+        src: 'assets/optimized/eventos-sociales-xv-anos-galeria-1.jpg',
+        alt: 'Montaje de XV años con mesas, pista central y decoración luminosa suspendida',
       },
       {
-        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-2.jpg',
-        alt: 'Mesa montada en Terraza Alzán con flores, cristalería y vajilla',
+        src: 'assets/optimized/eventos-sociales-xv-anos-galeria-3.jpg',
+        alt: 'Mesa montada para XV años con iluminación suspendida y pista al fondo',
       },
       {
-        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-3.jpg',
-        alt: 'Detalle de lugar de mesa con vajilla y cristalería en Terraza Alzán',
+        src: 'assets/optimized/eventos-sociales-xv-anos-galeria-4.jpg',
+        alt: 'Celebración de XV años con ambientación nocturna e iluminación escénica',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-xv-anos-galeria-5.jpg',
+        alt: 'Montaje dorado para XV años con mesas espejo, sillas circulares y vegetación',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-xv-anos-galeria-6.jpg',
+        alt: 'Mesas doradas para XV años con arreglos altos y luz ambiental azul',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-xv-anos-galeria-7.jpg',
+        alt: 'Detalle de mesa dorada para XV años con iluminación colorida y candiles',
       },
     ],
   },
@@ -279,6 +291,22 @@ const socialEventSpaces = [
       {
         src: 'assets/optimized/eventos-sociales-capilla-galeria-4.jpg',
         alt: 'Altar de la Capilla con crucifijo, mesa de piedra y luz natural',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan.jpg',
+        alt: 'Montaje de Terraza Alzán con mesas altas y vegetación en Real del Pedregal',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-1.jpg',
+        alt: 'Vista amplia de Terraza Alzán con sombrillas, salas lounge y mesas para evento',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-2.jpg',
+        alt: 'Mesa montada en Terraza Alzán con flores, cristalería y vajilla',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-terraza-alzan-galeria-3.jpg',
+        alt: 'Detalle de lugar de mesa con vajilla y cristalería en Terraza Alzán',
       },
     ],
   },
