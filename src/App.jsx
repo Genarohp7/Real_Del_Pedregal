@@ -14,9 +14,10 @@ const WHATSAPP_VISIT_URL =
   'https://wa.me/525546037246?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20para%20conocer%20Lienzo%20Charro%20del%20Pedregal.%20%C2%BFQu%C3%A9%20horarios%20tienen%20disponibles%3F';
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
-const internalPagePaths = ['/nosotros', '/contacto', '/eventos-sociales', '/corporativos'];
+const internalPagePaths = ['/nosotros', '/espacios', '/contacto', '/eventos-sociales', '/corporativos'];
 const navItems = [
   { label: 'Nosotros', href: '/nosotros' },
+  { label: 'Espacios', href: '/espacios' },
   { label: 'Contacto', href: '/contacto' },
 ];
 
@@ -618,6 +619,18 @@ function AboutPage() {
 
         <div className="about-gallery" aria-label="Espacios de Real del Pedregal">
           <AboutPhotoShowcase />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function SpacesPage() {
+  return (
+    <section className="about-section about-page" aria-labelledby="spaces-title">
+      <div className="about-inner">
+        <div className="about-copy">
+          <h1 id="spaces-title">Espacios</h1>
         </div>
       </div>
     </section>
@@ -1284,6 +1297,7 @@ function App() {
 
       <main>
         {currentPath === '/nosotros' && <AboutPage />}
+        {currentPath === '/espacios' && <SpacesPage />}
         {currentPath === '/contacto' && <ContactPage />}
         {currentPath === '/eventos-sociales' && <SocialEventsPage />}
         {currentPath === '/corporativos' && <CorporateEventsPage />}
