@@ -22,6 +22,59 @@ const navItems = [
   { label: 'Contacto', href: '/contacto' },
 ];
 
+const homeEventMosaic = [
+  {
+    title: 'Bodas',
+    type: 'Celebración',
+    href: '/eventos-sociales',
+    src: 'assets/optimized/eventos-sociales-bodas-galeria-12.jpg',
+    alt: 'Montaje nocturno para boda con mesas largas, iluminación y pista en Real del Pedregal',
+    className: 'mosaic-tile-top-left',
+    loading: 'eager',
+  },
+  {
+    title: 'Corporativos',
+    type: 'Experiencia privada',
+    href: '/corporativos',
+    src: 'assets/optimized/eventos-corporativos-real-del-pedregal.webp',
+    alt: 'Salon con arcos iluminados y montaje para evento corporativo en Real del Pedregal',
+    className: 'mosaic-tile-top-right',
+    loading: 'eager',
+  },
+  {
+    title: 'Jardín Parián',
+    type: 'Formato abierto',
+    href: '/espacios',
+    src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-4.jpg',
+    alt: 'Jardín Parián con montaje amplio bajo estructura transparente en Real del Pedregal',
+    className: 'mosaic-tile-panorama',
+  },
+  {
+    title: 'XV años',
+    type: 'Evento social',
+    href: '/eventos-sociales',
+    src: 'assets/optimized/eventos-sociales-xv-anos.jpg',
+    alt: 'Montaje de XV años con pista central e iluminación suspendida en Real del Pedregal',
+    className: 'mosaic-tile-lower-left',
+  },
+  {
+    title: 'Hacienda',
+    type: 'Interior ceremonial',
+    href: '/espacios',
+    src: 'assets/optimized/eventos-sociales-hacienda-galeria-3.jpg',
+    alt: 'Mesa montada en interior estilo hacienda con lámpara y arquitectura de Real del Pedregal',
+    className: 'mosaic-tile-lower-middle',
+  },
+  {
+    title: 'Bautizos',
+    type: 'Celebración familiar',
+    href: '/eventos-sociales',
+    src: 'assets/optimized/eventos-sociales-bautizo-galeria-5.jpg',
+    alt: 'Mesa floral para bautizo con decoración delicada y montaje familiar en Real del Pedregal',
+    className: 'mosaic-tile-lower-right',
+  },
+];
+
 const contactInfoItems = [
   {
     icon: 'pin',
@@ -1302,59 +1355,38 @@ function HomePage({ onNavigate }) {
         </video>
       </section>
 
-      <section className="institutional-section" aria-labelledby="institutional-title">
-        <div className="section-heading">
-          <h1 id="institutional-title">
-            El espacio donde la celebracion
-            <br />
-            toma escala.
-          </h1>
+      <section className="home-intro-section" aria-labelledby="home-intro-title">
+        <div className="home-intro-copy">
+          <h2 id="home-intro-title">titulo</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lectus a libero
+            dignissim luctus. Sed non magna at nunc viverra facilisis. Praesent commodo, justo vel
+            dictum tempor, mi sapien aliquet erat, vitae consequat sem ipsum at nulla.
+          </p>
         </div>
+      </section>
 
-        <div className="experience-gate" aria-label="Tipos de evento">
-          <a
-            className="experience-link social-experience"
-            href={pageUrl('/eventos-sociales')}
-            onClick={(event) => onNavigate(event, '/eventos-sociales')}
-          >
-            <span className="experience-preview">
+      <section className="institutional-section" aria-label="Tipos de eventos en Real del Pedregal">
+        <div className="event-mosaic-grid">
+          {homeEventMosaic.map((item) => (
+            <a
+              className={`event-mosaic-tile ${item.className}`}
+              href={pageUrl(item.href)}
+              key={item.title}
+              onClick={(event) => onNavigate(event, item.href)}
+            >
               <img
-                src={assetUrl('assets/optimized/eventos-sociales-real-del-pedregal.webp')}
-                alt="Montaje de evento social en Real del Pedregal"
-                title="Eventos sociales en Real del Pedregal"
-                loading="lazy"
+                src={assetUrl(item.src)}
+                alt={item.alt}
+                loading={item.loading || 'lazy'}
+                decoding="async"
               />
-              <span className="experience-copy">
-                <span className="experience-title">Eventos Sociales</span>
+              <span className="event-mosaic-copy">
+                <span className="event-mosaic-title">{item.title}</span>
+                <span className="event-mosaic-type">{item.type}</span>
               </span>
-            </span>
-          </a>
-
-          <div className="center-mark" aria-hidden="true">
-            <LogoMark
-              src={assetUrl('assets/optimized/logo-real-del-pedregal-monograma.png')}
-              alt=""
-              className="center-logo"
-            />
-          </div>
-
-          <a
-            className="experience-link corporate-experience"
-            href={pageUrl('/corporativos')}
-            onClick={(event) => onNavigate(event, '/corporativos')}
-          >
-            <span className="experience-preview">
-              <img
-                src={assetUrl('assets/optimized/eventos-corporativos-real-del-pedregal.webp')}
-                alt="Salon con arcos y montaje para evento corporativo en Real del Pedregal"
-                title="Eventos corporativos en Real del Pedregal"
-                loading="lazy"
-              />
-              <span className="experience-copy">
-                <span className="experience-title">Corporativos</span>
-              </span>
-            </span>
-          </a>
+            </a>
+          ))}
         </div>
       </section>
     </>
