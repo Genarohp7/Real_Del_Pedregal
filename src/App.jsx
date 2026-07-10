@@ -14,10 +14,11 @@ const WHATSAPP_VISIT_URL =
   'https://wa.me/525546037246?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20para%20conocer%20Lienzo%20Charro%20del%20Pedregal.%20%C2%BFQu%C3%A9%20horarios%20tienen%20disponibles%3F';
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
-const internalPagePaths = ['/nosotros', '/espacios', '/contacto', '/eventos-sociales', '/corporativos'];
+const internalPagePaths = ['/nosotros', '/espacios', '/clientes', '/contacto', '/eventos-sociales', '/corporativos'];
 const navItems = [
   { label: 'Nosotros', href: '/nosotros' },
   { label: 'Espacios', href: '/espacios' },
+  { label: 'Clientes', href: '/clientes' },
   { label: 'Contacto', href: '/contacto' },
 ];
 
@@ -977,6 +978,23 @@ function ContactPage() {
   );
 }
 
+function ClientsPage() {
+  return (
+    <section className="clients-section" aria-labelledby="clients-title">
+      <div className="clients-inner">
+        <header className="clients-copy">
+          <p>Real del Pedregal</p>
+          <h1 id="clients-title">Clientes</h1>
+          <span>
+            Una selección de marcas, anfitriones y celebraciones que han encontrado en Lienzo Charro
+            del Pedregal un espacio con presencia para recibir a sus invitados.
+          </span>
+        </header>
+      </div>
+    </section>
+  );
+}
+
 function SocialEventsPage() {
   const [activeGalleryName, setActiveGalleryName] = useState(null);
   const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
@@ -1344,10 +1362,9 @@ function HomePage({ onNavigate }) {
 }
 
 function App() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [headerVisible, setHeaderVisible] = useState(false);
   const [currentPath, setCurrentPath] = useState(normalizePath);
-  const idleTimerRef = useRef(null);
+  const [headerVisible, setHeaderVisible] = useState(false);
+  const headerScrollTimerRef = useRef(null);
 
   const navigateTo = (event, path) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
@@ -1357,14 +1374,12 @@ function App() {
     event.preventDefault();
     window.history.pushState({}, '', pageUrl(path));
     setCurrentPath(path);
-    setMobileMenuOpen(false);
     window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
 
   useEffect(() => {
     const handlePopState = () => {
       setCurrentPath(normalizePath());
-      setMobileMenuOpen(false);
     };
 
     window.addEventListener('popstate', handlePopState);
@@ -1375,121 +1390,61 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const supportsPointerReveal = window.matchMedia('(hover: hover) and (pointer: fine)');
-
-    const revealHeader = () => {
+    const revealHeaderOnScroll = () => {
       setHeaderVisible(true);
-      window.clearTimeout(idleTimerRef.current);
-      idleTimerRef.current = window.setTimeout(() => {
+      window.clearTimeout(headerScrollTimerRef.current);
+      headerScrollTimerRef.current = window.setTimeout(() => {
         setHeaderVisible(false);
-      }, 2200);
+      }, 1100);
     };
 
-    if (supportsPointerReveal.matches) {
-      window.addEventListener('pointermove', revealHeader, { passive: true });
-    }
-
-    window.addEventListener('scroll', revealHeader, { passive: true });
-    window.addEventListener('touchstart', revealHeader, { passive: true });
-    window.addEventListener('keydown', revealHeader);
+    window.addEventListener('scroll', revealHeaderOnScroll, { passive: true });
 
     return () => {
-      window.removeEventListener('pointermove', revealHeader);
-      window.removeEventListener('scroll', revealHeader);
-      window.removeEventListener('touchstart', revealHeader);
-      window.removeEventListener('keydown', revealHeader);
-      window.clearTimeout(idleTimerRef.current);
+      window.removeEventListener('scroll', revealHeaderOnScroll);
+      window.clearTimeout(headerScrollTimerRef.current);
     };
   }, []);
 
   return (
     <div className="site-shell">
-      <header
-        className={`site-header ${headerVisible ? 'is-visible' : ''}`}
-        aria-label="Navegacion principal"
-        onFocus={() => setHeaderVisible(true)}
-        onBlur={(event) => {
-          if (!event.currentTarget.contains(event.relatedTarget)) {
-            setHeaderVisible(false);
-          }
-        }}
-      >
-        <div className="perimeter-nav">
-          <a
-            className="nav-logo perimeter-logo"
-            href={pageUrl('/')}
-            aria-label="Real del Pedregal, inicio"
-            onClick={(event) => navigateTo(event, '/')}
-          >
-            <LogoMark alt="Real del Pedregal Eventos Sociales" />
-          </a>
+      <header className={`site-header ${headerVisible ? 'is-visible' : ''}`} aria-label="Navegacion principal">
+        <a
+          className="brand-wordmark"
+          href={pageUrl('/')}
+          aria-label="Real del Pedregal, inicio"
+          onClick={(event) => navigateTo(event, '/')}
+        >
+          Real del Pedregal
+        </a>
 
-          <nav className="desktop-nav" aria-label="Paginas principales">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={pageUrl(item.href)}
-                onClick={internalPagePaths.includes(item.href) ? (event) => navigateTo(event, item.href) : undefined}
-              >
-                {item.label}
-              </a>
-            ))}
-          </nav>
-
-          <div className="nav-social" aria-label="Redes sociales">
-            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook de Real del Pedregal">
-              <SocialIcon name="facebook" />
-            </a>
-            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram de Real del Pedregal">
-              <SocialIcon name="instagram" />
-            </a>
-          </div>
-        </div>
-
-        <div className="mobile-bar">
-          <a
-            className="mobile-logo"
-            href={pageUrl('/')}
-            aria-label="Real del Pedregal, inicio"
-            onClick={(event) => navigateTo(event, '/')}
-          >
-            <LogoMark alt="Real del Pedregal Eventos Sociales" />
-          </a>
-          <button
-            className="mobile-menu-button"
-            type="button"
-            aria-expanded={mobileMenuOpen}
-            aria-controls="mobile-menu"
-            onClick={() => setMobileMenuOpen((isOpen) => !isOpen)}
-          >
-            Menu
-          </button>
-        </div>
-
-        <nav id="mobile-menu" className={`mobile-panel ${mobileMenuOpen ? 'is-open' : ''}`} aria-label="Menu movil">
+        <nav className="desktop-nav" aria-label="Paginas principales">
           {navItems.map((item) => (
             <a
               key={item.href}
               href={pageUrl(item.href)}
-              onClick={internalPagePaths.includes(item.href) ? (event) => navigateTo(event, item.href) : () => setMobileMenuOpen(false)}
+              aria-current={currentPath === item.href ? 'page' : undefined}
+              onClick={internalPagePaths.includes(item.href) ? (event) => navigateTo(event, item.href) : undefined}
             >
               {item.label}
             </a>
           ))}
-          <div className="mobile-social">
-            <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">
-              Facebook
-            </a>
-            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer">
-              Instagram
-            </a>
-          </div>
         </nav>
+
+        <div className="nav-social" aria-label="Redes sociales">
+          <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Facebook de Real del Pedregal">
+            <SocialIcon name="facebook" />
+          </a>
+          <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram de Real del Pedregal">
+            <SocialIcon name="instagram" />
+          </a>
+        </div>
       </header>
 
       <main>
         {currentPath === '/nosotros' && <AboutPage />}
         {currentPath === '/espacios' && <SpacesPage onNavigate={navigateTo} />}
+        {currentPath === '/clientes' && <ClientsPage />}
         {currentPath === '/contacto' && <ContactPage />}
         {currentPath === '/eventos-sociales' && <SocialEventsPage />}
         {currentPath === '/corporativos' && <CorporateEventsPage />}
