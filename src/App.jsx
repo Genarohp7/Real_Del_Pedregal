@@ -80,6 +80,87 @@ const aboutImages = [
   },
 ];
 
+const eventSpaces = [
+  {
+    name: 'Terraza Alzán',
+    slug: 'terraza-alzan',
+    capacity: '30 a 90 personas',
+    type: 'Espacio abierto',
+    description:
+      'Terraza Alzán es un espacio abierto ideal para celebraciones íntimas y eventos sociales con un montaje elegante. Su formato permite realizar reuniones, comidas, festejos y experiencias privadas en un entorno acogedor y versátil.',
+    image: 'assets/optimized/espacio-terraza-alzan.webp',
+    imageAlt:
+      'Terraza Alzán en Lienzo Charro del Pedregal, espacio abierto para eventos de 30 a 90 personas',
+    imageTitle: 'Terraza Alzán | Espacio para eventos en Lienzo Charro del Pedregal',
+    optionalGallery: [],
+  },
+  {
+    name: 'Patio Pirul',
+    slug: 'patio-pirul',
+    capacity: '80 a 220 personas',
+    type: 'Patio al aire libre',
+    description:
+      'Patio Pirul es un espacio al aire libre que destaca por la presencia de un pirul como escenografía natural, elemento que da identidad a esta área. Es ideal para eventos sociales con un ambiente fresco, amplio y con carácter.',
+    image: 'assets/optimized/espacio-patio-pirul.webp',
+    imageAlt:
+      'Patio Pirul en Lienzo Charro del Pedregal, patio al aire libre para eventos de 80 a 220 personas',
+    imageTitle: 'Patio Pirul | Patio al aire libre para eventos en Lienzo Charro del Pedregal',
+    optionalGallery: [],
+  },
+  {
+    name: 'Jardín Parián',
+    slug: 'jardin-parian',
+    capacity: '80 a 300 personas',
+    type: 'Jardín al aire libre',
+    description:
+      'Jardín Parián es un jardín al aire libre pensado para celebraciones sociales, recepciones y eventos con montaje flexible. Su amplitud permite adaptar la distribución del evento con elegancia y comodidad.',
+    image: 'assets/optimized/espacio-jardin-parian.webp',
+    imageAlt:
+      'Jardín Parián en Lienzo Charro del Pedregal, jardín al aire libre para eventos de 80 a 300 personas',
+    imageTitle: 'Jardín Parián | Jardín para eventos en Lienzo Charro del Pedregal',
+    optionalGallery: [],
+  },
+  {
+    name: 'Hacienda Luminsres',
+    slug: 'hacienda-luminsres',
+    capacity: '80 a 400 personas',
+    type: 'Salón cerrado',
+    description:
+      'Hacienda Luminsres es un salón interior de estilo elegante, ideal para eventos que buscan una atmósfera más formal y sofisticada. Su configuración permite desarrollar celebraciones amplias con gran presencia visual.',
+    image: 'assets/optimized/espacio-hacienda-luminsres.webp',
+    imageAlt:
+      'Hacienda Luminsres en Lienzo Charro del Pedregal, salón cerrado para eventos de 80 a 400 personas',
+    imageTitle: 'Hacienda Luminsres | Salón para eventos en Lienzo Charro del Pedregal',
+    optionalGallery: [],
+  },
+  {
+    name: 'Capilla',
+    slug: 'capilla',
+    capacity: 'Hasta 100 personas',
+    type: 'Recinto consagrado',
+    description:
+      'La Capilla es un recinto consagrado por el Papa Juan Pablo II, pensado para ceremonias con un sentido especial y solemne. Es un espacio íntimo y significativo dentro del venue, ideal para celebraciones religiosas.',
+    image: 'assets/optimized/espacio-capilla.webp',
+    imageAlt:
+      'Capilla en Lienzo Charro del Pedregal, recinto consagrado para ceremonias de hasta 100 personas',
+    imageTitle: 'Capilla | Recinto consagrado en Lienzo Charro del Pedregal',
+    optionalGallery: [],
+  },
+  {
+    name: 'Bosque Pedregal',
+    slug: 'bosque-pedregal',
+    capacity: '100 a 650 personas',
+    type: 'Jardín con área principal techada y conexión a espacios abiertos',
+    description:
+      'Bosque Pedregal es un jardín de gran capacidad con conexión a áreas abiertas y una zona principal techada. Su amplitud y versatilidad lo convierten en una excelente opción para eventos de mayor formato, conservando una experiencia abierta y funcional.',
+    image: 'assets/optimized/espacio-bosque-pedregal.webp',
+    imageAlt:
+      'Bosque Pedregal en Lienzo Charro del Pedregal, jardín con área techada para eventos de 100 a 650 personas',
+    imageTitle: 'Bosque Pedregal | Jardín para eventos de gran formato en Lienzo Charro del Pedregal',
+    optionalGallery: [],
+  },
+];
+
 const socialEventSpaces = [
   {
     name: 'XV años',
@@ -625,12 +706,123 @@ function AboutPage() {
   );
 }
 
-function SpacesPage() {
+function SpacesPage({ onNavigate }) {
+  const [activeSpaceSlug, setActiveSpaceSlug] = useState(eventSpaces[0].slug);
+  const pendingSpaceTimerRef = useRef(null);
+  const activeSpace = eventSpaces.find((space) => space.slug === activeSpaceSlug) ?? eventSpaces[0];
+  const activateSpace = (spaceSlug) => {
+    window.clearTimeout(pendingSpaceTimerRef.current);
+    setActiveSpaceSlug((currentSlug) => (currentSlug === spaceSlug ? currentSlug : spaceSlug));
+  };
+  const queueSpaceActivation = (spaceSlug) => {
+    window.clearTimeout(pendingSpaceTimerRef.current);
+    pendingSpaceTimerRef.current = window.setTimeout(() => {
+      activateSpace(spaceSlug);
+    }, 55);
+  };
+
+  useEffect(() => {
+    return () => window.clearTimeout(pendingSpaceTimerRef.current);
+  }, []);
+
+  const quoteSpaceUrl = (spaceName) =>
+    `https://wa.me/525546037246?text=${encodeURIComponent(
+      `Hola, me gustaría cotizar ${spaceName} para un evento en Lienzo Charro del Pedregal. ¿Podrían compartirme información?`,
+    )}`;
+
   return (
-    <section className="about-section about-page" aria-labelledby="spaces-title">
-      <div className="about-inner">
-        <div className="about-copy">
-          <h1 id="spaces-title">Espacios</h1>
+    <section className="spaces-section" id="espacios" aria-labelledby="spaces-title">
+      <div className="spaces-inner">
+        <div className="spaces-explorer">
+          <div className="spaces-copy-column">
+            <header className="spaces-header">
+              <p>Recorrido de espacios</p>
+              <h2 id="spaces-title">Espacios para eventos</h2>
+              <span>
+                Conoce las áreas del Lienzo Charro del Pedregal y descubre qué espacio se adapta mejor
+                al estilo, tamaño y tipo de celebración que deseas realizar.
+              </span>
+            </header>
+
+            <div className="spaces-list" aria-label="Lista de espacios para eventos">
+              {eventSpaces.map((space) => {
+                const isActive = space.slug === activeSpace.slug;
+
+                return (
+                  <article
+                    className={`space-option ${isActive ? 'is-active' : ''}`}
+                    key={space.slug}
+                  >
+                    <span className="space-option-index" aria-hidden="true">
+                      {String(eventSpaces.indexOf(space) + 1).padStart(2, '0')}
+                    </span>
+                    <div className="space-option-copy">
+                      <h3 id={`space-title-${space.slug}`}>{space.name}</h3>
+                      <span>{space.capacity}</span>
+                    </div>
+                    <span className="space-option-type">{space.type}</span>
+                    <button
+                      type="button"
+                      onPointerEnter={() => queueSpaceActivation(space.slug)}
+                      onPointerLeave={() => window.clearTimeout(pendingSpaceTimerRef.current)}
+                      onFocus={() => activateSpace(space.slug)}
+                      onClick={() => activateSpace(space.slug)}
+                      aria-pressed={isActive}
+                      aria-controls="space-active-panel"
+                      aria-labelledby={`space-title-${space.slug}`}
+                    />
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+
+          <article className="space-active-panel" id="space-active-panel" aria-live="polite">
+            <figure className="space-active-image">
+              {eventSpaces.map((space) => {
+                const isActive = space.slug === activeSpace.slug;
+
+                return (
+                  <img
+                    className={isActive ? 'is-active' : ''}
+                    key={space.image}
+                    src={assetUrl(space.image)}
+                    alt={isActive ? space.imageAlt : ''}
+                    title={space.imageTitle}
+                    loading="eager"
+                    decoding="async"
+                    aria-hidden={!isActive}
+                  />
+                );
+              })}
+            </figure>
+
+            <div className="space-active-content">
+              <div className="space-active-meta">
+                <span>{activeSpace.capacity}</span>
+                <span>{activeSpace.type}</span>
+              </div>
+              <p>{activeSpace.description}</p>
+              <div className="space-active-actions">
+                <a
+                  className="space-action-primary"
+                  href={quoteSpaceUrl(activeSpace.name)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Cotizar ${activeSpace.name} por WhatsApp`}
+                >
+                  Cotizar este espacio
+                </a>
+                <a
+                  className="space-action-secondary"
+                  href={pageUrl('/contacto')}
+                  onClick={(event) => onNavigate(event, '/contacto')}
+                >
+                  Agendar visita
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -1297,7 +1489,7 @@ function App() {
 
       <main>
         {currentPath === '/nosotros' && <AboutPage />}
-        {currentPath === '/espacios' && <SpacesPage />}
+        {currentPath === '/espacios' && <SpacesPage onNavigate={navigateTo} />}
         {currentPath === '/contacto' && <ContactPage />}
         {currentPath === '/eventos-sociales' && <SocialEventsPage />}
         {currentPath === '/corporativos' && <CorporateEventsPage />}
