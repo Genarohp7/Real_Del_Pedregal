@@ -75,6 +75,96 @@ const homeEventMosaic = [
   },
 ];
 
+const spacesShowcase = [
+  {
+    name: 'Jardín Parián',
+    direction: 'left',
+    images: [
+      {
+        src: 'assets/optimized/jardin-parian-showcase-01.png',
+        alt: 'Jardín Parián con vista al atardecer, jardín y fachada de Real del Pedregal',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/jardin-parian-showcase-02.png',
+        alt: 'Terraza y jardín de Jardín Parián con luz cálida de atardecer',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/jardin-parian-showcase-03.png',
+        alt: 'Vista amplia de Jardín Parián con árboles, césped y arquitectura al fondo',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/jardin-parian-showcase-04.png',
+        alt: 'Montaje de evento en Jardín Parián bajo estructura transparente',
+        className: 'spaces-showcase-wide',
+      },
+      {
+        src: 'assets/optimized/jardin-parian-showcase-05.png',
+        alt: 'Mesas montadas en Jardín Parián con arreglos florales y luz cálida',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/jardin-parian-showcase-06.png',
+        alt: 'Mesa montada en Jardín Parián con sillas de madera y vista al jardín',
+        className: 'spaces-showcase-portrait',
+      },
+    ],
+  },
+  {
+    name: 'Hacienda Luminares',
+    direction: 'right',
+    images: [
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-01.png',
+        alt: 'Hacienda Luminares con montaje cálido, candil y arreglos florales altos',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-02.png',
+        alt: 'Salón Hacienda Luminares montado para banquete con arcos, candiles y mesas elegantes',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-03.png',
+        alt: 'Hacienda Luminares con montaje de mesas, arcos iluminados y decoración suspendida',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-04.png',
+        alt: 'Interior de Hacienda Luminares con papel picado, candil y mesas de celebración',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-05.png',
+        alt: 'Hacienda Luminares vacía con columnas blancas, vigas de madera y luz cálida',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-06.png',
+        alt: 'Vista amplia de Hacienda Luminares con columnas, candiles y piso iluminado',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-07.png',
+        alt: 'Hacienda Luminares con arquitectura de arcos, columnas y candiles encendidos',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-08.png',
+        alt: 'Hacienda Luminares preparado para conferencia con filas de sillas blancas',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/hacienda-luminares-showcase-09.png',
+        alt: 'Banquete en Hacienda Luminares con mesas redondas, vajilla y arquitectura iluminada',
+        className: 'spaces-showcase-landscape',
+      },
+    ],
+  },
+];
+
 const contactInfoItems = [
   {
     icon: 'pin',
@@ -760,7 +850,54 @@ function AboutPage() {
   );
 }
 
-function SpacesPage({ onNavigate }) {
+function SpacesPage() {
+  return (
+    <section className="spaces-section spaces-showcase-section" id="espacios" aria-labelledby="spaces-title">
+      <div className="spaces-showcase-intro">
+        <h1 id="spaces-title">titulo</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lectus a libero
+          dignissim luctus. Sed non magna at nunc viverra facilisis. Praesent commodo, justo vel
+          dictum tempor, mi sapien aliquet erat, vitae consequat sem ipsum at nulla.
+        </p>
+      </div>
+
+      <div className="spaces-showcase-list">
+        {spacesShowcase.map((space, index) => {
+          const rowClassName = `spaces-showcase-row ${space.direction === 'right' ? 'is-reverse' : ''}`.trim();
+
+          return (
+            <section className={rowClassName} key={space.name} aria-labelledby={`showcase-space-${index + 1}`}>
+              <h2 id={`showcase-space-${index + 1}`}>{space.name}</h2>
+              <div className="spaces-showcase-track" aria-label={`Imágenes de ${space.name}`}>
+                <div className="spaces-showcase-rail">
+                {[...space.images, ...space.images].map((image, imageIndex) => {
+                  const isLoopCopy = imageIndex >= space.images.length;
+
+                  return (
+                    <figure
+                      className={`spaces-showcase-card ${image.className}`}
+                      key={`${image.src}-${imageIndex}`}
+                      aria-hidden={isLoopCopy}
+                    >
+                      <img
+                        src={assetUrl(image.src)}
+                        alt={isLoopCopy ? '' : image.alt}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  );
+                })}
+                </div>
+              </div>
+            </section>
+          );
+        })}
+      </div>
+    </section>
+  );
+
   const [activeSpaceSlug, setActiveSpaceSlug] = useState(eventSpaces[0].slug);
   const pendingSpaceTimerRef = useRef(null);
   const activeSpace = eventSpaces.find((space) => space.slug === activeSpaceSlug) ?? eventSpaces[0];
