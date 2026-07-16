@@ -671,7 +671,7 @@ const corporateVideos = [
 ];
 
 const clientLogos = [
-  { name: 'Sony', src: 'assets/optimized/client-logos/sony.png', tone: 'invert' },
+  { name: 'Sony', src: 'assets/optimized/client-logos/sony.png' },
   { name: 'Italika', src: 'assets/optimized/client-logos/italika.png' },
   { name: 'Gentera', src: 'assets/optimized/client-logos/gentera.png' },
   { name: 'Cruz Azul', src: 'assets/optimized/client-logos/cruz-azul.png' },
@@ -680,10 +680,10 @@ const clientLogos = [
   { name: 'Grisi', src: 'assets/optimized/client-logos/grisi.png' },
   { name: 'L Oreal Paris', src: 'assets/optimized/client-logos/loreal.png' },
   { name: 'MetLife', src: 'assets/optimized/client-logos/metlife.png' },
-  { name: 'El Palacio de Hierro', src: 'assets/optimized/client-logos/palacio-de-hierro.png', tone: 'invert' },
+  { name: 'El Palacio de Hierro', src: 'assets/optimized/client-logos/palacio-de-hierro.png' },
   { name: 'TV Azteca', src: 'assets/optimized/client-logos/tv-azteca.png' },
   { name: 'Nestle', src: 'assets/optimized/client-logos/nestle.png' },
-  { name: 'Tesla', src: 'assets/optimized/client-logos/tesla.webp', tone: 'invert' },
+  { name: 'Tesla', src: 'assets/optimized/client-logos/tesla.png' },
   { name: 'American Express', src: 'assets/optimized/client-logos/american-express.webp' },
   { name: 'Banco Azteca', src: 'assets/optimized/client-logos/banco-azteca.png' },
   { name: 'Elektra', src: 'assets/optimized/client-logos/elektra.png' },

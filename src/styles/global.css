@@ -1,5 +1,5 @@
 :root {
-  --ink: oklch(13% 0.01 80);
+  --ink: #000;
   --paper: oklch(96% 0.01 86);
   --bone: oklch(90% 0.018 83);
   --stone: oklch(57% 0.025 78);
