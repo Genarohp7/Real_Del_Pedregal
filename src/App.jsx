@@ -78,7 +78,7 @@ const homeEventMosaic = [
 const spacesShowcase = [
   {
     name: 'Jardín Parián',
-    direction: 'left',
+    direction: 'right',
     images: [
       {
         src: 'assets/optimized/jardin-parian-showcase-01.png',
@@ -164,6 +164,126 @@ const spacesShowcase = [
     ],
   },
 ];
+
+function SpacesShowcaseTrack({ images, spaceName }) {
+  const trackRef = useRef(null);
+  const dragStateRef = useRef({
+    active: false,
+    pointerId: null,
+    startX: 0,
+    scrollLeft: 0,
+  });
+
+  const stopDrag = () => {
+    const track = trackRef.current;
+
+    dragStateRef.current.active = false;
+    dragStateRef.current.pointerId = null;
+    track?.classList.remove('is-dragging');
+  };
+
+  const pauseTrack = () => {
+    const track = trackRef.current;
+
+    track?.classList.add('is-paused');
+    track
+      ?.querySelector('.spaces-showcase-rail')
+      ?.style.setProperty('animation-play-state', 'paused', 'important');
+  };
+
+  const resumeTrack = () => {
+    const track = trackRef.current;
+
+    track?.classList.remove('is-paused');
+    track?.querySelector('.spaces-showcase-rail')?.style.removeProperty('animation-play-state');
+  };
+
+  const handlePointerDown = (event) => {
+    if (event.pointerType === 'mouse' && event.button !== 0) {
+      return;
+    }
+
+    const track = trackRef.current;
+
+    if (!track) {
+      return;
+    }
+
+    dragStateRef.current = {
+      active: true,
+      pointerId: event.pointerId,
+      startX: event.clientX,
+      scrollLeft: track.scrollLeft,
+    };
+    track.classList.add('is-dragging');
+    pauseTrack();
+    track.setPointerCapture?.(event.pointerId);
+  };
+
+  const handlePointerMove = (event) => {
+    const track = trackRef.current;
+    const dragState = dragStateRef.current;
+
+    if (!track || !dragState.active || dragState.pointerId !== event.pointerId) {
+      return;
+    }
+
+    event.preventDefault();
+    track.scrollLeft = dragState.scrollLeft - (event.clientX - dragState.startX);
+  };
+
+  const handlePointerUp = (event) => {
+    const track = trackRef.current;
+    const dragState = dragStateRef.current;
+
+    if (track && dragState.pointerId === event.pointerId) {
+      track.releasePointerCapture?.(event.pointerId);
+    }
+
+    stopDrag();
+
+    if (event.pointerType !== 'mouse') {
+      resumeTrack();
+    }
+  };
+
+  return (
+    <div
+      className="spaces-showcase-track"
+      ref={trackRef}
+      tabIndex={0}
+      aria-label={`Imagenes de ${spaceName}`}
+      onPointerEnter={pauseTrack}
+      onPointerLeave={resumeTrack}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
+      onLostPointerCapture={stopDrag}
+    >
+      <div className="spaces-showcase-rail">
+        {[...images, ...images].map((image, imageIndex) => {
+          const isLoopCopy = imageIndex >= images.length;
+
+          return (
+            <figure
+              className={`spaces-showcase-card ${image.className}`}
+              key={`${image.src}-${imageIndex}`}
+              aria-hidden={isLoopCopy}
+            >
+              <img
+                src={assetUrl(image.src)}
+                alt={isLoopCopy ? '' : image.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
 
 const contactInfoItems = [
   {
@@ -817,28 +937,7 @@ function SpacesPage() {
           return (
             <section className={rowClassName} key={space.name} aria-labelledby={`showcase-space-${index + 1}`}>
               <h2 id={`showcase-space-${index + 1}`}>{space.name}</h2>
-              <div className="spaces-showcase-track" aria-label={`Imágenes de ${space.name}`}>
-                <div className="spaces-showcase-rail">
-                {[...space.images, ...space.images].map((image, imageIndex) => {
-                  const isLoopCopy = imageIndex >= space.images.length;
-
-                  return (
-                    <figure
-                      className={`spaces-showcase-card ${image.className}`}
-                      key={`${image.src}-${imageIndex}`}
-                      aria-hidden={isLoopCopy}
-                    >
-                      <img
-                        src={assetUrl(image.src)}
-                        alt={isLoopCopy ? '' : image.alt}
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </figure>
-                  );
-                })}
-                </div>
-              </div>
+              <SpacesShowcaseTrack images={space.images} spaceName={space.name} />
             </section>
           );
         })}
@@ -1461,6 +1560,23 @@ function HomePage({ onNavigate }) {
   );
 }
 
+function FloatingWhatsApp() {
+  return (
+    <a
+      className="floating-whatsapp"
+      href={WHATSAPP_PRIMARY_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Enviar WhatsApp a Real del Pedregal"
+    >
+      <span className="floating-whatsapp-icon" aria-hidden="true">
+        <SocialIcon name="whatsapp" />
+      </span>
+      <span className="floating-whatsapp-label">WhatsApp</span>
+    </a>
+  );
+}
+
 function App() {
   const [currentPath, setCurrentPath] = useState(normalizePath);
   const [headerVisible, setHeaderVisible] = useState(false);
@@ -1561,6 +1677,8 @@ function App() {
         {currentPath === '/corporativos' && <CorporateEventsPage />}
         {currentPath === '/' && <HomePage onNavigate={navigateTo} />}
       </main>
+
+      <FloatingWhatsApp />
     </div>
   );
 }
