@@ -403,6 +403,12 @@
   object-position: 50% 46%;
 }
 
+.about-clients-page {
+  min-height: 200svh;
+  color: var(--paper);
+  background: var(--ink);
+}
+
 .about-section {
   position: relative;
   min-height: 100svh;
@@ -411,21 +417,9 @@
     clamp(96px, 8vw, 132px)
     clamp(78px, 10svh, 126px)
     clamp(220px, 17vw, 300px);
-  color: var(--ink);
+  color: var(--paper);
   overflow: hidden;
-  background:
-    linear-gradient(90deg, color-mix(in oklch, var(--ink) 4%, transparent) 1px, transparent 1px),
-    radial-gradient(circle at 78% 28%, color-mix(in oklch, var(--accent-clay) 10%, transparent), transparent 24rem),
-    var(--paper);
-  background-size: 104px 104px, auto, auto;
-}
-
-.about-section::before {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, color-mix(in oklch, var(--paper) 12%, transparent), var(--paper) 96%);
-  content: "";
-  pointer-events: none;
+  background: transparent;
 }
 
 .about-inner {
@@ -437,9 +431,8 @@
   min-height: calc(100svh - clamp(156px, 19svh, 242px));
   margin: 0 auto;
   grid-template-columns: minmax(0, 0.94fr) minmax(280px, 0.56fr);
-  grid-template-rows: auto minmax(440px, 1fr);
+  grid-template-rows: auto;
   column-gap: clamp(44px, 6.4vw, 92px);
-  row-gap: clamp(54px, 7svh, 88px);
   align-items: start;
 }
 
@@ -499,94 +492,6 @@
   height: 100%;
   object-fit: cover;
   filter: saturate(0.9) contrast(1.06) brightness(0.95);
-}
-
-.about-gallery {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  grid-column: 1 / -1;
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  min-height: clamp(440px, 46vw, 620px);
-  padding: clamp(36px, 5vw, 72px) clamp(22px, 4vw, 54px);
-  overflow: hidden;
-}
-
-@property --showcase-radius {
-  syntax: "<length>";
-  initial-value: 0px;
-  inherits: false;
-}
-
-.about-photo-showcase {
-  --showcase-tile: clamp(24px, 2.4vw, 40px);
-  position: relative;
-  width: min(74vw, 1020px);
-  max-width: 100%;
-  aspect-ratio: 16 / 9;
-  margin: 0;
-  border: 1px solid color-mix(in oklch, var(--ink) 12%, transparent);
-  background:
-    linear-gradient(135deg, color-mix(in oklch, var(--paper) 94%, white), color-mix(in oklch, var(--paper) 88%, var(--stone))),
-    var(--paper);
-  box-shadow:
-    0 46px 90px -62px color-mix(in oklch, var(--ink) 62%, transparent),
-    0 1px 0 color-mix(in oklch, white 72%, transparent) inset;
-  isolation: isolate;
-  overflow: hidden;
-}
-
-.about-photo-showcase::after {
-  position: absolute;
-  inset: 0;
-  z-index: 4;
-  border: 1px solid color-mix(in oklch, white 48%, transparent);
-  background:
-    linear-gradient(180deg, transparent 48%, color-mix(in oklch, var(--ink) 20%, transparent)),
-    linear-gradient(90deg, color-mix(in oklch, var(--ink) 10%, transparent), transparent 22%, transparent 78%, color-mix(in oklch, var(--ink) 10%, transparent));
-  content: "";
-  opacity: 0.42;
-  pointer-events: none;
-}
-
-.about-photo-showcase img {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  --showcase-radius: 0px;
-  filter: saturate(0.92) contrast(1.05) brightness(0.94);
-  -webkit-mask-image: radial-gradient(circle at center, #000 var(--showcase-radius), transparent calc(var(--showcase-radius) + 2px));
-  mask-image: radial-gradient(circle at center, #000 var(--showcase-radius), transparent calc(var(--showcase-radius) + 2px));
-  -webkit-mask-position: center;
-  mask-position: center;
-  -webkit-mask-repeat: repeat;
-  mask-repeat: repeat;
-  -webkit-mask-size: var(--showcase-tile) var(--showcase-tile);
-  mask-size: var(--showcase-tile) var(--showcase-tile);
-}
-
-.about-photo-showcase img.is-previous {
-  z-index: 1;
-  opacity: 1;
-  mask: none;
-}
-
-.about-photo-showcase img.is-active {
-  z-index: 2;
-  opacity: 1;
-  filter: saturate(0.94) contrast(1.05) brightness(0.95);
-}
-
-.about-photo-showcase img.is-initial {
-  mask: none;
 }
 
 .spaces-section {
@@ -1405,6 +1310,7 @@
   width: 100%;
   max-width: 100%;
   height: 100%;
+  padding: 6px;
   min-width: 0;
   object-fit: fill;
 }
@@ -2029,7 +1935,6 @@
   background-size: 104px 104px, auto, auto;
 }
 
-.about-section::before,
 .contact-section::before,
 .social-events-section::before {
   background: linear-gradient(180deg, color-mix(in oklch, black 10%, transparent), var(--ink) 96%);
@@ -2102,7 +2007,6 @@
 .corporate-video-frame,
 .contact-detail-panel,
 .contact-map,
-.about-photo-showcase,
 .about-video-frame {
   border-color: color-mix(in oklch, var(--paper) 16%, transparent);
   background:
@@ -2182,62 +2086,119 @@
 }
 
 .clients-section {
-  position: relative;
   display: grid;
   min-height: 100svh;
-  padding: clamp(72px, 9vw, 122px) clamp(96px, 8vw, 132px) clamp(84px, 10vw, 142px);
+  padding-top: clamp(72px, 10svh, 118px);
   color: var(--paper);
-  background:
-    linear-gradient(90deg, color-mix(in oklch, var(--paper) 4.8%, transparent) 1px, transparent 1px),
-    linear-gradient(180deg, color-mix(in oklch, white 3.8%, transparent), transparent 31rem),
-    var(--ink);
-  background-size: 104px 104px, auto, auto;
-  place-items: center;
+  background: var(--ink);
+  scroll-margin-top: 0;
+  overflow: hidden;
+  align-content: start;
 }
 
-.clients-inner {
-  width: min(100%, 920px);
+.site-shell:has(.about-clients-page),
+.site-shell:has(.about-clients-page) main,
+.about-clients-page,
+.about-clients-page .about-section,
+.about-clients-page .clients-section {
+  background: var(--ink);
+  background-image: none;
+  background-size: auto;
 }
 
-.clients-copy {
+.clients-logo-marquee {
+  --client-logo-gap: clamp(46px, 5vw, 78px);
+  width: 100vw;
+  max-width: 100%;
+  min-height: clamp(290px, 21vw, 360px);
+  padding: clamp(34px, 4vw, 60px) 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  scrollbar-width: none;
+}
+
+.clients-logo-marquee::-webkit-scrollbar {
+  display: none;
+}
+
+.clients-logo-rail {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  animation-name: clients-logo-marquee;
+  animation-duration: 42s !important;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite !important;
+}
+
+.clients-logo-group {
+  display: flex;
+  gap: var(--client-logo-gap);
+  align-items: center;
+  flex: 0 0 auto;
+  padding-right: var(--client-logo-gap);
+}
+
+.clients-logo-marquee:hover .clients-logo-rail,
+.clients-logo-marquee:focus-within .clients-logo-rail {
+  animation-play-state: paused;
+  cursor: default;
+}
+
+.client-logo-item {
   display: grid;
-  max-width: 720px;
-  gap: clamp(16px, 2.6vw, 28px);
-}
-
-.clients-copy p {
-  width: fit-content;
+  width: clamp(178px, 10.8vw, 228px);
+  height: clamp(218px, 13vw, 258px);
   margin: 0;
-  padding-top: 12px;
-  border-top: 1px solid color-mix(in oklch, var(--paper) 22%, transparent);
-  color: color-mix(in oklch, var(--paper) 56%, transparent);
-  font-size: 0.72rem;
-  letter-spacing: 0.18em;
-  line-height: 1;
-  text-transform: uppercase;
+  padding: 0;
+  place-items: center;
+  flex: 0 0 auto;
+  overflow: visible;
 }
 
-.clients-copy h1 {
-  margin: 0;
-  color: var(--paper);
-  font-family: var(--display-font);
-  font-size: clamp(3.1rem, 7vw, 6rem);
-  font-weight: 400;
-  letter-spacing: -0.038em;
-  line-height: 0.9;
-  text-wrap: balance;
-}
-
-.clients-copy span {
+.client-logo-item > img {
   display: block;
-  max-width: 62ch;
-  color: color-mix(in oklch, var(--paper) 72%, var(--stone));
-  font-size: clamp(0.98rem, 1.18vw, 1.12rem);
-  line-height: 1.72;
-  text-wrap: pretty;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none;
+  max-height: none;
+  object-fit: contain;
+  object-position: center;
+  filter: saturate(0.98) contrast(1.08);
+}
+
+.client-logo-item.is-inverted img {
+  filter: invert(1) grayscale(1) brightness(1.2) contrast(1.08);
+}
+
+@keyframes clients-logo-marquee {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
 }
 
 @media (max-width: 820px) {
+  .clients-section {
+    padding-top: clamp(82px, 17svh, 120px);
+  }
+
+  .clients-logo-marquee {
+    --client-logo-gap: clamp(36px, 9vw, 52px);
+    min-height: clamp(196px, 50vw, 252px);
+    padding: clamp(22px, 6vw, 34px) 0;
+  }
+
+  .client-logo-item {
+    width: clamp(142px, 36vw, 184px);
+    height: clamp(174px, 44vw, 218px);
+  }
   .site-header {
     top: 8px;
     right: 12px;
@@ -2343,19 +2304,7 @@
     scroll-margin-top: 112px;
   }
 
-  .clients-section {
-    min-height: 100svh;
-    padding: calc(clamp(118px, 30vw, 154px) + env(safe-area-inset-top)) 18px clamp(64px, 16vw, 96px);
-    place-items: start center;
-  }
 
-  .clients-inner {
-    width: min(100%, 560px);
-  }
-
-  .clients-copy h1 {
-    font-size: clamp(2.8rem, 15vw, 4.45rem);
-  }
 
   .social-events-section {
     min-height: auto;
@@ -2914,21 +2863,6 @@
   .contact-map img {
     object-fit: contain;
   }
-
-  .about-gallery {
-    width: 100%;
-    max-width: 100%;
-    min-height: auto;
-    padding: 10px 0 0;
-  }
-
-  .about-photo-showcase {
-    --showcase-tile: clamp(18px, 6vw, 30px);
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    aspect-ratio: 1.32;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2987,12 +2921,7 @@
   .contact-detail-panel {
     padding: 20px;
   }
-
-  .about-photo-showcase {
-    aspect-ratio: 1.08;
-  }
-
-  .contact-map {
+.contact-map {
     min-height: auto;
   }
 }

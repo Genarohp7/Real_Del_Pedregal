@@ -201,28 +201,6 @@ const normalizePath = () => {
   return '/';
 };
 
-const aboutImages = [
-  {
-    src: 'assets/optimized/nosotros-real-del-pedregal-jardin.webp',
-    alt: 'Jardin y arqueria de Real del Pedregal en Tlalpan',
-  },
-  {
-    src: 'assets/optimized/nosotros-real-del-pedregal-arquitectura.webp',
-    alt: 'Arquitectura y vegetacion de Real del Pedregal',
-  },
-  {
-    src: 'assets/optimized/nosotros-real-del-pedregal-terraza.webp',
-    alt: 'Terraza, jardines y detalles de piedra en Real del Pedregal',
-  },
-  {
-    src: 'assets/optimized/nosotros-real-del-pedregal-recorrido.webp',
-    alt: 'Recorrido exterior con jardines y terrazas en Real del Pedregal',
-  },
-  {
-    src: 'assets/optimized/nosotros-real-del-pedregal-patio.webp',
-    alt: 'Patio historico con jardines y arcos en Real del Pedregal',
-  },
-];
 
 const eventSpaces = [
   {
@@ -692,82 +670,27 @@ const corporateVideos = [
   },
 ];
 
-const ABOUT_SHOWCASE_REVEAL_DURATION = 4500;
-const ABOUT_SHOWCASE_HOLD_DURATION = 6000;
-const ABOUT_SHOWCASE_ROTATION_DURATION = ABOUT_SHOWCASE_REVEAL_DURATION + ABOUT_SHOWCASE_HOLD_DURATION;
+const clientLogos = [
+  { name: 'Sony', src: 'assets/optimized/client-logos/sony.png', tone: 'invert' },
+  { name: 'Italika', src: 'assets/optimized/client-logos/italika.png' },
+  { name: 'Gentera', src: 'assets/optimized/client-logos/gentera.png' },
+  { name: 'Cruz Azul', src: 'assets/optimized/client-logos/cruz-azul.png' },
+  { name: 'Grupo Salinas', src: 'assets/optimized/client-logos/grupo-salinas.png' },
+  { name: 'Petalo', src: 'assets/optimized/client-logos/petalo.png' },
+  { name: 'Grisi', src: 'assets/optimized/client-logos/grisi.png' },
+  { name: 'L Oreal Paris', src: 'assets/optimized/client-logos/loreal.png' },
+  { name: 'MetLife', src: 'assets/optimized/client-logos/metlife.png' },
+  { name: 'El Palacio de Hierro', src: 'assets/optimized/client-logos/palacio-de-hierro.png', tone: 'invert' },
+  { name: 'TV Azteca', src: 'assets/optimized/client-logos/tv-azteca.png' },
+  { name: 'Nestle', src: 'assets/optimized/client-logos/nestle.png' },
+  { name: 'Tesla', src: 'assets/optimized/client-logos/tesla.webp', tone: 'invert' },
+  { name: 'American Express', src: 'assets/optimized/client-logos/american-express.webp' },
+  { name: 'Banco Azteca', src: 'assets/optimized/client-logos/banco-azteca.png' },
+  { name: 'Elektra', src: 'assets/optimized/client-logos/elektra.png' },
+  { name: 'Inbursa', src: 'assets/optimized/client-logos/inbursa.png' },
+];
 
-function AboutPhotoShowcase() {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const [previousIndex, setPreviousIndex] = useState(null);
-  const [revealRadius, setRevealRadius] = useState(64);
-  const hasStartedRef = useRef(false);
-
-  useEffect(() => {
-    const rotation = window.setInterval(() => {
-      setActiveIndex((currentIndex) => {
-        setPreviousIndex(currentIndex);
-        return (currentIndex + 1) % aboutImages.length;
-      });
-    }, ABOUT_SHOWCASE_ROTATION_DURATION);
-
-    return () => window.clearInterval(rotation);
-  }, []);
-
-  useEffect(() => {
-    let frameId;
-
-    if (!hasStartedRef.current) {
-      hasStartedRef.current = true;
-      setRevealRadius(64);
-      return undefined;
-    }
-
-    const startTime = window.performance.now();
-    const duration = ABOUT_SHOWCASE_REVEAL_DURATION;
-
-    setRevealRadius(0);
-
-    const growMask = (currentTime) => {
-      const progress = Math.min((currentTime - startTime) / duration, 1);
-      const easedProgress = 1 - Math.pow(1 - progress, 3);
-
-      setRevealRadius(Math.round(easedProgress * 64));
-
-      if (progress < 1) {
-        frameId = window.requestAnimationFrame(growMask);
-      }
-    };
-
-    frameId = window.requestAnimationFrame(growMask);
-
-    return () => window.cancelAnimationFrame(frameId);
-  }, [activeIndex]);
-
-  return (
-    <figure
-      className="about-photo-showcase"
-      aria-label="Recorrido visual por los jardines, patios y arquitectura de Real del Pedregal"
-    >
-      {aboutImages.map((image, index) => (
-        <img
-          key={image.src}
-          className={[
-            index === activeIndex ? 'is-active' : '',
-            index === activeIndex && previousIndex === null ? 'is-initial' : '',
-            index === previousIndex ? 'is-previous' : '',
-          ].filter(Boolean).join(' ')}
-          src={assetUrl(image.src)}
-          alt={image.alt}
-          loading="lazy"
-          decoding="async"
-          style={{ '--showcase-radius': index === activeIndex ? `${revealRadius}px` : '0px' }}
-        />
-      ))}
-    </figure>
-  );
-}
-
-function AboutPage() {
+function AboutClientsPage() {
   const videoRef = useRef(null);
   const isVisibleRef = useRef(false);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
@@ -811,42 +734,67 @@ function AboutPage() {
       videoRef.current.play().catch(() => undefined);
     }
   }, [shouldLoadVideo]);
-
   return (
-    <section className="about-section about-page" aria-labelledby="about-title">
-      <div className="about-inner">
-        <div className="about-copy">
-          <h1 id="about-title">Nosotros</h1>
-          <p>
-            En Real del Pedregal, la naturaleza, la tradicion y la elegancia conviven en un mismo lugar
-            para dar vida a experiencias memorables. El recinto reune jardines, terrazas, patios y espacios
-            llenos de historia, pensados para adaptarse a distintos tipos de eventos y celebraciones.
-          </p>
-          <p>
-            Cada rincon tiene una personalidad propia: ambientes al aire libre rodeados de vegetacion,
-            arquitectura con caracter cultural y recorridos que acompanan la creacion de momentos unicos.
-          </p>
-        </div>
+    <div className="about-clients-page">
+      <section className="about-section about-page" id="nosotros" aria-labelledby="about-title">
+        <div className="about-inner">
+          <div className="about-copy">
+            <h1 id="about-title">Nosotros</h1>
+            <p>
+              En Real del Pedregal, la naturaleza, la tradicion y la elegancia conviven en un mismo lugar
+              para dar vida a experiencias memorables. El recinto reune jardines, terrazas, patios y espacios
+              llenos de historia, pensados para adaptarse a distintos tipos de eventos y celebraciones.
+            </p>
+            <p>
+              Cada rincon tiene una personalidad propia: ambientes al aire libre rodeados de vegetacion,
+              arquitectura con caracter cultural y recorridos que acompanan la creacion de momentos unicos.
+            </p>
+          </div>
 
-        <div className="about-video-frame" aria-hidden="true">
-          <video
-            ref={videoRef}
-            className="about-video"
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster={assetUrl('assets/optimized/nosotros-video-poster-real-del-pedregal.webp')}
-          >
-            <source src={assetUrl('assets/video/nosotros-real-del-pedregal.mp4')} type="video/mp4" />
-          </video>
+          <div className="about-video-frame" aria-hidden="true">
+            <video
+              ref={videoRef}
+              className="about-video"
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              poster={assetUrl('assets/optimized/nosotros-video-poster-real-del-pedregal.webp')}
+            >
+              <source src={assetUrl('assets/video/nosotros-real-del-pedregal.mp4')} type="video/mp4" />
+            </video>
+          </div>
         </div>
+      </section>
 
-        <div className="about-gallery" aria-label="Espacios de Real del Pedregal">
-          <AboutPhotoShowcase />
+      <section className="clients-section" id="clientes" aria-label="Clientes">
+        <div
+          className="clients-logo-marquee"
+          aria-label="Empresas que han realizado eventos en Real del Pedregal"
+        >
+          <div className="clients-logo-rail">
+            {[0, 1].map((groupIndex) => (
+              <div className="clients-logo-group" key={groupIndex} aria-hidden={groupIndex === 1}>
+                {clientLogos.map((logo) => {
+                  const className = `client-logo-item ${logo.tone === 'invert' ? 'is-inverted' : ''}`.trim();
+
+                  return (
+                    <figure className={className} key={`${logo.src}-${groupIndex}`}>
+                      <img
+                        src={assetUrl(logo.src)}
+                        alt={groupIndex === 0 ? logo.name : ''}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </figure>
+                  );
+                })}
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 }
 
@@ -1163,23 +1111,6 @@ function ContactPage() {
             <ContactMapGraphic />
           </div>
         </div>
-      </div>
-    </section>
-  );
-}
-
-function ClientsPage() {
-  return (
-    <section className="clients-section" aria-labelledby="clients-title">
-      <div className="clients-inner">
-        <header className="clients-copy">
-          <p>Real del Pedregal</p>
-          <h1 id="clients-title">Clientes</h1>
-          <span>
-            Una selección de marcas, anfitriones y celebraciones que han encontrado en Lienzo Charro
-            del Pedregal un espacio con presencia para recibir a sus invitados.
-          </span>
-        </header>
       </div>
     </section>
   );
@@ -1543,7 +1474,6 @@ function App() {
     event.preventDefault();
     window.history.pushState({}, '', pageUrl(path));
     setCurrentPath(path);
-    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
   };
 
   useEffect(() => {
@@ -1557,6 +1487,19 @@ function App() {
       window.removeEventListener('popstate', handlePopState);
     };
   }, []);
+
+  useEffect(() => {
+    if (currentPath === '/clientes') {
+      window.requestAnimationFrame(() => {
+        document.getElementById('clientes')?.scrollIntoView({ block: 'start', behavior: 'auto' });
+      });
+      return;
+    }
+
+    if (currentPath === '/nosotros') {
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  }, [currentPath]);
 
   useEffect(() => {
     const revealHeaderOnScroll = () => {
@@ -1611,9 +1554,8 @@ function App() {
       </header>
 
       <main>
-        {currentPath === '/nosotros' && <AboutPage />}
+        {(currentPath === '/nosotros' || currentPath === '/clientes') && <AboutClientsPage />}
         {currentPath === '/espacios' && <SpacesPage onNavigate={navigateTo} />}
-        {currentPath === '/clientes' && <ClientsPage />}
         {currentPath === '/contacto' && <ContactPage />}
         {currentPath === '/eventos-sociales' && <SocialEventsPage />}
         {currentPath === '/corporativos' && <CorporateEventsPage />}
