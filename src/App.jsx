@@ -16,62 +16,29 @@ const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
 const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
 const internalPagePaths = ['/nosotros', '/espacios', '/clientes', '/contacto', '/eventos-sociales', '/corporativos'];
 const navItems = [
-  { label: 'Nosotros', href: '/nosotros' },
   { label: 'Espacios', href: '/espacios' },
+  { label: 'Eventos', href: '/eventos-sociales' },
   { label: 'Clientes', href: '/clientes' },
+  { label: 'Nosotros', href: '/nosotros' },
   { label: 'Contacto', href: '/contacto' },
 ];
 
 const homeEventMosaic = [
   {
-    title: 'Bodas',
-    type: 'Celebración',
+    title: 'Eventos',
     href: '/eventos-sociales',
     src: 'assets/optimized/eventos-sociales-bodas-galeria-12.jpg',
-    alt: 'Montaje nocturno para boda con mesas largas, iluminación y pista en Real del Pedregal',
-    className: 'mosaic-tile-top-left',
+    alt: 'Montaje nocturno para boda con mesas largas, iluminacion y pista en Real del Pedregal',
+    className: 'mosaic-tile-events',
     loading: 'eager',
   },
   {
-    title: 'Corporativos',
-    type: 'Experiencia privada',
-    href: '/corporativos',
+    title: 'Espacios',
+    href: '/espacios',
     src: 'assets/optimized/eventos-corporativos-real-del-pedregal.webp',
     alt: 'Salon con arcos iluminados y montaje para evento corporativo en Real del Pedregal',
-    className: 'mosaic-tile-top-right',
+    className: 'mosaic-tile-spaces',
     loading: 'eager',
-  },
-  {
-    title: 'Jardín Parián',
-    type: 'Formato abierto',
-    href: '/espacios',
-    src: 'assets/optimized/eventos-sociales-jardin-parian-galeria-4.jpg',
-    alt: 'Jardín Parián con montaje amplio bajo estructura transparente en Real del Pedregal',
-    className: 'mosaic-tile-panorama',
-  },
-  {
-    title: 'XV años',
-    type: 'Evento social',
-    href: '/eventos-sociales',
-    src: 'assets/optimized/eventos-sociales-xv-anos.jpg',
-    alt: 'Montaje de XV años con pista central e iluminación suspendida en Real del Pedregal',
-    className: 'mosaic-tile-lower-left',
-  },
-  {
-    title: 'Hacienda',
-    type: 'Interior ceremonial',
-    href: '/espacios',
-    src: 'assets/optimized/eventos-sociales-hacienda-galeria-3.jpg',
-    alt: 'Mesa montada en interior estilo hacienda con lámpara y arquitectura de Real del Pedregal',
-    className: 'mosaic-tile-lower-middle',
-  },
-  {
-    title: 'Bautizos',
-    type: 'Celebración familiar',
-    href: '/eventos-sociales',
-    src: 'assets/optimized/eventos-sociales-bautizo-galeria-5.jpg',
-    alt: 'Mesa floral para bautizo con decoración delicada y montaje familiar en Real del Pedregal',
-    className: 'mosaic-tile-lower-right',
   },
 ];
 
@@ -1548,10 +1515,9 @@ function HomePage({ onNavigate }) {
                 loading={item.loading || 'lazy'}
                 decoding="async"
               />
-              <span className="event-mosaic-copy">
-                <span className="event-mosaic-title">{item.title}</span>
-                <span className="event-mosaic-type">{item.type}</span>
-              </span>
+              <div className="event-mosaic-copy">
+                <h2 className="event-mosaic-title">{item.title}</h2>
+              </div>
             </a>
           ))}
         </div>

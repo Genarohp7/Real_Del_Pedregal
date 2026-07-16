@@ -299,16 +299,15 @@
 }
 
 .institutional-section {
-  min-height: 100svh;
+  min-height: auto;
   color: var(--paper);
   background: var(--ink);
 }
 
 .event-mosaic-grid {
   display: grid;
-  min-height: 180svh;
-  grid-auto-rows: clamp(230px, 23vw, 390px);
-  grid-template-columns: repeat(12, minmax(0, 1fr));
+  min-height: clamp(340px, 44svh, 460px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   background: var(--ink);
 }
 
@@ -376,18 +375,13 @@
 }
 
 .event-mosaic-title {
+  margin: 0;
   font-family: var(--body-font);
-  font-size: clamp(0.86rem, 1.04vw, 1.08rem);
+  font-size: clamp(1.45rem, 2.8vw, 3.15rem);
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   line-height: 1;
   text-transform: uppercase;
-}
-
-.event-mosaic-type {
-  color: color-mix(in oklch, var(--paper) 86%, transparent);
-  font-size: clamp(0.8rem, 0.94vw, 1rem);
-  line-height: 1.2;
 }
 
 .event-mosaic-tile:hover::before,
@@ -401,61 +395,12 @@
   transform: scale(1.055);
 }
 
-.mosaic-tile-top-left {
-  grid-column: 1 / span 6;
-  grid-row: 1 / span 1;
-}
-
-.mosaic-tile-top-left img {
+.mosaic-tile-events img {
   object-position: 50% 52%;
 }
 
-.mosaic-tile-top-right {
-  grid-column: 7 / span 6;
-  grid-row: 1 / span 1;
-}
-
-.mosaic-tile-top-right img {
+.mosaic-tile-spaces img {
   object-position: 50% 44%;
-}
-
-.mosaic-tile-panorama {
-  grid-column: 1 / span 12;
-  grid-row: 2 / span 2;
-}
-
-.mosaic-tile-panorama img {
-  object-position: 50% 48%;
-}
-
-.mosaic-tile-lower-left,
-.mosaic-tile-lower-middle,
-.mosaic-tile-lower-right {
-  grid-row: 4 / span 2;
-}
-
-.mosaic-tile-lower-left {
-  grid-column: 1 / span 4;
-}
-
-.mosaic-tile-lower-left img {
-  object-position: 52% 42%;
-}
-
-.mosaic-tile-lower-middle {
-  grid-column: 5 / span 4;
-}
-
-.mosaic-tile-lower-middle img {
-  object-position: 50% 50%;
-}
-
-.mosaic-tile-lower-right {
-  grid-column: 9 / span 4;
-}
-
-.mosaic-tile-lower-right img {
-  object-position: 50% 46%;
 }
 
 .about-clients-page {
@@ -2423,23 +2368,11 @@
 
   .event-mosaic-grid {
     min-height: auto;
-    grid-auto-rows: minmax(340px, 72svh);
     grid-template-columns: 1fr;
   }
 
-  .event-mosaic-tile,
-  .mosaic-tile-top-left,
-  .mosaic-tile-top-right,
-  .mosaic-tile-panorama,
-  .mosaic-tile-lower-left,
-  .mosaic-tile-lower-middle,
-  .mosaic-tile-lower-right {
-    grid-column: 1;
-    grid-row: auto;
-  }
-
-  .mosaic-tile-panorama {
-    min-height: 84svh;
+  .event-mosaic-tile {
+    min-height: min(54svh, 420px);
   }
 
   .event-mosaic-copy {
@@ -2448,11 +2381,7 @@
   }
 
   .event-mosaic-title {
-    font-size: clamp(0.92rem, 4.2vw, 1.2rem);
-  }
-
-  .event-mosaic-type {
-    font-size: clamp(0.82rem, 3.8vw, 1rem);
+    font-size: clamp(1.35rem, 8vw, 2.4rem);
   }
 
   .about-section {
