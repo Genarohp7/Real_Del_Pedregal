@@ -300,6 +300,7 @@
 
 .institutional-section {
   min-height: auto;
+  padding-bottom: clamp(72px, 12svh, 152px);
   color: var(--paper);
   background: var(--ink);
 }
