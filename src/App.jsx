@@ -7,17 +7,267 @@ const FACEBOOK_URL = 'https://www.facebook.com/EventosCharrosdelPedregal?locale=
 const INSTAGRAM_URL = 'https://www.instagram.com/realdelpedregalcdmx/';
 const MAPS_URL = 'https://maps.app.goo.gl/yZ7QhdAafxdVwN1n9';
 const WHATSAPP_PRIMARY_URL =
-  'https://wa.me/525546037246?text=Hola%2C%20me%20interesa%20conocer%20m%C3%A1s%20informaci%C3%B3n%20sobre%20el%20lugar.%20%C2%BFPodr%C3%ADan%20ayudarme%3F';
+  'https://wa.me/525546037246?text=Hola%2C%20me%20gustar%C3%ADa%20consultar%20disponibilidad%20para%20realizar%20un%20evento%20en%20Real%20del%20Pedregal.';
 const WHATSAPP_QUOTE_URL =
   'https://wa.me/525546037246?text=Hola%2C%20me%20gustar%C3%ADa%20cotizar%20un%20evento%20en%20Lienzo%20Charro%20del%20Pedregal.%20%C2%BFPodr%C3%ADan%20compartirme%20informaci%C3%B3n%3F';
 const WHATSAPP_VISIT_URL =
   'https://wa.me/525546037246?text=Hola%2C%20me%20gustar%C3%ADa%20agendar%20una%20visita%20para%20conocer%20Lienzo%20Charro%20del%20Pedregal.%20%C2%BFQu%C3%A9%20horarios%20tienen%20disponibles%3F';
 const assetUrl = (path) => `${import.meta.env.BASE_URL}${path}`;
+const SITE_URL = 'https://realdelpedregal.com.mx';
+const DEFAULT_PAGE_METADATA = {
+  title: 'Real del Pedregal | Eventos en el Lienzo Charro del Pedregal',
+  description:
+    'Venue para bodas, XV años, eventos sociales y corporativos en el Lienzo Charro del Pedregal, al sur de la Ciudad de México. Conoce Real del Pedregal y sus espacios para celebrar.',
+  canonical: `${SITE_URL}/`,
+  ogTitle: 'Real del Pedregal | Venue para eventos en el sur de la CDMX',
+  ogDescription:
+    'Espacios para bodas, XV años, eventos sociales y corporativos dentro del Lienzo Charro del Pedregal. Conoce Real del Pedregal.',
+  twitterTitle: 'Real del Pedregal | Eventos en el Lienzo Charro del Pedregal',
+  twitterDescription:
+    'Un venue con espacios versátiles para celebraciones sociales y eventos corporativos en el sur de la Ciudad de México.',
+};
+const PAGE_METADATA = {
+  '/nosotros': {
+    title: 'Nosotros y Clientes | Real del Pedregal',
+    description:
+      'Conoce Real del Pedregal, recinto para eventos dentro del Lienzo Charro del Pedregal en el sur de la CDMX, y algunos clientes que han realizado eventos sociales y corporativos en el venue.',
+    canonical: `${SITE_URL}/nosotros/`,
+    ogTitle: 'Real del Pedregal | Nosotros y Clientes',
+    ogDescription:
+      'Un recinto para eventos sociales y corporativos dentro del Lienzo Charro del Pedregal, con espacios versátiles y trayectoria en celebraciones privadas e institucionales.',
+    twitterTitle: 'Nosotros y Clientes | Real del Pedregal',
+    twitterDescription:
+      'Conoce Real del Pedregal y algunos clientes que han elegido el recinto para eventos sociales, corporativos e institucionales en el sur de la CDMX.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${SITE_URL}/nosotros/#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: 'Nosotros', item: `${SITE_URL}/nosotros/` },
+          ],
+        },
+        {
+          '@type': 'WebPage',
+          '@id': `${SITE_URL}/nosotros/#webpage`,
+          name: 'Nosotros y Clientes | Real del Pedregal',
+          url: `${SITE_URL}/nosotros/`,
+          description:
+            'Conoce Real del Pedregal, recinto para eventos dentro del Lienzo Charro del Pedregal en el sur de la CDMX, y algunos clientes que han realizado eventos sociales y corporativos en el venue.',
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          about: { '@id': `${SITE_URL}/#venue` },
+          inLanguage: 'es-MX',
+        },
+        {
+          '@type': 'EventVenue',
+          '@id': `${SITE_URL}/#venue`,
+          name: 'Real del Pedregal',
+          alternateName: 'Lienzo Charro del Pedregal',
+          url: `${SITE_URL}/`,
+          image: `${SITE_URL}/assets/optimized/nosotros-video-poster-real-del-pedregal.webp`,
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Camino Sta. Teresa 305',
+            addressLocality: 'Tlalpan',
+            addressRegion: 'Ciudad de México',
+            addressCountry: 'MX',
+          },
+          sameAs: [FACEBOOK_URL, INSTAGRAM_URL],
+          telephone: '+52 55 4603 7246',
+        },
+      ],
+    },
+  },
+  '/contacto': {
+    title: 'Contacto | Real del Pedregal',
+    description:
+      'Contacta a Real del Pedregal para consultar disponibilidad, agendar una visita o cotizar eventos sociales y corporativos dentro del Lienzo Charro del Pedregal, en Tlalpan CDMX.',
+    canonical: `${SITE_URL}/contacto/`,
+    ogTitle: 'Contacto | Real del Pedregal',
+    ogDescription:
+      'Consulta disponibilidad o agenda una visita a Real del Pedregal, recinto para eventos sociales y corporativos en el Lienzo Charro del Pedregal.',
+    twitterTitle: 'Contacto | Real del Pedregal',
+    twitterDescription:
+      'Agenda una visita o solicita información para tu evento en Real del Pedregal, al sur de la Ciudad de México.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${SITE_URL}/contacto/#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: 'Contacto', item: `${SITE_URL}/contacto/` },
+          ],
+        },
+        {
+          '@type': 'ContactPage',
+          '@id': `${SITE_URL}/contacto/#webpage`,
+          name: 'Contacto | Real del Pedregal',
+          url: `${SITE_URL}/contacto/`,
+          description:
+            'Contacta a Real del Pedregal para consultar disponibilidad, agendar una visita o cotizar eventos sociales y corporativos dentro del Lienzo Charro del Pedregal, en Tlalpan CDMX.',
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          about: { '@id': `${SITE_URL}/#venue` },
+          inLanguage: 'es-MX',
+        },
+        {
+          '@type': 'EventVenue',
+          '@id': `${SITE_URL}/#venue`,
+          name: 'Real del Pedregal',
+          alternateName: 'Lienzo Charro del Pedregal',
+          url: `${SITE_URL}/`,
+          image: `${SITE_URL}/assets/optimized/contacto-real-del-pedregal.jpg`,
+          telephone: '+52 55 4603 7246',
+          hasMap: MAPS_URL,
+          areaServed: ['Tlalpan', 'Sur de la Ciudad de México', 'CDMX'],
+          openingHoursSpecification: [
+            {
+              '@type': 'OpeningHoursSpecification',
+              dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+              opens: '10:00',
+              closes: '18:00',
+            },
+          ],
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: 'Camino Santa Teresa 305',
+            addressLocality: 'Tlalpan',
+            addressRegion: 'Ciudad de México',
+            addressCountry: 'MX',
+          },
+          sameAs: [FACEBOOK_URL, INSTAGRAM_URL],
+        },
+      ],
+    },
+  },
+  '/espacios': {
+    title: 'Espacios para Eventos | Real del Pedregal',
+    description:
+      'Conoce los espacios de Real del Pedregal dentro del Lienzo Charro del Pedregal: jardines, hacienda, áreas abiertas y ambientes versátiles para eventos de 100 a 500 personas en el sur de la CDMX.',
+    canonical: `${SITE_URL}/espacios/`,
+    ogTitle: 'Espacios para eventos en Real del Pedregal',
+    ogDescription:
+      'Jardines, hacienda, áreas abiertas y espacios versátiles dentro del Lienzo Charro del Pedregal para celebraciones sociales y eventos corporativos.',
+    twitterTitle: 'Espacios para Eventos | Real del Pedregal',
+    twitterDescription:
+      'Ambientes versátiles para bodas, XV años, bautizos, graduaciones y eventos corporativos en Real del Pedregal.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${SITE_URL}/espacios/#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: 'Espacios', item: `${SITE_URL}/espacios/` },
+          ],
+        },
+        {
+          '@type': 'CollectionPage',
+          '@id': `${SITE_URL}/espacios/#collection`,
+          name: 'Espacios para eventos en Real del Pedregal',
+          url: `${SITE_URL}/espacios/`,
+          description:
+            'Jardines, hacienda, áreas abiertas y espacios versátiles dentro del Lienzo Charro del Pedregal para celebraciones sociales y eventos corporativos.',
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          about: { '@id': `${SITE_URL}/#venue` },
+          inLanguage: 'es-MX',
+        },
+        {
+          '@type': 'ItemList',
+          '@id': `${SITE_URL}/espacios/#itemlist`,
+          name: 'Espacios de Real del Pedregal',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Jardín Parián', item: `${SITE_URL}/espacios/#showcase-space-1` },
+            { '@type': 'ListItem', position: 2, name: 'Hacienda Luminares', item: `${SITE_URL}/espacios/#showcase-space-2` },
+          ],
+        },
+      ],
+    },
+  },
+};
+PAGE_METADATA['/clientes'] = PAGE_METADATA['/nosotros'];
+
+const ensureMetaTag = (selector, createTag, valueAttribute, value) => {
+  if (!value) {
+    return;
+  }
+
+  let element = document.head.querySelector(selector);
+
+  if (!element) {
+    element = createTag();
+    document.head.appendChild(element);
+  }
+
+  element.setAttribute(valueAttribute, value);
+};
+
+const applyPageMetadata = (path) => {
+  const metadata = PAGE_METADATA[path] || DEFAULT_PAGE_METADATA;
+
+  document.title = metadata.title;
+  ensureMetaTag('meta[name="description"]', () => {
+    const tag = document.createElement('meta');
+    tag.setAttribute('name', 'description');
+    return tag;
+  }, 'content', metadata.description);
+  ensureMetaTag('link[rel="canonical"]', () => {
+    const tag = document.createElement('link');
+    tag.setAttribute('rel', 'canonical');
+    return tag;
+  }, 'href', metadata.canonical);
+  ensureMetaTag('meta[property="og:title"]', () => {
+    const tag = document.createElement('meta');
+    tag.setAttribute('property', 'og:title');
+    return tag;
+  }, 'content', metadata.ogTitle);
+  ensureMetaTag('meta[property="og:description"]', () => {
+    const tag = document.createElement('meta');
+    tag.setAttribute('property', 'og:description');
+    return tag;
+  }, 'content', metadata.ogDescription);
+  ensureMetaTag('meta[property="og:url"]', () => {
+    const tag = document.createElement('meta');
+    tag.setAttribute('property', 'og:url');
+    return tag;
+  }, 'content', metadata.canonical);
+  ensureMetaTag('meta[name="twitter:title"]', () => {
+    const tag = document.createElement('meta');
+    tag.setAttribute('name', 'twitter:title');
+    return tag;
+  }, 'content', metadata.twitterTitle);
+  ensureMetaTag('meta[name="twitter:description"]', () => {
+    const tag = document.createElement('meta');
+    tag.setAttribute('name', 'twitter:description');
+    return tag;
+  }, 'content', metadata.twitterDescription);
+
+  const routeJsonLdId = 'route-json-ld';
+  const existingJsonLd = document.getElementById(routeJsonLdId);
+
+  if (!metadata.jsonLd) {
+    existingJsonLd?.remove();
+    return;
+  }
+
+  const jsonLdScript = existingJsonLd || document.createElement('script');
+  jsonLdScript.id = routeJsonLdId;
+  jsonLdScript.type = 'application/ld+json';
+  jsonLdScript.textContent = JSON.stringify(metadata.jsonLd);
+
+  if (!existingJsonLd) {
+    document.head.appendChild(jsonLdScript);
+  }
+};
 const pageUrl = (path) => `${import.meta.env.BASE_URL}${path.replace(/^\//, '')}`;
-const internalPagePaths = ['/nosotros', '/espacios', '/clientes', '/contacto', '/eventos-sociales', '/corporativos'];
+const internalPagePaths = ['/nosotros', '/espacios', '/clientes', '/contacto', '/eventos', '/eventos-sociales', '/corporativos'];
 const navItems = [
   { label: 'Espacios', href: '/espacios' },
-  { label: 'Eventos', href: '/eventos-sociales' },
+  { label: 'Eventos', href: '/eventos' },
   { label: 'Clientes', href: '/clientes' },
   { label: 'Nosotros', href: '/nosotros' },
   { label: 'Contacto', href: '/contacto' },
@@ -26,17 +276,21 @@ const navItems = [
 const homeEventMosaic = [
   {
     title: 'Eventos',
-    href: '/eventos-sociales',
+    href: '/eventos',
+    linkTitle: 'Eventos sociales y corporativos en Real del Pedregal',
+    ariaLabel: 'Ver tipos de eventos en Real del Pedregal',
     src: 'assets/optimized/eventos-sociales-bodas-galeria-12.jpg',
-    alt: 'Montaje nocturno para boda con mesas largas, iluminacion y pista en Real del Pedregal',
+    alt: 'Eventos sociales, bodas y celebraciones en Real del Pedregal',
     className: 'mosaic-tile-events',
     loading: 'eager',
   },
   {
     title: 'Espacios',
     href: '/espacios',
+    linkTitle: 'Espacios para eventos en el Lienzo Charro del Pedregal',
+    ariaLabel: 'Ver espacios para eventos en Real del Pedregal',
     src: 'assets/optimized/eventos-corporativos-real-del-pedregal.webp',
-    alt: 'Salon con arcos iluminados y montaje para evento corporativo en Real del Pedregal',
+    alt: 'Espacios para bodas y eventos en Real del Pedregal',
     className: 'mosaic-tile-spaces',
     loading: 'eager',
   },
@@ -45,94 +299,98 @@ const homeEventMosaic = [
 const spacesShowcase = [
   {
     name: 'Jardín Parián',
+    title: 'Jardín Parián, espacio para eventos en Real del Pedregal',
+    ariaLabel: 'Galería de imágenes del Jardín Parián en Real del Pedregal',
     direction: 'right',
     images: [
       {
         src: 'assets/optimized/jardin-parian-showcase-01.png',
-        alt: 'Jardín Parián con vista al atardecer, jardín y fachada de Real del Pedregal',
+        alt: 'Jardín Parián en Real del Pedregal para eventos sociales',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/jardin-parian-showcase-02.png',
-        alt: 'Terraza y jardín de Jardín Parián con luz cálida de atardecer',
+        alt: 'Montaje en Jardín Parián dentro del Lienzo Charro del Pedregal',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/jardin-parian-showcase-03.png',
-        alt: 'Vista amplia de Jardín Parián con árboles, césped y arquitectura al fondo',
+        alt: 'Jardín Parián preparado para bodas y celebraciones privadas',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/jardin-parian-showcase-04.png',
-        alt: 'Montaje de evento en Jardín Parián bajo estructura transparente',
+        alt: 'Montaje en Jardín Parián dentro del Lienzo Charro del Pedregal',
         className: 'spaces-showcase-wide',
       },
       {
         src: 'assets/optimized/jardin-parian-showcase-05.png',
-        alt: 'Mesas montadas en Jardín Parián con arreglos florales y luz cálida',
+        alt: 'Jardín Parián preparado para bodas y celebraciones privadas',
         className: 'spaces-showcase-portrait',
       },
       {
         src: 'assets/optimized/jardin-parian-showcase-06.png',
-        alt: 'Mesa montada en Jardín Parián con sillas de madera y vista al jardín',
+        alt: 'Jardín Parián en Real del Pedregal para eventos sociales',
         className: 'spaces-showcase-portrait',
       },
     ],
   },
   {
     name: 'Hacienda Luminares',
+    title: 'Hacienda Luminares, espacio para eventos en Real del Pedregal',
+    ariaLabel: 'Galería de imágenes de Hacienda Luminares en Real del Pedregal',
     direction: 'right',
     images: [
       {
         src: 'assets/optimized/hacienda-luminares-showcase-01.png',
-        alt: 'Hacienda Luminares con montaje cálido, candil y arreglos florales altos',
+        alt: 'Hacienda Luminares en Real del Pedregal para eventos privados',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-02.png',
-        alt: 'Salón Hacienda Luminares montado para banquete con arcos, candiles y mesas elegantes',
+        alt: 'Montaje de evento en Hacienda Luminares',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-03.png',
-        alt: 'Hacienda Luminares con montaje de mesas, arcos iluminados y decoración suspendida',
+        alt: 'Hacienda Luminares dentro del Lienzo Charro del Pedregal',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-04.png',
-        alt: 'Interior de Hacienda Luminares con papel picado, candil y mesas de celebración',
+        alt: 'Hacienda Luminares en Real del Pedregal para eventos privados',
         className: 'spaces-showcase-portrait',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-05.png',
-        alt: 'Hacienda Luminares vacía con columnas blancas, vigas de madera y luz cálida',
+        alt: 'Montaje de evento en Hacienda Luminares',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-06.png',
-        alt: 'Vista amplia de Hacienda Luminares con columnas, candiles y piso iluminado',
+        alt: 'Hacienda Luminares dentro del Lienzo Charro del Pedregal',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-07.png',
-        alt: 'Hacienda Luminares con arquitectura de arcos, columnas y candiles encendidos',
+        alt: 'Hacienda Luminares en Real del Pedregal para eventos privados',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-08.png',
-        alt: 'Hacienda Luminares preparado para conferencia con filas de sillas blancas',
+        alt: 'Montaje de evento en Hacienda Luminares',
         className: 'spaces-showcase-landscape',
       },
       {
         src: 'assets/optimized/hacienda-luminares-showcase-09.png',
-        alt: 'Banquete en Hacienda Luminares con mesas redondas, vajilla y arquitectura iluminada',
+        alt: 'Hacienda Luminares dentro del Lienzo Charro del Pedregal',
         className: 'spaces-showcase-landscape',
       },
     ],
   },
 ];
 
-function SpacesShowcaseTrack({ images, spaceName }) {
+function SpacesShowcaseTrack({ images, spaceName, spaceTitle, ariaLabel }) {
   const trackRef = useRef(null);
   const dragStateRef = useRef({
     active: false,
@@ -219,7 +477,7 @@ function SpacesShowcaseTrack({ images, spaceName }) {
       className="spaces-showcase-track"
       ref={trackRef}
       tabIndex={0}
-      aria-label={`Imagenes de ${spaceName}`}
+      aria-label={ariaLabel || `Galería de imágenes de ${spaceName} en Real del Pedregal`}
       onPointerEnter={pauseTrack}
       onPointerLeave={resumeTrack}
       onPointerDown={handlePointerDown}
@@ -231,6 +489,9 @@ function SpacesShowcaseTrack({ images, spaceName }) {
       <div className="spaces-showcase-rail">
         {[...images, ...images].map((image, imageIndex) => {
           const isLoopCopy = imageIndex >= images.length;
+          const imageDimensions = image.className === 'spaces-showcase-portrait'
+            ? { width: 1024, height: 1536 }
+            : { width: 1536, height: 864 };
 
           return (
             <figure
@@ -241,8 +502,11 @@ function SpacesShowcaseTrack({ images, spaceName }) {
               <img
                 src={assetUrl(image.src)}
                 alt={isLoopCopy ? '' : image.alt}
+                title={isLoopCopy ? undefined : image.title || spaceTitle}
                 loading="lazy"
                 decoding="async"
+                width={imageDimensions.width}
+                height={imageDimensions.height}
               />
             </figure>
           );
@@ -260,7 +524,7 @@ const contactInfoItems = [
       <address>
         Lienzo Charro del Pedregal
         <br />
-        Camino Sta. Teresa, Tlalpan, CDMX
+        Camino Santa Teresa 305, Tlalpan, CDMX
       </address>
     ),
   },
@@ -763,13 +1027,13 @@ const clientLogos = [
   { name: 'Gentera', src: 'assets/optimized/client-logos/gentera.png' },
   { name: 'Cruz Azul', src: 'assets/optimized/client-logos/cruz-azul.png' },
   { name: 'Grupo Salinas', src: 'assets/optimized/client-logos/grupo-salinas.png' },
-  { name: 'Petalo', src: 'assets/optimized/client-logos/petalo.png' },
+  { name: 'Pétalo', src: 'assets/optimized/client-logos/petalo.png' },
   { name: 'Grisi', src: 'assets/optimized/client-logos/grisi.png' },
-  { name: 'L Oreal Paris', src: 'assets/optimized/client-logos/loreal.png' },
+  { name: "L'Oréal Paris", src: 'assets/optimized/client-logos/loreal.png' },
   { name: 'MetLife', src: 'assets/optimized/client-logos/metlife.png' },
   { name: 'El Palacio de Hierro', src: 'assets/optimized/client-logos/palacio-de-hierro.png' },
   { name: 'TV Azteca', src: 'assets/optimized/client-logos/tv-azteca.png' },
-  { name: 'Nestle', src: 'assets/optimized/client-logos/nestle.png' },
+  { name: 'Nestlé', src: 'assets/optimized/client-logos/nestle.png' },
   { name: 'Tesla', src: 'assets/optimized/client-logos/tesla.png' },
   { name: 'American Express', src: 'assets/optimized/client-logos/american-express.webp' },
   { name: 'Banco Azteca', src: 'assets/optimized/client-logos/banco-azteca.png' },
@@ -828,17 +1092,19 @@ function AboutClientsPage() {
           <div className="about-copy">
             <h1 id="about-title">Nosotros</h1>
             <p>
-              En Real del Pedregal, la naturaleza, la tradicion y la elegancia conviven en un mismo lugar
-              para dar vida a experiencias memorables. El recinto reune jardines, terrazas, patios y espacios
-              llenos de historia, pensados para adaptarse a distintos tipos de eventos y celebraciones.
+              Real del Pedregal es un recinto para eventos ubicado dentro del Lienzo Charro del
+              Pedregal, en el sur de la Ciudad de México. Su propuesta reúne jardines, terrazas,
+              patios y espacios con historia para recibir bodas, XV años, bautizos, graduaciones,
+              celebraciones privadas y encuentros corporativos en un entorno amplio, sobrio y versátil.
             </p>
             <p>
-              Cada rincon tiene una personalidad propia: ambientes al aire libre rodeados de vegetacion,
-              arquitectura con caracter cultural y recorridos que acompanan la creacion de momentos unicos.
+              Cada área del venue conserva una personalidad propia: ambientes al aire libre,
+              arquitectura con carácter, vegetación y recorridos que permiten desarrollar montajes de
+              distintas escalas con naturalidad, presencia y equilibrio visual.
             </p>
           </div>
 
-          <div className="about-video-frame" aria-hidden="true">
+          <div className="about-video-frame" aria-label="Real del Pedregal, recinto para eventos dentro del Lienzo Charro del Pedregal">
             <video
               ref={videoRef}
               className="about-video"
@@ -847,6 +1113,8 @@ function AboutClientsPage() {
               playsInline
               preload="metadata"
               poster={assetUrl('assets/optimized/nosotros-video-poster-real-del-pedregal.webp')}
+              title="Real del Pedregal, venue para eventos sociales y corporativos en CDMX"
+              aria-label="Real del Pedregal, recinto para eventos dentro del Lienzo Charro del Pedregal"
             >
               <source src={assetUrl('assets/video/nosotros-real-del-pedregal.mp4')} type="video/mp4" />
             </video>
@@ -854,7 +1122,7 @@ function AboutClientsPage() {
         </div>
       </section>
 
-      <section className="clients-section" id="clientes" aria-label="Clientes">
+      <section className="clients-section" id="clientes" aria-labelledby="clients-title">
         <div
           className="clients-logo-marquee"
           aria-label="Empresas que han realizado eventos en Real del Pedregal"
@@ -869,9 +1137,11 @@ function AboutClientsPage() {
                     <figure className={className} key={`${logo.src}-${groupIndex}`}>
                       <img
                         src={assetUrl(logo.src)}
-                        alt={groupIndex === 0 ? logo.name : ''}
+                        alt={groupIndex === 0 ? `Logo de ${logo.name}` : ''}
                         loading="lazy"
                         decoding="async"
+                        width={228}
+                        height={258}
                       />
                     </figure>
                   );
@@ -879,6 +1149,17 @@ function AboutClientsPage() {
               </div>
             ))}
           </div>
+        </div>
+
+        <div className="clients-copy">
+          <h2 id="clients-title">Clientes que han realizado eventos en Real del Pedregal</h2>
+          <p>
+            Real del Pedregal ha sido sede de eventos corporativos, encuentros institucionales,
+            celebraciones privadas y experiencias de marca para empresas de distintos sectores. Esta
+            sección reúne algunos de los clientes que han elegido el recinto por su amplitud,
+            ubicación en el sur de la Ciudad de México y capacidad para adaptarse a formatos sociales
+            y empresariales dentro del Lienzo Charro del Pedregal.
+          </p>
         </div>
       </section>
     </div>
@@ -889,11 +1170,13 @@ function SpacesPage() {
   return (
     <section className="spaces-section spaces-showcase-section" id="espacios" aria-labelledby="spaces-title">
       <div className="spaces-showcase-intro">
-        <h1 id="spaces-title">titulo</h1>
+        <h1 id="spaces-title">Espacios para eventos en Real del Pedregal</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lectus a libero
-          dignissim luctus. Sed non magna at nunc viverra facilisis. Praesent commodo, justo vel
-          dictum tempor, mi sapien aliquet erat, vitae consequat sem ipsum at nulla.
+          Real del Pedregal reúne distintos ambientes dentro del Lienzo Charro del Pedregal, con áreas
+          abiertas, jardines, hacienda, rincones con carácter y espacios versátiles para celebraciones
+          sociales y eventos corporativos. Su amplitud permite crear montajes para reuniones desde 100
+          hasta 500 personas, según el formato del evento, integrando escenarios naturales, arquitectura
+          con presencia y una capilla de valor histórico dentro del recinto.
         </p>
       </div>
 
@@ -904,7 +1187,7 @@ function SpacesPage() {
           return (
             <section className={rowClassName} key={space.name} aria-labelledby={`showcase-space-${index + 1}`}>
               <h2 id={`showcase-space-${index + 1}`}>{space.name}</h2>
-              <SpacesShowcaseTrack images={space.images} spaceName={space.name} />
+              <SpacesShowcaseTrack images={space.images} spaceName={space.name} spaceTitle={space.title} ariaLabel={space.ariaLabel} />
             </section>
           );
         })}
@@ -1102,7 +1385,10 @@ function ContactMapGraphic() {
     <figure className="contact-map">
       <img
         src={assetUrl('assets/optimized/mapa-contacto-lienzo-charro.png')}
-        alt="Mapa de referencia hacia Lienzo Charro del Pedregal, cerca de Perisur, Villa Olímpica y Camino Santa Teresa"
+        alt="Mapa de ubicación de Real del Pedregal dentro del Lienzo Charro del Pedregal, en Camino Santa Teresa, Tlalpan"
+        title="Ubicación de Real del Pedregal en Tlalpan"
+        width="468"
+        height="333"
         loading="lazy"
         decoding="async"
       />
@@ -1118,31 +1404,14 @@ function ContactPage() {
           <h1 id="contact-title">Hablemos de tu evento</h1>
           <span className="contact-title-rule" aria-hidden="true" />
           <p className="contact-intro">
-            Escríbenos para consultar disponibilidad, resolver dudas o agendar una visita personalizada.
+            Escríbenos para consultar disponibilidad, resolver dudas o agendar una visita personalizada a Real del Pedregal, recinto para eventos sociales y corporativos dentro del Lienzo Charro del Pedregal, en el sur de la Ciudad de México.
           </p>
 
           <div className="contact-actions" aria-label="Opciones de contacto por WhatsApp">
-            <a className="contact-button contact-button-primary" href={WHATSAPP_PRIMARY_URL} target="_blank" rel="noopener noreferrer">
+            <a className="contact-button contact-button-primary" href={WHATSAPP_PRIMARY_URL} target="_blank" rel="noopener noreferrer" aria-label="Enviar mensaje por WhatsApp a Real del Pedregal" title="Contactar a Real del Pedregal por WhatsApp">
               <ContactIcon name="whatsapp" />
               <span>Enviar WhatsApp</span>
             </a>
-            <div className="contact-secondary-actions">
-              <a className="contact-button contact-button-secondary" href={WHATSAPP_QUOTE_URL} target="_blank" rel="noopener noreferrer">
-                <ContactIcon name="document" />
-                <span>Cotizar evento</span>
-              </a>
-              <a className="contact-button contact-button-secondary" href={WHATSAPP_VISIT_URL} target="_blank" rel="noopener noreferrer">
-                <ContactIcon name="calendar" />
-                <span>Agendar visita</span>
-              </a>
-            </div>
-          </div>
-
-          <div className="contact-direct">
-            <span className="contact-direct-mark" aria-hidden="true">
-              <ContactIcon name="headset" />
-            </span>
-            <span>Atención directa</span>
           </div>
         </div>
 
@@ -1150,7 +1419,10 @@ function ContactPage() {
           <figure className="contact-image-frame">
             <img
               src={assetUrl('assets/optimized/contacto-real-del-pedregal.jpg')}
-              alt="Montaje de evento al aire libre en Lienzo Charro del Pedregal"
+              alt="Montaje de evento en Real del Pedregal, recinto dentro del Lienzo Charro del Pedregal"
+              title="Evento en Real del Pedregal"
+              width="768"
+              height="1024"
               loading="lazy"
               decoding="async"
             />
@@ -1168,7 +1440,7 @@ function ContactPage() {
                 </div>
               ))}
 
-              <a className="contact-map-link" href={MAPS_URL} target="_blank" rel="noopener noreferrer">
+              <a className="contact-map-link" href={MAPS_URL} target="_blank" rel="noopener noreferrer" aria-label="Cómo llegar a Real del Pedregal en el Lienzo Charro del Pedregal" title="Ver ubicación de Real del Pedregal en el mapa">
                 <ContactIcon name="pin" />
                 <span>Cómo llegar</span>
               </a>
@@ -1482,8 +1754,9 @@ function HomePage({ onNavigate }) {
           autoPlay
           muted
           playsInline
-          preload="auto"
+          preload="metadata"
           aria-label="Recorrido visual por Real del Pedregal"
+          title="Video de presentación de Real del Pedregal"
         >
           <source src={`${assetUrl('assets/video/lienzo-charro-hero.mp4')}?v=20260528-architectural`} type="video/mp4" />
         </video>
@@ -1491,11 +1764,13 @@ function HomePage({ onNavigate }) {
 
       <section className="home-intro-section" aria-labelledby="home-intro-title">
         <div className="home-intro-copy">
-          <h2 id="home-intro-title">titulo</h2>
+          <h1 id="home-intro-title">Real del Pedregal, eventos con carácter en el Lienzo Charro del Pedregal</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lectus a libero
-            dignissim luctus. Sed non magna at nunc viverra facilisis. Praesent commodo, justo vel
-            dictum tempor, mi sapien aliquet erat, vitae consequat sem ipsum at nulla.
+            En el sur de la Ciudad de México, Real del Pedregal reúne amplitud, tradición y espacios
+            versátiles para celebrar bodas, XV años, bautizos, graduaciones, encuentros privados y
+            eventos corporativos. Un venue dentro del Lienzo Charro del Pedregal diseñado para adaptarse
+            a distintos formatos de celebración, con áreas abiertas, escenarios con presencia y una
+            atmósfera que distingue cada evento.
           </p>
         </div>
       </section>
@@ -1508,10 +1783,13 @@ function HomePage({ onNavigate }) {
               href={pageUrl(item.href)}
               key={item.title}
               onClick={(event) => onNavigate(event, item.href)}
+              title={item.linkTitle}
+              aria-label={item.ariaLabel}
             >
               <img
                 src={assetUrl(item.src)}
                 alt={item.alt}
+                title={item.linkTitle}
                 loading={item.loading || 'lazy'}
                 decoding="async"
               />
@@ -1547,6 +1825,10 @@ function App() {
   const [currentPath, setCurrentPath] = useState(normalizePath);
   const [headerVisible, setHeaderVisible] = useState(false);
   const headerScrollTimerRef = useRef(null);
+
+  useEffect(() => {
+    applyPageMetadata(currentPath);
+  }, [currentPath]);
 
   const navigateTo = (event, path) => {
     if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || event.button !== 0) {
@@ -1639,7 +1921,7 @@ function App() {
         {(currentPath === '/nosotros' || currentPath === '/clientes') && <AboutClientsPage />}
         {currentPath === '/espacios' && <SpacesPage onNavigate={navigateTo} />}
         {currentPath === '/contacto' && <ContactPage />}
-        {currentPath === '/eventos-sociales' && <SocialEventsPage />}
+        {(currentPath === '/eventos' || currentPath === '/eventos-sociales') && <SocialEventsPage />}
         {currentPath === '/corporativos' && <CorporateEventsPage />}
         {currentPath === '/' && <HomePage onNavigate={navigateTo} />}
       </main>
