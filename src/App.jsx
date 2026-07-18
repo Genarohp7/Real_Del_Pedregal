@@ -296,6 +296,110 @@ const homeEventMosaic = [
   },
 ];
 
+const eventsShowcase = [
+  {
+    name: 'XV Años',
+    title: 'XV Años en Real del Pedregal',
+    ariaLabel: 'Galería de imágenes de XV Años en Real del Pedregal',
+    direction: 'right',
+    images: [
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-01.jpg',
+        alt: 'Vals de XV años sobre pista iluminada en Real del Pedregal',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-02.jpg',
+        alt: 'Invitadas durante una celebración de XV años con iluminación violeta',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-03.png',
+        alt: 'Montaje de salón para XV años con luces decorativas y pista de baile',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-04.png',
+        alt: 'Pista de baile y decoración aérea para celebración de XV años',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-05.png',
+        alt: 'Quinceañera bailando con su padre entre luces y confeti',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-06.png',
+        alt: 'Pista principal decorada para XV años bajo techo iluminado',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-07.png',
+        alt: 'Presentación musical en vivo durante fiesta de XV años',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-xv-anos-showcase-08.png',
+        alt: 'Entrada decorativa con luces para fiesta de XV años',
+        className: 'spaces-showcase-portrait',
+      },
+    ],
+  },
+  {
+    name: 'Boda',
+    title: 'Boda en Real del Pedregal',
+    ariaLabel: 'Galería de imágenes de boda en Real del Pedregal',
+    direction: 'right',
+    images: [
+      {
+        src: 'assets/optimized/evento-boda-showcase-01.png',
+        alt: 'Detalle de asiento reservado para boda en Real del Pedregal',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-02.png',
+        alt: 'Pareja de boda bailando entre humo escénico en Real del Pedregal',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-03.png',
+        alt: 'Detalle de mesa de boda con cristalería y vajilla elegante',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-04.png',
+        alt: 'Ceremonia de boda al aire libre entre vegetación en Real del Pedregal',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-05.png',
+        alt: 'Montaje aéreo de ceremonia de boda en jardín con sombrillas blancas',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-06.png',
+        alt: 'Mesa de boda con vajilla, copas y sillas de madera',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-07.png',
+        alt: 'Novios durante ceremonia de boda rodeados de flores y vegetación',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-08.png',
+        alt: 'Servicio de mesa para boda con plato, copa ámbar y menú personalizado',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/evento-boda-showcase-09.jpeg',
+        alt: 'Menú personalizado y servilleta en montaje de boda',
+        className: 'spaces-showcase-portrait',
+      },
+    ],
+  },
+];
+
 const spacesShowcase = [
   {
     name: 'Jardín Parián',
@@ -1455,170 +1559,41 @@ function ContactPage() {
 }
 
 function SocialEventsPage() {
-  const [activeGalleryName, setActiveGalleryName] = useState(null);
-  const [activeGalleryIndex, setActiveGalleryIndex] = useState(0);
-  const activeGallery = socialEventSpaces.find((space) => space.name === activeGalleryName);
-  const activeGalleryImages = activeGallery
-    ? activeGallery.gallery?.length
-      ? activeGallery.gallery
-      : [{ src: activeGallery.src, alt: `${activeGallery.name} en Real del Pedregal` }]
-    : [];
-  const activeGalleryImage = activeGalleryImages[activeGalleryIndex] ?? activeGalleryImages[0];
-  const hasMultipleGalleryImages = activeGalleryImages.length > 1;
-
-  useEffect(() => {
-    if (!activeGallery) {
-      return undefined;
-    }
-
-    const handleGalleryKeyDown = (event) => {
-      if (event.key === 'Escape') {
-        setActiveGalleryName(null);
-      }
-
-      if (event.key === 'ArrowRight' && hasMultipleGalleryImages) {
-        setActiveGalleryIndex((currentIndex) => (currentIndex + 1) % activeGalleryImages.length);
-      }
-
-      if (event.key === 'ArrowLeft' && hasMultipleGalleryImages) {
-        setActiveGalleryIndex((currentIndex) =>
-          currentIndex === 0 ? activeGalleryImages.length - 1 : currentIndex - 1,
-        );
-      }
-    };
-
-    window.addEventListener('keydown', handleGalleryKeyDown);
-
-    return () => window.removeEventListener('keydown', handleGalleryKeyDown);
-  }, [activeGallery, activeGalleryImages.length, hasMultipleGalleryImages]);
-
-  const openSocialGallery = (spaceName) => {
-    setActiveGalleryName(spaceName);
-    setActiveGalleryIndex(0);
-  };
-
-  const closeSocialGallery = () => {
-    setActiveGalleryName(null);
-  };
-
-  const showPreviousGalleryImage = () => {
-    setActiveGalleryIndex((currentIndex) =>
-      currentIndex === 0 ? activeGalleryImages.length - 1 : currentIndex - 1,
-    );
-  };
-
-  const showNextGalleryImage = () => {
-    setActiveGalleryIndex((currentIndex) => (currentIndex + 1) % activeGalleryImages.length);
-  };
-
   return (
-    <section className="social-events-section" aria-label="Galeria de eventos sociales">
-      <div className="social-events-inner">
-        <div className="social-events-frame">
-          <div className="social-events-frame-copy">
-            <span className="social-events-eyebrow">Eventos Sociales</span>
-            <h1>Montajes con presencia</h1>
-            <p>
-              Una selección de eventos reales realizados en distintos spots del venue. Mesas,
-              decoración, iluminación y ambiente muestran cómo cada espacio cobra vida para una
-              celebración.
-            </p>
-          </div>
-
-          <div className="social-events-frame-media">
-            <div className="social-events-accordion" aria-label="Espacios para eventos sociales">
-              {socialEventSpaces.map((space) => (
-                <button
-                  className="social-events-panel"
-                  key={space.name}
-                  type="button"
-                  onClick={() => openSocialGallery(space.name)}
-                  aria-label={space.name}
-                  aria-haspopup="dialog"
-                >
-                  <img
-                    src={assetUrl(space.src)}
-                    alt={`${space.name} en Real del Pedregal`}
-                    loading="eager"
-                    decoding="sync"
-                    fetchPriority="high"
-                  />
-                  <span className="social-events-panel-title">{space.name}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
+    <section className="social-events-section events-showcase-section" aria-labelledby="events-title">
+      <div className="spaces-showcase-intro events-showcase-intro">
+        <h1 id="events-title">titulo</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lectus a libero
+          dignissim luctus. Sed non magna at nunc viverra facilisis. Praesent commodo, justo vel
+          dictum tempor, mi sapien aliquet erat, vitae consequat sem ipsum at nulla.
+        </p>
       </div>
 
-      {activeGallery && (
-        <div
-          className="social-gallery-modal"
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="social-gallery-title"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              closeSocialGallery();
-            }
-          }}
-        >
-          <div className="social-gallery-modal-panel">
-            <div className="social-gallery-modal-header">
-              <div>
-                <span>Galería</span>
-                <h2 id="social-gallery-title">{activeGallery.name}</h2>
-              </div>
-              <button
-                className="social-gallery-close"
-                type="button"
-                onClick={closeSocialGallery}
-                aria-label="Cerrar galería"
-              >
-                Cerrar
-              </button>
-            </div>
+      <div className="spaces-showcase-list events-showcase-list">
+        {eventsShowcase.map((event, index) => {
+          const eventId = 'event-showcase-' + (index + 1);
+          const rowClassName = [
+            'spaces-showcase-row',
+            'events-showcase-row',
+            event.direction === 'right' ? 'is-reverse' : '',
+          ]
+            .filter(Boolean)
+            .join(' ');
 
-            <figure className="social-gallery-stage">
-              {activeGalleryImage && (
-                <img
-                  src={assetUrl(activeGalleryImage.src)}
-                  alt={activeGalleryImage.alt}
-                  loading="eager"
-                  decoding="sync"
-                />
-              )}
-              {!activeGallery.gallery?.length && (
-                <figcaption>
-                  Esta galería está lista para recibir las fotografías de {activeGallery.name}.
-                </figcaption>
-              )}
-            </figure>
-
-            <div className="social-gallery-controls">
-              <button
-                type="button"
-                onClick={showPreviousGalleryImage}
-                disabled={!hasMultipleGalleryImages}
-                aria-label="Foto anterior"
-              >
-                Anterior
-              </button>
-              <span>
-                {activeGalleryIndex + 1} / {activeGalleryImages.length}
-              </span>
-              <button
-                type="button"
-                onClick={showNextGalleryImage}
-                disabled={!hasMultipleGalleryImages}
-                aria-label="Foto siguiente"
-              >
-                Siguiente
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
+          return (
+            <section className={rowClassName} key={event.name} aria-labelledby={eventId}>
+              <h2 id={eventId}>{event.name}</h2>
+              <SpacesShowcaseTrack
+                images={event.images}
+                spaceName={event.name}
+                spaceTitle={event.title}
+                ariaLabel={event.ariaLabel}
+              />
+            </section>
+          );
+        })}
+      </div>
     </section>
   );
 }

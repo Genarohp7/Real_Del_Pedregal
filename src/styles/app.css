@@ -539,6 +539,32 @@
   content: none;
 }
 
+.events-showcase-section {
+  min-height: 100svh;
+  height: auto;
+  padding: calc(clamp(96px, 13vw, 150px) + env(safe-area-inset-top)) 0 clamp(92px, 12vw, 150px);
+  overflow: hidden;
+  color: var(--paper);
+  background: var(--ink);
+  background-size: auto;
+}
+
+.events-showcase-section::before {
+  display: none;
+}
+
+.events-showcase-intro {
+  margin-bottom: clamp(86px, 10vw, 144px);
+}
+
+.events-showcase-row {
+  padding-right: 0;
+}
+
+.events-showcase-row.is-reverse h2 {
+  padding-right: clamp(26px, 4vw, 74px);
+}
+
 .spaces-showcase-section {
   --spaces-showcase-gutter: clamp(24px, 3vw, 54px);
   height: auto;
@@ -3101,3 +3127,81 @@
 
 }
 
+/* Eventos showcase edge alignment overrides */
+.events-showcase-section {
+  --events-copy-offset: clamp(220px, 17vw, 300px);
+  --spaces-showcase-gutter: 0px;
+  min-height: 100svh;
+  height: auto;
+  padding: calc(clamp(96px, 13vw, 150px) + env(safe-area-inset-top)) 0 clamp(92px, 12vw, 150px) !important;
+  overflow-x: hidden;
+  overflow-y: visible;
+  color: var(--paper);
+  background: var(--ink) !important;
+  background-image: none !important;
+  background-size: auto !important;
+}
+
+.events-showcase-section::before {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+}
+
+.events-showcase-section .events-showcase-intro {
+  width: min(calc(100% - var(--events-copy-offset) - clamp(24px, 5vw, 92px)), 740px);
+  margin-left: var(--events-copy-offset);
+  margin-bottom: clamp(86px, 10vw, 144px);
+  padding-right: 0;
+}
+
+.events-showcase-section .events-showcase-list,
+.events-showcase-section .events-showcase-row {
+  width: 100vw;
+  max-width: 100vw;
+}
+
+.events-showcase-section .events-showcase-row.is-reverse .spaces-showcase-track {
+  width: 100%;
+  max-width: none;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.events-showcase-section .events-showcase-row.is-reverse h2 {
+  padding-right: clamp(26px, 4vw, 74px);
+}
+
+@media (max-width: 760px) {
+  .events-showcase-section {
+    --events-copy-offset: 18px;
+    padding: calc(clamp(118px, 28vw, 152px) + env(safe-area-inset-top)) 0 clamp(72px, 18vw, 112px) !important;
+  }
+
+  .events-showcase-section .events-showcase-intro {
+    width: calc(100% - 36px);
+    margin-left: 18px;
+    padding-right: 0;
+  }
+
+  .events-showcase-section .events-showcase-row {
+    gap: 18px;
+  }
+
+  .events-showcase-section .events-showcase-row h2 {
+    padding: 0 18px;
+  }
+
+  .events-showcase-section .events-showcase-row.is-reverse h2 {
+    padding-right: 18px;
+    padding-left: 18px;
+  }
+
+  .events-showcase-section .events-showcase-row.is-reverse .spaces-showcase-track,
+  .events-showcase-section .spaces-showcase-track {
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
