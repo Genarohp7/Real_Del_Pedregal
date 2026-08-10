@@ -1478,10 +1478,10 @@ function ContactPage() {
           <figure className="contact-image-frame">
             <img
               src={assetUrl('assets/optimized/contacto-real-del-pedregal.jpg')}
-              alt="Montaje de evento en Real del Pedregal, recinto dentro del Lienzo Charro del Pedregal"
-              title="Evento en Real del Pedregal"
-              width="768"
-              height="1024"
+              alt="Mesa montada con cristaleria y flores blancas en Real del Pedregal"
+              title="Mesa de evento en Real del Pedregal"
+              width="1920"
+              height="1080"
               loading="lazy"
               decoding="async"
             />

@@ -3227,3 +3227,16 @@
     margin-right: 0;
   }
 }
+
+/* Contact page uses a solid black canvas, without the shared section grid. */
+.contact-section {
+  background: var(--ink) !important;
+  background-image: none !important;
+  background-size: auto !important;
+}
+
+.contact-section::before {
+  content: none !important;
+  background: none !important;
+}
+
