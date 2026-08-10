@@ -143,6 +143,63 @@ const PAGE_METADATA = {
       ],
     },
   },
+  '/eventos': {
+    title: 'Eventos | Real del Pedregal',
+    description:
+      'Bodas, XV años, bautizos, primeras comuniones y eventos sociales en Real del Pedregal, recinto dentro del Lienzo Charro del Pedregal en el sur de la Ciudad de México.',
+    canonical: `${SITE_URL}/eventos/`,
+    ogTitle: 'Eventos en Real del Pedregal',
+    ogDescription:
+      'Conoce los tipos de eventos que pueden celebrarse en Real del Pedregal: bodas, XV años, bautizos, primeras comuniones y celebraciones sociales en el sur de la CDMX.',
+    twitterTitle: 'Eventos | Real del Pedregal',
+    twitterDescription:
+      'Espacios para bodas, XV años, bautizos, primeras comuniones y eventos sociales dentro del Lienzo Charro del Pedregal.',
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'BreadcrumbList',
+          '@id': `${SITE_URL}/eventos/#breadcrumb`,
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Inicio', item: `${SITE_URL}/` },
+            { '@type': 'ListItem', position: 2, name: 'Eventos', item: `${SITE_URL}/eventos/` },
+          ],
+        },
+        {
+          '@type': 'WebPage',
+          '@id': `${SITE_URL}/eventos/#webpage`,
+          name: 'Eventos en Real del Pedregal',
+          url: `${SITE_URL}/eventos/`,
+          description:
+            'Bodas, XV años, bautizos, primeras comuniones y eventos sociales en Real del Pedregal, recinto dentro del Lienzo Charro del Pedregal en el sur de la Ciudad de México.',
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          about: { '@id': `${SITE_URL}/#venue` },
+          inLanguage: 'es-MX',
+        },
+        {
+          '@type': 'CollectionPage',
+          '@id': `${SITE_URL}/eventos/#collection`,
+          name: 'Eventos en Real del Pedregal',
+          url: `${SITE_URL}/eventos/`,
+          description:
+            'Tipos de eventos sociales que pueden celebrarse en Real del Pedregal dentro del Lienzo Charro del Pedregal.',
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          about: { '@id': `${SITE_URL}/#venue` },
+          inLanguage: 'es-MX',
+        },
+        {
+          '@type': 'ItemList',
+          '@id': `${SITE_URL}/eventos/#itemlist`,
+          name: 'Tipos de eventos en Real del Pedregal',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'XV años', item: `${SITE_URL}/eventos/#event-showcase-1` },
+            { '@type': 'ListItem', position: 2, name: 'Bodas', item: `${SITE_URL}/eventos/#event-showcase-2` },
+            { '@type': 'ListItem', position: 3, name: 'Bautizos y primeras comuniones', item: `${SITE_URL}/eventos/#event-showcase-3` },
+          ],
+        },
+      ],
+    },
+  },
   '/espacios': {
     title: 'Espacios para Eventos | Real del Pedregal',
     description:
@@ -190,6 +247,7 @@ const PAGE_METADATA = {
     },
   },
 };
+PAGE_METADATA['/eventos-sociales'] = PAGE_METADATA['/eventos'];
 PAGE_METADATA['/clientes'] = PAGE_METADATA['/nosotros'];
 
 const ensureMetaTag = (selector, createTag, valueAttribute, value) => {
@@ -347,9 +405,9 @@ const eventsShowcase = [
     ],
   },
   {
-    name: 'Boda',
-    title: 'Boda en Real del Pedregal',
-    ariaLabel: 'Galería de imágenes de boda en Real del Pedregal',
+    name: 'Bodas',
+    title: 'Bodas en Real del Pedregal',
+    ariaLabel: 'Galería de imágenes de bodas en Real del Pedregal',
     direction: 'right',
     images: [
       {
@@ -400,7 +458,7 @@ const eventsShowcase = [
     ],
   },
   {
-    name: 'Bautizos / Primera Comunión',
+    name: 'Bautizos y primeras comuniones',
     title: 'Bautizos y primeras comuniones en Real del Pedregal',
     ariaLabel: 'Galería de imágenes de bautizos y primeras comuniones en Real del Pedregal',
     direction: 'right',
@@ -1609,11 +1667,13 @@ function SocialEventsPage() {
   return (
     <section className="social-events-section events-showcase-section" aria-labelledby="events-title">
       <div className="spaces-showcase-intro events-showcase-intro">
-        <h1 id="events-title">titulo</h1>
+        <h1 id="events-title">Eventos en Real del Pedregal</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer vitae lectus a libero
-          dignissim luctus. Sed non magna at nunc viverra facilisis. Praesent commodo, justo vel
-          dictum tempor, mi sapien aliquet erat, vitae consequat sem ipsum at nulla.
+          Real del Pedregal ofrece espacios versátiles para celebrar bodas, XV años, bautizos,
+          primeras comuniones, graduaciones, encuentros familiares y eventos sociales dentro del
+          Lienzo Charro del Pedregal. Cada celebración puede desarrollarse en distintos ambientes
+          del recinto, integrando áreas abiertas, arquitectura con carácter y montajes adaptados al
+          estilo de cada evento.
         </p>
       </div>
 
