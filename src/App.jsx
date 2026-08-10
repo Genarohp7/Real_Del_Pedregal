@@ -399,6 +399,49 @@ const eventsShowcase = [
       },
     ],
   },
+  {
+    name: 'Bautizos / Primera Comunión',
+    title: 'Bautizos y primeras comuniones en Real del Pedregal',
+    ariaLabel: 'Galería de imágenes de bautizos y primeras comuniones en Real del Pedregal',
+    direction: 'right',
+    images: [
+      {
+        src: 'assets/optimized/eventos-sociales-bautizo.jpg',
+        alt: 'Mesa decorada para bautizo o primera comunión en Real del Pedregal',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-1.jpg',
+        alt: 'Detalle de montaje floral para bautizo en Real del Pedregal',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-3.jpg',
+        alt: 'Ceremonia de primera comunión en capilla del Pedregal',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-4.jpg',
+        alt: 'Decoración con globos para bautizo y primera comunión',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-5.jpg',
+        alt: 'Centro de mesa colorido para bautizo en Real del Pedregal',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-7.jpg',
+        alt: 'Montaje de globos y flores para celebración infantil en Real del Pedregal',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/eventos-sociales-bautizo-galeria-8.jpg',
+        alt: 'Mesa pastel con decoración floral para bautizo o primera comunión',
+        className: 'spaces-showcase-landscape',
+      },
+    ],
+  },
 ];
 
 const spacesShowcase = [
