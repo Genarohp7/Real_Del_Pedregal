@@ -1146,49 +1146,6 @@ const clientLogos = [
 ];
 
 function AboutClientsPage() {
-  const videoRef = useRef(null);
-  const isVisibleRef = useRef(false);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
-
-  useEffect(() => {
-    const video = videoRef.current;
-
-    if (!video) {
-      return undefined;
-    }
-
-    const playVideo = () => {
-      video.play().catch(() => undefined);
-    };
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        isVisibleRef.current = entry.isIntersecting;
-
-        if (entry.isIntersecting) {
-          setShouldLoadVideo(true);
-          playVideo();
-        } else {
-          video.pause();
-        }
-      },
-      { rootMargin: '260px 0px', threshold: 0.32 },
-    );
-
-    observer.observe(video);
-
-    return () => {
-      observer.disconnect();
-      video.pause();
-    };
-  }, []);
-
-  useEffect(() => {
-    if (shouldLoadVideo && isVisibleRef.current && videoRef.current) {
-      videoRef.current.load();
-      videoRef.current.play().catch(() => undefined);
-    }
-  }, [shouldLoadVideo]);
   return (
     <div className="about-clients-page">
       <section className="about-section about-page" id="nosotros" aria-labelledby="about-title">
@@ -1208,21 +1165,19 @@ function AboutClientsPage() {
             </p>
           </div>
 
-          <div className="about-video-frame" aria-label="Real del Pedregal, recinto para eventos dentro del Lienzo Charro del Pedregal">
-            <video
-              ref={videoRef}
-              className="about-video"
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              poster={assetUrl('assets/optimized/nosotros-video-poster-real-del-pedregal.webp')}
-              title="Real del Pedregal, venue para eventos sociales y corporativos en CDMX"
-              aria-label="Real del Pedregal, recinto para eventos dentro del Lienzo Charro del Pedregal"
-            >
-              <source src={assetUrl('assets/video/nosotros-real-del-pedregal.mp4')} type="video/mp4" />
-            </video>
-          </div>
+          <figure
+            className="about-video-frame about-image-frame"
+            aria-label="Mesa montada para evento en Real del Pedregal"
+          >
+            <img
+              className="about-video about-image"
+              src={assetUrl('assets/optimized/nosotros-mesa-real-del-pedregal.jpg')}
+              alt="Mesa montada con cristaleria y flores blancas en Real del Pedregal"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
+            />
+          </figure>
         </div>
       </section>
 
