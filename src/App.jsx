@@ -183,6 +183,7 @@ const PAGE_METADATA = {
           itemListElement: [
             { '@type': 'ListItem', position: 1, name: 'Jardín Parián', item: `${SITE_URL}/espacios/#showcase-space-1` },
             { '@type': 'ListItem', position: 2, name: 'Hacienda Luminares', item: `${SITE_URL}/espacios/#showcase-space-2` },
+            { '@type': 'ListItem', position: 3, name: 'Jardín Bosque del Pedregal', item: `${SITE_URL}/espacios/#showcase-space-3` },
           ],
         },
       ],
@@ -489,6 +490,54 @@ const spacesShowcase = [
         src: 'assets/optimized/hacienda-luminares-showcase-09.png',
         alt: 'Hacienda Luminares dentro del Lienzo Charro del Pedregal',
         className: 'spaces-showcase-landscape',
+      },
+    ],
+  },
+  {
+    name: 'Jardín Bosque del Pedregal',
+    title: 'Jardín Bosque del Pedregal, espacio para eventos en Real del Pedregal',
+    ariaLabel: 'Galería de imágenes del Jardín Bosque del Pedregal en Real del Pedregal',
+    direction: 'right',
+    images: [
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-01.jpeg',
+        alt: 'Montaje de Jardín Bosque del Pedregal con mesas y cielo decorativo amarillo',
+        className: 'spaces-showcase-landscape',
+      },
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-02.jpg',
+        alt: 'Explanada techada de Jardín Bosque del Pedregal para eventos amplios',
+        className: 'spaces-showcase-wide',
+      },
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-03.jpg',
+        alt: 'Vista lateral de la explanada techada en Jardín Bosque del Pedregal',
+        className: 'spaces-showcase-wide',
+      },
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-04.jpg',
+        alt: 'Jardín Bosque del Pedregal con montaje floral y mesas para celebración',
+        className: 'spaces-showcase-wide',
+      },
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-05.jpg',
+        alt: 'Montaje panorámico con flores y mesas en Jardín Bosque del Pedregal',
+        className: 'spaces-showcase-wide',
+      },
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-06.png',
+        alt: 'Montaje elegante en Jardín Bosque del Pedregal con centros de mesa verdes',
+        className: 'spaces-showcase-portrait',
+      },
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-07.jpg',
+        alt: 'Jardín Bosque del Pedregal con mesas de madera bajo iluminación cálida',
+        className: 'spaces-showcase-wide',
+      },
+      {
+        src: 'assets/optimized/bosque-pedregal-showcase-08.jpg',
+        alt: 'Decoración floral elevada en Jardín Bosque del Pedregal para evento social',
+        className: 'spaces-showcase-wide',
       },
     ],
   },
